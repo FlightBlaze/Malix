@@ -6,30 +6,25 @@
 class Value {
 public:
     Value(double value);
-    Value(int value);
     Value(std::string value);
     Value(bool value);
     Value() {} // NIL
 
-    bool isDouble();
-    bool isInt();
+    bool isNumber();
     bool isString();
     bool isBool();
     bool isNil();
 
-    double getDoubleValue();
-    int getIntValue();
+    double getNumberValue();
     std::string getStringValue();
     bool getBoolValue();
 
 private:
     bool valueDouble = false;
-    bool valueInt    = false;
     bool valueString = false;
     bool valueBool   = false;
 
     double doubleValue = 0;
-    int integerValue   = 0;
     bool boolValue     = false;
     std::string stringValue = std::string();
 };

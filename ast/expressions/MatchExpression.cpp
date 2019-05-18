@@ -6,42 +6,32 @@ Value MatchExpression::eval() {
 
     switch (operatorChar) {
         case '+': {
-            if (one.isDouble())
-                return Value(one.getDoubleValue() + too.getDoubleValue());
-            else if (one.isInt())
-                return Value(one.getIntValue() + too.getIntValue());
+            if (one.isNumber())
+                return Value(one.getNumberValue() + too.getNumberValue());
             else if (one.isBool())
-                return Value(one.getBoolValue() + too.getBoolValue());
+                return Value((double) one.getBoolValue() + too.getBoolValue());
             else return Value();
         } case '-': {
-            if (one.isDouble())
-                return Value(one.getDoubleValue() - too.getDoubleValue());
-            else if (one.isInt())
-                return Value(one.getIntValue() - too.getIntValue());
+            if (one.isNumber())
+                return Value(one.getNumberValue() - too.getNumberValue());
             else if (one.isBool())
-                return Value(one.getBoolValue() - too.getBoolValue());
+                return Value((double) one.getBoolValue() - too.getBoolValue());
             else return Value();
         } case '*': {
-            if (one.isDouble())
-                return Value(one.getDoubleValue() * too.getDoubleValue());
-            else if (one.isInt())
-                return Value(one.getIntValue() * too.getIntValue());
+            if (one.isNumber())
+                return Value(one.getNumberValue() * too.getNumberValue());
             else if (one.isBool())
-                return Value(one.getBoolValue() * too.getBoolValue());
+                return Value((double) one.getBoolValue() * too.getBoolValue());
             else return Value();
         } case '/': {
-            if (one.isDouble())
-                return Value(one.getDoubleValue() / too.getDoubleValue());
-            else if (one.isInt())
-                return Value(one.getIntValue() / too.getIntValue());
+            if (one.isNumber())
+                return Value(one.getNumberValue() / too.getNumberValue());
             else if (one.isBool())
-                return Value(one.getBoolValue() / too.getBoolValue());
+                return Value((double) one.getBoolValue() / too.getBoolValue());
             else return Value();
         } case '%': {
-            if (one.isDouble() || one.isInt()) // because % operation invalid for double
-                return Value(one.getIntValue() % too.getIntValue());
-            else if (one.isBool())
-                return Value(one.getBoolValue() % too.getBoolValue());
+            if (one.isNumber() || one.isBool()) // because % operation invalid for double
+                return Value((double) ((int) one.getNumberValue() % (int) too.getNumberValue()));
             else return Value();
         }
     }

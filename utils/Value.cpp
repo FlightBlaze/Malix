@@ -5,11 +5,6 @@ Value::Value(double value) {
     this->doubleValue = value;
 }
 
-Value::Value(int value) {
-    this->valueInt = true;
-    this->integerValue = value;
-}
-
 Value::Value(std::string value) {
     this->valueString = true;
     this->stringValue = std::move(value);
@@ -20,12 +15,8 @@ Value::Value(bool value) {
     this->boolValue = value;
 }
 
-bool Value::isDouble() {
+bool Value::isNumber() {
     return this->valueDouble;
-}
-
-bool Value::isInt() {
-    return this->valueInt;
 }
 
 bool Value::isString() {
@@ -37,38 +28,26 @@ bool Value::isBool() {
 }
 
 bool Value::isNil() {
-    return !(isDouble() || isBool() || isInt() || isString());
+    return !(isNumber() || isBool() || isString());
 }
 
-double Value::getDoubleValue() {
-    if (isDouble())
+double Value::getNumberValue() {
+    if (isNumber())
         return this->doubleValue;
-    else if (isInt())
-        return static_cast<double>(this->integerValue);
     else if (isBool())
         return static_cast<double>(this->boolValue);
-    else return 0;
-}
-
-int Value::getIntValue() {
-    if (isInt())
-        return this->integerValue;
-    else if (isDouble())
-        return static_cast<int>(this->doubleValue);
-    else if (isBool())
-        return static_cast<int>(this->boolValue);
     else return 0;
 }
 
 std::string Value::getStringValue() {
     if (isString())
         return this->stringValue;
-    else if (isInt())
-        return std::to_string(this->integerValue);
-    else if (isDouble())
+    else if (isNumber())
         return std::to_string(this->doubleValue);
     else if (isBool())
         return std::string((this->boolValue ? "true" : "false"));
+
+    return std::string();
 }
 
 bool Value::getBoolValue() {

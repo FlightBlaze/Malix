@@ -64,15 +64,9 @@ void Lexer::tokenizeNumber() {
         } else break;
     }
 
-    if (dotExists) {
-        double number;
-        stream >> number;
-        addToken(TokenType::NUMBER, Value(number));
-    } else {
-        int number;
-        stream >> number;
-        addToken(TokenType::NUMBER, Value(number));
-    }
+    double number;
+    stream >> number;
+    addToken(TokenType::NUMBER, Value(number));
 }
 
 char Lexer::getOperator(TokenType type) {
@@ -82,5 +76,7 @@ char Lexer::getOperator(TokenType type) {
         case TokenType::STAR:    return '*';
         case TokenType::SLASH:   return '/';
         case TokenType::PERCENT: return '%';
+        default:
+            return '\0';
     }
 }
