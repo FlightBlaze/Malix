@@ -12,6 +12,9 @@ enum TokenType {
     SLASH, // /
     PERCENT,// %
 
+    L_PAREN, // (
+    R_PAREN, // )
+
     NIL,
 
     FILEEND

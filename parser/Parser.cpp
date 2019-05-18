@@ -95,5 +95,11 @@ Expression * Parser::primary() {
         expr = new NumberExpression(token.getContent().getNumberValue());
     }
 
+    if (match(TokenType::L_PAREN)) {
+        expr = expression();
+        match(TokenType::R_PAREN);
+        return expr;
+    }
+
     return expr;
 }

@@ -11,6 +11,8 @@ Lexer::Lexer(std::string input) {
     this->operators['*'] = TokenType::STAR;
     this->operators['/'] = TokenType::SLASH;
     this->operators['%'] = TokenType::PERCENT;
+    this->operators['('] = TokenType::L_PAREN;
+    this->operators[')'] = TokenType::R_PAREN;
 }
 
 std::vector<Token> Lexer::tokenize() {

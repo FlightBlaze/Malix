@@ -5,7 +5,7 @@
 #include "parser/Parser.h"
 
 int main() {
-    Lexer lexer("2 + 2 * -2");
+    Lexer lexer("(2 + 2) * -2");
     std::vector<Token> tokens = lexer.tokenize();
     for (Token token : tokens) {
         std::cout << "Token: " << token.getContent().getStringValue() << std::endl;
