@@ -26,6 +26,7 @@ private:
     void addToken(TokenType type, Value content);
 
     void tokenizeNumber();
+    void tokenizeWord();
 };
 
 

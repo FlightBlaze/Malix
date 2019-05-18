@@ -1,6 +1,7 @@
 #include <memory>
 #include "Parser.h"
 #include "../ast/expressions/UnaryExpression.h"
+#include "../ast/expressions/ConstantExpression.h"
 
 std::vector<Expression *> Parser::parse() {
     this->size = tokens.size();
@@ -99,6 +100,10 @@ Expression * Parser::primary() {
         expr = expression();
         match(TokenType::R_PAREN);
         return expr;
+    }
+
+    if (match(TokenType::WORD)) {
+        expr = new ConstantExpression(token.getContent().getStringValue());
     }
 
     return expr;
