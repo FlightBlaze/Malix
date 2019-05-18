@@ -1,5 +1,6 @@
 #include <memory>
 #include "Parser.h"
+#include "../ast/expressions/UnaryExpression.h"
 
 std::vector<Expression *> Parser::parse() {
     this->size = tokens.size();
@@ -37,12 +38,12 @@ Expression * Parser::additive() {
 
     while (true) {
         if (match(TokenType::PLUS)) {
-            expr = new MatchExpression('+', expr, multiplicative());
+            expr = new BinaryExpression('+', expr, multiplicative());
             continue;
         }
 
         if (match(TokenType::MINUS)) {
-            expr = new MatchExpression('-', expr, multiplicative());
+            expr = new BinaryExpression('-', expr, multiplicative());
             continue;
         }
 
@@ -57,17 +58,17 @@ Expression * Parser::multiplicative() {
 
     while (true) {
         if (match(TokenType::STAR)) {
-            expr = new MatchExpression('*', expr, unary());
+            expr = new BinaryExpression('*', expr, unary());
             continue;
         }
 
         if (match(TokenType::SLASH)) {
-            expr = new MatchExpression('/', expr, unary());
+            expr = new BinaryExpression('/', expr, unary());
             continue;
         }
 
         if (match(TokenType::PERCENT)) {
-            expr = new MatchExpression('%', expr, unary());
+            expr = new BinaryExpression('%', expr, unary());
             continue;
         }
 
@@ -78,6 +79,11 @@ Expression * Parser::multiplicative() {
 }
 
 Expression * Parser::unary() {
+    if (match(TokenType::MINUS)) {
+        return new UnaryExpression('-', primary());
+    }
+
+    match(TokenType::PLUS);
     return primary();
 }
 

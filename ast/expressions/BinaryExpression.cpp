@@ -1,6 +1,6 @@
-#include "MatchExpression.h"
+#include "BinaryExpression.h"
 
-Value MatchExpression::eval() {
+Value BinaryExpression::eval() {
     Value one = expression1->eval();
     Value too = expression2->eval();
 
