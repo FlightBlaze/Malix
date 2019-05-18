@@ -5,15 +5,8 @@
 #include "parser/Parser.h"
 
 int main() {
-    Lexer lexer("(2 + 2) * -2");
-    std::vector<Token> tokens = lexer.tokenize();
-    for (Token token : tokens) {
-        std::cout << "Token: " << token.getContent().getStringValue() << std::endl;
-    }
-
-    std::cout << std::endl;
-
-    Parser parser(tokens);
+    Lexer lexer("(2.0. + 2) * -2");
+    Parser parser(lexer.tokenize());
     for (Expression * expr : parser.parse()) {
         std::cout << expr->eval().getStringValue() << std::endl;
     }

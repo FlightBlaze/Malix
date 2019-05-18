@@ -53,12 +53,9 @@ void Lexer::tokenizeNumber() {
     stream << peek(-1); // add current char to stream
 
     while (true) {
-        if (peek(0) == '.') { // loooooooool
-            if (!dotExists) dotExists = true;
-            else {
-                next();
-                continue;
-            }
+        if (peek(0) == '.') {
+            if (dotExists) throw std::runtime_error(std::string("Invalid float number at position: ") += std::to_string(position));
+            dotExists = true;
         }
 
         if (isdigit(peek(0)) || peek(0) == '.') {
