@@ -4,7 +4,6 @@
 #include <utility>
 #include <vector>
 #include "token/Token.h"
-#include "../ast/expressions/NumberExpression.h"
 #include "../ast/expressions/BinaryExpression.h"
 #include "../ast/statements/Statement.h"
 

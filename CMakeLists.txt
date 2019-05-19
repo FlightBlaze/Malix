@@ -14,8 +14,6 @@ add_executable(malix main.cpp
         utils/Value.h
         ast/expressions/BinaryExpression.cpp
         ast/expressions/BinaryExpression.h
-        ast/expressions/NumberExpression.cpp
-        ast/expressions/NumberExpression.h
         parser/Parser.cpp parser/Parser.h
         ast/expressions/UnaryExpression.cpp
         ast/expressions/UnaryExpression.h
@@ -28,5 +26,4 @@ add_executable(malix main.cpp
         ast/expressions/VariableExpression.h
         ast/statements/PrintStatement.cpp
         ast/statements/PrintStatement.h
-        ast/expressions/StringExpression.cpp
-        ast/expressions/StringExpression.h ast/expressions/ConditionalExpression.cpp ast/expressions/ConditionalExpression.h ast/statements/IfStatement.cpp ast/statements/IfStatement.h ast/expressions/BooleanExpression.cpp ast/expressions/BooleanExpression.h ast/expressions/NilExpression.cpp ast/expressions/NilExpression.h)
+        ast/expressions/ConditionalExpression.cpp ast/expressions/ConditionalExpression.h ast/statements/IfStatement.cpp ast/statements/IfStatement.h ast/expressions/ValueExpression.cpp ast/expressions/ValueExpression.h)

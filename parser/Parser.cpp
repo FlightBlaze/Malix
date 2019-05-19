@@ -4,11 +4,9 @@
 #include "../ast/statements/AssigmentStatement.h"
 #include "../ast/expressions/VariableExpression.h"
 #include "../ast/statements/PrintStatement.h"
-#include "../ast/expressions/StringExpression.h"
 #include "../ast/expressions/ConditionalExpression.h"
-#include "../ast/expressions/BooleanExpression.h"
-#include "../ast/expressions/NilExpression.h"
 #include "../ast/statements/IfStatement.h"
+#include "../ast/expressions/ValueExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -176,9 +174,9 @@ Expression * Parser::primary() {
     Expression * expr = nullptr;
 
     if (match(TokenType::NUMBER)) {
-        expr = new NumberExpression(token.getContent().getNumberValue());
+        expr = new ValueExpression(Value(token.getContent().getNumberValue()));
     } else if (match(TokenType::STRING)) {
-        expr = new StringExpression(token.getContent().getStringValue());
+        expr = new ValueExpression(Value(token.getContent().getStringValue()));
     } else if (match(TokenType::L_PAREN)) {
         expr = expression();
         match(TokenType::R_PAREN);
@@ -186,11 +184,11 @@ Expression * Parser::primary() {
     } else if (match(TokenType::WORD)) {
         expr = new VariableExpression(token.getContent().getStringValue());
     } else if (match(TokenType::TRUE)) {
-        expr = new BooleanExpression(true);
+        expr = new ValueExpression(Value(true));
     } else if (match(TokenType::FALSE)) {
-        expr = new BooleanExpression(false);
+        expr = new ValueExpression(Value(false));
     } else if (match(TokenType::NIL)) {
-        expr = new NilExpression();
+        expr = new ValueExpression(Value());
     }
 
     if (expr == nullptr) {
