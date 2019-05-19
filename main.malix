@@ -5,10 +5,8 @@
 
 print "Hello, Malix!\n" ;; Say hello in new language!
 
-print "PI: "
-print PI
-print "\nE: "
-print E
+print "PI: " + PI
+print "\nE: " + E
 print "\n"
 
 var sum = PI + E
@@ -17,3 +15,16 @@ print "\n"
 print sum
 print "\n"
 print (sum + sum) * sum
+print "\n\n"
+
+if (PI > E) {
+    print "PI > E\n"
+} else if (true) {
+    print true
+} else {
+    print false
+}
+
+if (PI < E) print "PI > E"
+else if (true) print true
+else print false

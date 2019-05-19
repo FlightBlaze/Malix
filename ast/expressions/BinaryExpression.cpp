@@ -10,29 +10,31 @@ Value BinaryExpression::eval() {
                 return Value(one.getNumberValue() + too.getNumberValue());
             else if (one.isBool())
                 return Value((double) one.getBoolValue() + too.getBoolValue());
-            else return Value();
+            else if (one.isString())
+                return Value(one.getStringValue() += too.getStringValue());
+            else return one;
         } case '-': {
             if (one.isNumber())
                 return Value(one.getNumberValue() - too.getNumberValue());
             else if (one.isBool())
                 return Value((double) one.getBoolValue() - too.getBoolValue());
-            else return Value();
+            else return one;
         } case '*': {
             if (one.isNumber())
                 return Value(one.getNumberValue() * too.getNumberValue());
             else if (one.isBool())
                 return Value((double) one.getBoolValue() * too.getBoolValue());
-            else return Value();
+            return one;
         } case '/': {
             if (one.isNumber())
                 return Value(one.getNumberValue() / too.getNumberValue());
             else if (one.isBool())
                 return Value((double) one.getBoolValue() / too.getBoolValue());
-            else return Value();
+            else return one;
         } case '%': {
             if (one.isNumber() || one.isBool()) // because % operation invalid for double
                 return Value((double) ((int) one.getNumberValue() % (int) too.getNumberValue()));
-            else return Value();
+            else return one;
         }
     }
 

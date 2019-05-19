@@ -25,7 +25,7 @@ private:
     char next();
 
     void addToken(TokenType type, Value content);
-    bool isKeyWord(std::string keyword);
+    TokenType isKeyWord(std::string keyword);
 
     void tokenizeNumber();
     void tokenizeWord();

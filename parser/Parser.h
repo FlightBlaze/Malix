@@ -29,6 +29,7 @@ private:
     Statement * statement();
     Statement * assignmentStatement();
     Expression * expression();
+    Expression * conditional();
     Expression * additive();
     Expression * multiplicative();
     Expression * unary();

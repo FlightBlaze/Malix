@@ -5,6 +5,10 @@
 #include "../ast/expressions/VariableExpression.h"
 #include "../ast/statements/PrintStatement.h"
 #include "../ast/expressions/StringExpression.h"
+#include "../ast/expressions/ConditionalExpression.h"
+#include "../ast/expressions/BooleanExpression.h"
+#include "../ast/expressions/NilExpression.h"
+#include "../ast/statements/IfStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -34,8 +38,32 @@ bool Parser::match(TokenType type) {
 }
 
 Statement * Parser::statement() {
-    if (peek(0).getContent().getStringValue() == "print" && match(TokenType::KEYWORD)) {
+    if (match(TokenType::PRINT)) {
         return new PrintStatement(expression());
+    }
+
+    if (match(TokenType::IF)) {
+        Expression * expr       = nullptr;
+        Statement  * statement1 = nullptr;
+        Statement  * statement2 = nullptr;
+
+        if (!match(TokenType::L_PAREN))
+            throw std::runtime_error("Syntax error expected (");
+        expr = expression();
+        if (!match(TokenType::R_PAREN))
+            throw std::runtime_error("Syntax error expected )");
+
+        match(TokenType::L_BRACKET);
+        statement1 = statement();
+        match(TokenType::R_BRACKET);
+
+        if (match(TokenType::ELSE)) {
+            match(TokenType::L_BRACKET);
+            statement2 = statement();
+            match(TokenType::R_BRACKET);
+        }
+
+        return new IfStatement(expr, statement1, statement2);
     }
 
     return assignmentStatement();
@@ -45,8 +73,7 @@ Statement * Parser::assignmentStatement() {
     Statement * state = nullptr;
     Token token = peek(0);
 
-    if (token.getType() == TokenType::KEYWORD && token.getContent().getStringValue() == "var") {
-        match(TokenType::KEYWORD);
+    if (match(TokenType::VAR)) {
         token = peek(0);
         std::string variableName = token.getContent().getStringValue();
         match(TokenType::WORD);
@@ -61,7 +88,33 @@ Statement * Parser::assignmentStatement() {
 }
 
 Expression * Parser::expression() {
-    return additive();
+    return conditional();
+}
+
+Expression * Parser::conditional() {
+    Expression * expr = additive();
+
+    while (this->position < this->size) {
+        if (peek(0).getType() == TokenType::EQ && match(TokenType::EQ)) {
+            match(TokenType::EQ);
+            expr = new ConditionalExpression('=', expr, additive());
+            continue;
+        }
+
+        if (match(TokenType::LT)) {
+            expr = new ConditionalExpression('<', expr, additive());
+            continue;
+        }
+
+        if (match(TokenType::GT)) {
+            expr = new ConditionalExpression('>', expr, additive());
+            continue;
+        }
+
+        break;
+    }
+
+    return expr;
 }
 
 Expression * Parser::additive() {
@@ -87,7 +140,7 @@ Expression * Parser::additive() {
 Expression * Parser::multiplicative() {
     Expression * expr = unary();
 
-    while (true) {
+    while (this->position < this->size) {
         if (match(TokenType::STAR)) {
             expr = new BinaryExpression('*', expr, unary());
             continue;
@@ -132,6 +185,12 @@ Expression * Parser::primary() {
         return expr;
     } else if (match(TokenType::WORD)) {
         expr = new VariableExpression(token.getContent().getStringValue());
+    } else if (match(TokenType::TRUE)) {
+        expr = new BooleanExpression(true);
+    } else if (match(TokenType::FALSE)) {
+        expr = new BooleanExpression(false);
+    } else if (match(TokenType::NIL)) {
+        expr = new NilExpression();
     }
 
     if (expr == nullptr) {

@@ -29,4 +29,4 @@ add_executable(malix main.cpp
         ast/statements/PrintStatement.cpp
         ast/statements/PrintStatement.h
         ast/expressions/StringExpression.cpp
-        ast/expressions/StringExpression.h)
+        ast/expressions/StringExpression.h ast/expressions/ConditionalExpression.cpp ast/expressions/ConditionalExpression.h ast/statements/IfStatement.cpp ast/statements/IfStatement.h ast/expressions/BooleanExpression.cpp ast/expressions/BooleanExpression.h ast/expressions/NilExpression.cpp ast/expressions/NilExpression.h)

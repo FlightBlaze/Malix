@@ -8,6 +8,17 @@ enum TokenType {
     STRING,
 
     EQ,
+    LT,
+    GT,
+
+    TRUE,
+    FALSE,
+
+    IF,
+    ELSE,
+
+    VAR,
+    PRINT,
 
     PLUS, // +
     MINUS, // -
@@ -17,6 +28,9 @@ enum TokenType {
 
     L_PAREN, // (
     R_PAREN, // )
+
+    L_BRACKET, // {
+    R_BRACKET, // }
 
     NIL,
 

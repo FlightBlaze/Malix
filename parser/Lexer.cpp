@@ -1,4 +1,5 @@
 #include <sstream>
+#include <algorithm>
 #include "Lexer.h"
 
 Lexer::Lexer(std::string input) {
@@ -15,10 +16,19 @@ Lexer::Lexer(std::string input) {
     // not operators, but easy to parse as operator
     this->operators['('] = TokenType::L_PAREN;
     this->operators[')'] = TokenType::R_PAREN;
+    this->operators['{'] = TokenType::L_BRACKET;
+    this->operators['}'] = TokenType::R_BRACKET;
     this->operators['='] = TokenType::EQ;
+    this->operators['<'] = TokenType::LT;
+    this->operators['>'] = TokenType::GT;
 
-    this->keywords["var"] = TokenType::KEYWORD;
-    this->keywords["print"] = TokenType::KEYWORD;
+    this->keywords["var"] = TokenType::VAR;
+    this->keywords["print"] = TokenType::PRINT;
+    this->keywords["true"] = TokenType::TRUE;
+    this->keywords["false"] = TokenType::FALSE;
+    this->keywords["if"] = TokenType::IF;
+    this->keywords["else"] = TokenType::ELSE;
+    this->keywords["nil"] = TokenType::NIL;
 }
 
 std::vector<Token> Lexer::tokenize() {
@@ -87,8 +97,7 @@ void Lexer::tokenizeWord() {
     }
 
     stream >> word;
-    if (!isKeyWord(word)) addToken(TokenType::WORD, Value(word));
-    else addToken(TokenType::KEYWORD, Value(word));
+    addToken(isKeyWord(word), Value(word));
 }
 
 void Lexer::tokenizeString() {
@@ -148,7 +157,9 @@ char Lexer::getOperator(TokenType type) {
     }
 }
 
-bool Lexer::isKeyWord(std::string keyword) {
+TokenType Lexer::isKeyWord(std::string keyword) {
+    std::transform(keyword.begin(), keyword.end(), keyword.begin(), ::tolower);
     auto it = keywords.find(keyword);
-    return it != keywords.end();
+    if (it != keywords.end()) return it->second;
+    else return TokenType::WORD;
 }
