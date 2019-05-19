@@ -1,5 +1,5 @@
-#ifndef MYLANG_LEXER_H
-#define MYLANG_LEXER_H
+#ifndef MALIX_LEXER_H
+#define MALIX_LEXER_H
 
 #include <string>
 #include <vector>
@@ -30,4 +30,4 @@ private:
 };
 
 
-#endif //MYLANG_LEXER_H
+#endif //MALIX_LEXER_H

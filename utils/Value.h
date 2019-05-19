@@ -1,5 +1,5 @@
-#ifndef MYLANG_VALUE_H
-#define MYLANG_VALUE_H
+#ifndef MALIX_VALUE_H
+#define MALIX_VALUE_H
 
 #include <string>
 
@@ -29,4 +29,4 @@ private:
     std::string stringValue = std::string();
 };
 
-#endif //MYLANG_VALUE_H
+#endif //MALIX_VALUE_H

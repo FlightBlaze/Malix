@@ -1,7 +1,7 @@
 #include <utility>
 
-#ifndef MYLANG_PARSER_H
-#define MYLANG_PARSER_H
+#ifndef MALIX_PARSER_H
+#define MALIX_PARSER_H
 
 #include <vector>
 #include "token/Token.h"
@@ -33,4 +33,4 @@ private:
     Expression * primary();
 };
 
-#endif //MYLANG_PARSER_H
+#endif //MALIX_PARSER_H

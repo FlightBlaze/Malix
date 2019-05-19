@@ -1,5 +1,5 @@
-#ifndef MYLANG_BINARYEXPRESSION_H
-#define MYLANG_BINARYEXPRESSION_H
+#ifndef MALIX_BINARYEXPRESSION_H
+#define MALIX_BINARYEXPRESSION_H
 
 #include "Expression.h"
 
@@ -15,4 +15,4 @@ private:
     char operatorChar;
 };
 
-#endif //MYLANG_BINARYEXPRESSION_H
+#endif //MALIX_BINARYEXPRESSION_H

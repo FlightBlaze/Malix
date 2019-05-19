@@ -1,5 +1,5 @@
-#ifndef MYLANG_EXPRESSION_H
-#define MYLANG_EXPRESSION_H
+#ifndef MALIX_EXPRESSION_H
+#define MALIX_EXPRESSION_H
 
 #include "../../utils/Value.h"
 
@@ -9,4 +9,4 @@ public:
 };
 
 
-#endif //MYLANG_EXPRESSION_H
+#endif //MALIX_EXPRESSION_H

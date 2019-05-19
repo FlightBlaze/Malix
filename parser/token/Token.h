@@ -1,5 +1,5 @@
-#ifndef MYLANG_TOKEN_H
-#define MYLANG_TOKEN_H
+#ifndef MALIX_TOKEN_H
+#define MALIX_TOKEN_H
 
 #include <string>
 #include "TokenType.h"
@@ -17,4 +17,4 @@ private:
 };
 
 
-#endif //MYLANG_TOKEN_H
+#endif //MALIX_TOKEN_H

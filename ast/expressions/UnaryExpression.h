@@ -1,5 +1,5 @@
-#ifndef MYLANG_UNARYEXPRESSION_H
-#define MYLANG_UNARYEXPRESSION_H
+#ifndef MALIX_UNARYEXPRESSION_H
+#define MALIX_UNARYEXPRESSION_H
 
 #include "Expression.h"
 
@@ -16,4 +16,4 @@ private:
 };
 
 
-#endif //MYLANG_UNARYEXPRESSION_H
+#endif //MALIX_UNARYEXPRESSION_H

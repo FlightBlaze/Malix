@@ -1,16 +1,16 @@
-#ifndef MYLANG_NUMBEREXPRESSION_H
-#define MYLANG_NUMBEREXPRESSION_H
+#ifndef MALIX_NUMBEREXPRESSION_H
+#define MALIX_NUMBEREXPRESSION_H
 
 #include "../../utils/Value.h"
 #include "Expression.h"
 
 class NumberExpression : public Expression {
 public:
-    NumberExpression(double value) : number(value) {}
+    explicit NumberExpression(double value) : number(value) {}
     Value eval() override;
 
 private:
     double number;
 };
 
-#endif //MYLANG_NUMBEREXPRESSION_H
+#endif //MALIX_NUMBEREXPRESSION_H

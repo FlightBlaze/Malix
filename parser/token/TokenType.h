@@ -1,5 +1,5 @@
-#ifndef MYLANG_TOKENTYPE_H
-#define MYLANG_TOKENTYPE_H
+#ifndef MALIX_TOKENTYPE_H
+#define MALIX_TOKENTYPE_H
 
 enum TokenType {
     NUMBER,
@@ -20,4 +20,4 @@ enum TokenType {
     FILEEND
 };
 
-#endif //MYLANG_TOKENTYPE_H
+#endif //MALIX_TOKENTYPE_H

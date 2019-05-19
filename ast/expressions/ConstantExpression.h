@@ -1,7 +1,7 @@
 #include <utility>
 
-#ifndef MYLANG_CONSTANTEXPRESSION_H
-#define MYLANG_CONSTANTEXPRESSION_H
+#ifndef MALIX_CONSTANTEXPRESSION_H
+#define MALIX_CONSTANTEXPRESSION_H
 
 #include "Expression.h"
 #include "map"
@@ -18,4 +18,4 @@ private:
 };
 
 
-#endif //MYLANG_CONSTANTEXPRESSION_H
+#endif //MALIX_CONSTANTEXPRESSION_H
