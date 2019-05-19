@@ -18,12 +18,14 @@ private:
     std::string input;
     std::vector<Token> tokens;
     std::map<char, TokenType> operators;
+    std::map<std::string, TokenType> keywords;
     int position;
 
     char peek(int relPos);
     char next();
 
     void addToken(TokenType type, Value content);
+    bool isKeyWord(std::string keyword);
 
     void tokenizeNumber();
     void tokenizeWord();

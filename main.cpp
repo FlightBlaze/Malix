@@ -2,11 +2,11 @@
 #include <fstream>
 #include "parser/Lexer.h"
 #include "parser/Parser.h"
-#include "ast/expressions/ConstantExpression.h"
+#include "lib/Variables.h"
 
 int main() {
-    Constants::addConstant("PI", Value(3.14159265359));
-    Constants::addConstant("E",  Value(2.71828182845));
+    Variables::setVariable("PI", Value(3.14159265359));
+    Variables::setVariable("E",  Value(2.71828182845));
 
     std::ifstream fileStream;
 
@@ -22,8 +22,8 @@ int main() {
     std::vector<Token> tokens = lexer.tokenize();
 
     Parser parser(tokens);
-    for (Expression * expr : parser.parse()) {
-        std::cout << expr->eval().getStringValue() << std::endl;
+    for (Statement * statement : parser.parse()) {
+        statement->execute();
     }
 
     return 0;

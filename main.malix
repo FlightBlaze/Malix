@@ -1,1 +1,25 @@
-(PI + E) * 2
+print PI
+print E
+
+var sum = PI + E
+
+print sum
+print sum * sum
+print sum * sum * sum
+print sum * sum * sum * sum
+print sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum

@@ -1,16 +1,18 @@
 #include <memory>
 #include "Parser.h"
 #include "../ast/expressions/UnaryExpression.h"
-#include "../ast/expressions/ConstantExpression.h"
+#include "../ast/statements/AssigmentStatement.h"
+#include "../ast/expressions/VariableExpression.h"
+#include "../ast/statements/PrintStatement.h"
 
-std::vector<Expression *> Parser::parse() {
+std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
 
     while (!match(TokenType::FILEEND)) {
-        expressions.push_back(expression());
+        statements.push_back(statement());
     }
 
-    return expressions;
+    return statements;
 }
 
 Token Parser::peek(int pos) {
@@ -28,6 +30,33 @@ bool Parser::match(TokenType type) {
 
     this->position++;
     return true;
+}
+
+Statement * Parser::statement() {
+    if (peek(0).getContent().getStringValue() == "print" && match(TokenType::KEYWORD)) {
+        return new PrintStatement(expression());
+    }
+
+    return assignmentStatement();
+}
+
+Statement * Parser::assignmentStatement() {
+    Statement * state = nullptr;
+    Token token = peek(0);
+
+    if (token.getType() == TokenType::KEYWORD && token.getContent().getStringValue() == "var") {
+        match(TokenType::KEYWORD);
+        token = peek(0);
+        std::string variableName = token.getContent().getStringValue();
+        match(TokenType::WORD);
+        match(TokenType::EQ);
+        state = new AssigmentStatement(variableName, expression());
+    }
+
+    if (state == nullptr)
+        throw std::runtime_error("Unknown statement");
+
+    return state;
 }
 
 Expression * Parser::expression() {
@@ -103,7 +132,11 @@ Expression * Parser::primary() {
     }
 
     if (match(TokenType::WORD)) {
-        expr = new ConstantExpression(token.getContent().getStringValue());
+        expr = new VariableExpression(token.getContent().getStringValue());
+    }
+
+    if (expr == nullptr) {
+        throw std::runtime_error("Unknown operation");
     }
 
     return expr;

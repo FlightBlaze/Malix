@@ -11,8 +11,14 @@ Lexer::Lexer(std::string input) {
     this->operators['*'] = TokenType::STAR;
     this->operators['/'] = TokenType::SLASH;
     this->operators['%'] = TokenType::PERCENT;
+
+    // not operators, but easy to parse as operator
     this->operators['('] = TokenType::L_PAREN;
     this->operators[')'] = TokenType::R_PAREN;
+    this->operators['='] = TokenType::EQ;
+
+    this->keywords["var"] = TokenType::KEYWORD;
+    this->keywords["print"] = TokenType::KEYWORD;
 }
 
 std::vector<Token> Lexer::tokenize() {
@@ -79,7 +85,8 @@ void Lexer::tokenizeWord() {
     }
 
     stream >> word;
-    addToken(TokenType::WORD, Value(word));
+    if (!isKeyWord(word)) addToken(TokenType::WORD, Value(word));
+    else addToken(TokenType::KEYWORD, Value(word));
 }
 
 char Lexer::getOperator(TokenType type) {
@@ -92,4 +99,9 @@ char Lexer::getOperator(TokenType type) {
         default:
             return '\0';
     }
+}
+
+bool Lexer::isKeyWord(std::string keyword) {
+    auto it = keywords.find(keyword);
+    return it != keywords.end();
 }

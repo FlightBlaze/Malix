@@ -6,6 +6,7 @@
 #include "token/Token.h"
 #include "../ast/expressions/NumberExpression.h"
 #include "../ast/expressions/BinaryExpression.h"
+#include "../ast/statements/Statement.h"
 
 class Parser {
 public:
@@ -13,18 +14,20 @@ public:
         this->size = tokens.size();
     }
 
-    std::vector<Expression *> parse();
+    std::vector<Statement *> parse();
 
 private:
     int size;
     int position  = 0;
     std::vector<Token> tokens;
-    std::vector<Expression *> expressions;
+    std::vector<Statement *> statements;
 
     Token peek(int pos);
     bool match(TokenType type);
 
     // parse ....
+    Statement * statement();
+    Statement * assignmentStatement();
     Expression * expression();
     Expression * additive();
     Expression * multiplicative();
