@@ -26,7 +26,8 @@ std::vector<Token> Lexer::tokenize() {
         char current = next();
 
         if (isdigit(current)) tokenizeNumber();
-        if (isalpha(current)) tokenizeWord();
+        else if (isalpha(current)) tokenizeWord();
+        else if (current == '"') tokenizeString();
         else if (this->operators.find(current) != this->operators.end())
             addToken(this->operators[current], Value(std::string(1, getOperator(this->operators[current]))));
     }
@@ -87,6 +88,32 @@ void Lexer::tokenizeWord() {
     stream >> word;
     if (!isKeyWord(word)) addToken(TokenType::WORD, Value(word));
     else addToken(TokenType::KEYWORD, Value(word));
+}
+
+void Lexer::tokenizeString() {
+    std::stringstream stream;
+    std::string string;
+
+    char current = next();
+    while (true) {
+        if (current == '\\') {
+            current = next();
+            switch (current) {
+                case '"': stream << "\""; current = next(); continue;
+                case 'n': stream << "\n"; current = next(); continue;
+                case 't': stream << "\t"; current = next(); continue;
+                default:  stream << "\\"; current = next(); continue;
+            }
+        }
+
+        if (current == '"') break;
+        stream << current;
+        current = next();
+    }
+
+    next(); // skip "
+
+    addToken(TokenType::STRING, Value(stream.str()));
 }
 
 char Lexer::getOperator(TokenType type) {

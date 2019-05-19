@@ -1,25 +1,14 @@
+print "Hello, World!\n"
+
+print "PI: "
 print PI
+print "\nE: "
 print E
+print "\n"
 
 var sum = PI + E
+print "\n"
 
 print sum
-print sum * sum
-print sum * sum * sum
-print sum * sum * sum * sum
-print sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
-print sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum * sum
+print "\n"
+print (sum + sum) * sum

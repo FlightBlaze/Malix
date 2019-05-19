@@ -5,7 +5,7 @@ enum TokenType {
     NUMBER,
     WORD,
     KEYWORD,
-    TEXT,
+    STRING,
 
     EQ,
 

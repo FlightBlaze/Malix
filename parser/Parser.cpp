@@ -4,6 +4,7 @@
 #include "../ast/statements/AssigmentStatement.h"
 #include "../ast/expressions/VariableExpression.h"
 #include "../ast/statements/PrintStatement.h"
+#include "../ast/expressions/StringExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -123,15 +124,13 @@ Expression * Parser::primary() {
 
     if (match(TokenType::NUMBER)) {
         expr = new NumberExpression(token.getContent().getNumberValue());
-    }
-
-    if (match(TokenType::L_PAREN)) {
+    } else if (match(TokenType::STRING)) {
+        expr = new StringExpression(token.getContent().getStringValue());
+    } else if (match(TokenType::L_PAREN)) {
         expr = expression();
         match(TokenType::R_PAREN);
         return expr;
-    }
-
-    if (match(TokenType::WORD)) {
+    } else if (match(TokenType::WORD)) {
         expr = new VariableExpression(token.getContent().getStringValue());
     }
 
