@@ -1,4 +1,9 @@
-print "Hello, World!\n"
+;
+    Malix test program
+        by @MWGuy
+;
+
+print "Hello, Malix!\n" ;; Say hello in new language!
 
 print "PI: "
 print PI

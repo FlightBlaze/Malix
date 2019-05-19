@@ -28,6 +28,7 @@ std::vector<Token> Lexer::tokenize() {
         if (isdigit(current)) tokenizeNumber();
         else if (isalpha(current)) tokenizeWord();
         else if (current == '"') tokenizeString();
+        else if (current == ';') tokenizeComment();
         else if (this->operators.find(current) != this->operators.end())
             addToken(this->operators[current], Value(std::string(1, getOperator(this->operators[current]))));
     }
@@ -59,7 +60,7 @@ void Lexer::tokenizeNumber() {
 
     stream << peek(-1); // add current char to stream
 
-    while (true) {
+    while (this->position < this->input.size()) {
         if (peek(0) == '.') {
             if (dotExists) throw std::runtime_error(std::string("Invalid float number at position: ") += std::to_string(position));
             dotExists = true;
@@ -80,7 +81,7 @@ void Lexer::tokenizeWord() {
 
     stream << peek(-1);
 
-    while (true) {
+    while (this->position < this->input.size()) {
         if (isalpha(peek(0)) && peek(0) != '_' && peek(0) != '$') stream << next();
         else break;
     }
@@ -95,7 +96,7 @@ void Lexer::tokenizeString() {
     std::string string;
 
     char current = next();
-    while (true) {
+    while (this->position < this->input.size()) {
         if (current == '\\') {
             current = next();
             switch (current) {
@@ -114,6 +115,25 @@ void Lexer::tokenizeString() {
     next(); // skip "
 
     addToken(TokenType::STRING, Value(stream.str()));
+}
+
+void Lexer::tokenizeComment() {
+    char current = next();
+
+
+    if (current == ';') { // One line comment
+        while (this->position < this->input.size()) {
+            if (current == '\n') break;
+            current = next();
+        }
+    } else { // Multiline comment
+        while (this->position < this->input.size()) {
+            if (current == ';') break;
+            current = next();
+        }
+
+        next(); // skip ;
+    }
 }
 
 char Lexer::getOperator(TokenType type) {

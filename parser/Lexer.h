@@ -30,6 +30,7 @@ private:
     void tokenizeNumber();
     void tokenizeWord();
     void tokenizeString();
+    void tokenizeComment();
 };
 
 
