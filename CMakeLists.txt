@@ -3,27 +3,6 @@ project(malix)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(malix main.cpp
-        parser/Lexer.cpp
-        parser/Lexer.h
-        parser/token/Token.cpp
-        parser/token/Token.h
-        parser/token/TokenType.h
-        ast/expressions/Expression.h
-        utils/Value.cpp
-        utils/Value.h
-        ast/expressions/BinaryExpression.cpp
-        ast/expressions/BinaryExpression.h
-        parser/Parser.cpp parser/Parser.h
-        ast/expressions/UnaryExpression.cpp
-        ast/expressions/UnaryExpression.h
-        lib/Variables.cpp
-        lib/Variables.h
-        ast/statements/Statement.h
-        ast/statements/AssigmentStatement.cpp
-        ast/statements/AssigmentStatement.h
-        ast/expressions/VariableExpression.cpp
-        ast/expressions/VariableExpression.h
-        ast/statements/PrintStatement.cpp
-        ast/statements/PrintStatement.h
-        ast/expressions/ConditionalExpression.cpp ast/expressions/ConditionalExpression.h ast/statements/IfStatement.cpp ast/statements/IfStatement.h ast/expressions/ValueExpression.cpp ast/expressions/ValueExpression.h)
+file(GLOB_RECURSE SOURCE ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h)
+
+add_executable(malix ${SOURCE})
