@@ -1,8 +1,7 @@
-#include <utility>
-
 #ifndef MALIX_PARSER_H
 #define MALIX_PARSER_H
 
+#include <utility>
 #include <vector>
 #include "token/Token.h"
 #include "../ast/expressions/NumberExpression.h"
