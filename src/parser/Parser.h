@@ -29,6 +29,8 @@ private:
     Statement * statement();
     Statement * assignmentStatement();
     Expression * expression();
+    Expression * logicalOr();
+    Expression * logicalAnd();
     Expression * conditional();
     Expression * additive();
     Expression * multiplicative();

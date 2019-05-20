@@ -4,6 +4,12 @@ Value ConditionalExpression::eval() {
     Value one = expression1->eval();
     Value too = expression2->eval();
 
+    if (operatorChar == '4') { // ||
+        return Value(one.getBoolValue() || too.getBoolValue());
+    } else if (operatorChar == '5') { // &&
+        return Value(one.getBoolValue() && too.getBoolValue());
+    }
+
     if (one.isNumber()) {
         switch (operatorChar) {
             case '>': return Value(one.getNumberValue() > too.getNumberValue());

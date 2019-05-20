@@ -10,6 +10,8 @@ enum TokenType {
     EQ, // =
     LT, // <
     GT, // >
+    AMP, // &
+    BAR, // |
 
     TRUE,
     FALSE,
@@ -18,6 +20,8 @@ enum TokenType {
     ELSE,
     
     WHILE,
+    BREAK,
+    CONTINUE,
 
     VAR,
     PRINT,

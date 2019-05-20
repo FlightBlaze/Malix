@@ -22,6 +22,8 @@ Lexer::Lexer(std::string input) {
     this->operators['<'] = TokenType::LT;
     this->operators['>'] = TokenType::GT;
     this->operators['!'] = TokenType::EXCLAMATION;
+    this->operators['&'] = TokenType::AMP;
+    this->operators['|'] = TokenType::BAR;
 
     this->keywords["var"] = TokenType::VAR;
     this->keywords["print"] = TokenType::PRINT;
@@ -32,6 +34,8 @@ Lexer::Lexer(std::string input) {
     this->keywords["else"] = TokenType::ELSE;
     this->keywords["nil"] = TokenType::NIL;
     this->keywords["while"] = TokenType::WHILE;
+    this->keywords["break"] = TokenType::BREAK;
+    this->keywords["continue"] = TokenType::CONTINUE;
 }
 
 std::vector<Token> Lexer::tokenize() {

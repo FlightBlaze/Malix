@@ -106,7 +106,27 @@ Statement * Parser::assignmentStatement() {
 }
 
 Expression * Parser::expression() {
-    return conditional();
+    return logicalOr();
+}
+
+Expression * Parser::logicalOr() {
+    Expression * expr = logicalAnd();
+
+    if (match(TokenType::BAR) && match(TokenType::BAR)) {
+        return new ConditionalExpression('4', expr, logicalAnd());
+    }
+
+    return expr;
+}
+
+Expression * Parser::logicalAnd() {
+    Expression * expr = conditional();
+
+    if (match(TokenType::AMP) && match(TokenType::AMP)) {
+        return new ConditionalExpression('5', expr, conditional());
+    }
+
+    return expr;
 }
 
 Expression * Parser::conditional() {
