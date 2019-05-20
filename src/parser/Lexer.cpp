@@ -31,6 +31,7 @@ Lexer::Lexer(std::string input) {
     this->keywords["if"] = TokenType::IF;
     this->keywords["else"] = TokenType::ELSE;
     this->keywords["nil"] = TokenType::NIL;
+    this->keywords["while"] = TokenType::WHILE;
 }
 
 std::vector<Token> Lexer::tokenize() {

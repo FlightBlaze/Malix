@@ -23,6 +23,7 @@ private:
 
     Token peek(int pos);
     bool match(TokenType type);
+    bool look(int pos, TokenType type);
 
     // parse ....
     Statement * statement();
@@ -34,6 +35,10 @@ private:
     Expression * unary();
     Expression * exclamation();
     Expression * primary();
+
+    // parse utils
+    Statement * block();
+    Statement * statementOrBlock();
 };
 
 #endif //MALIX_PARSER_H

@@ -16,6 +16,8 @@ enum TokenType {
 
     IF,
     ELSE,
+    
+    WHILE,
 
     VAR,
     PRINT,

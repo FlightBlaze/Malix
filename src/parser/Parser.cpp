@@ -9,6 +9,9 @@
 #include "../ast/expressions/ValueExpression.h"
 #include "../ast/expressions/ExclamationExpression.h"
 #include "../ast/statements/PrintlnStatement.h"
+#include "../ast/statements/WhileStatement.h"
+#include "../ast/statements/BlockStatement.h"
+#include "../lib/Variables.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -54,17 +57,24 @@ Statement * Parser::statement() {
         if (!match(TokenType::R_PAREN))
             throw std::runtime_error("Syntax error expected )");
 
-        match(TokenType::L_BRACKET);
-        statement1 = statement();
-        match(TokenType::R_BRACKET);
-
+        statement1 = statementOrBlock();
         if (match(TokenType::ELSE)) {
-            match(TokenType::L_BRACKET);
-            statement2 = statement();
-            match(TokenType::R_BRACKET);
+            statement2 = statementOrBlock();
         }
 
         return new IfStatement(expr, statement1, statement2);
+    }
+
+    if (match(TokenType::WHILE)) {
+        Expression * expr = nullptr;
+
+        if (!match(TokenType::L_PAREN))
+            throw std::runtime_error("Syntax error expected (");
+        expr = expression();
+        if (!match(TokenType::R_PAREN))
+            throw std::runtime_error("Syntax error expected )");
+
+        return new WhileStatement(expr, statementOrBlock());
     }
 
     return assignmentStatement();
@@ -79,6 +89,13 @@ Statement * Parser::assignmentStatement() {
         std::string variableName = token.getContent().getStringValue();
         match(TokenType::WORD);
         match(TokenType::EQ);
+        state = new AssigmentStatement(variableName, expression());
+    }
+
+    if (match(TokenType::WORD) && peek(0).getType() == TokenType::EQ) {
+        token = peek(-1);
+        match(TokenType::EQ);
+        std::string variableName = token.getContent().getStringValue();
         state = new AssigmentStatement(variableName, expression());
     }
 
@@ -97,14 +114,14 @@ Expression * Parser::conditional() {
 
     while (this->position < this->size) {
         // ==
-        if (peek(0).getType() == TokenType::EQ && match(TokenType::EQ)) {
+        if (look(0, TokenType::EQ) && match(TokenType::EQ)) {
             match(TokenType::EQ);
             expr = new ConditionalExpression('=', expr, additive());
             continue;
         }
 
         // !=
-        if (peek(0).getType() == TokenType::EXCLAMATION && peek(1).getType() == TokenType::EQ) {
+        if (look(0, TokenType::EXCLAMATION) && look(1, TokenType::EQ)) {
             match(TokenType::EXCLAMATION);
             match(TokenType::EQ);
             expr = new ConditionalExpression('!', expr, additive());
@@ -112,7 +129,7 @@ Expression * Parser::conditional() {
         }
 
         // <=
-        if (peek(0).getType() == TokenType::LT && peek(1).getType() == TokenType::EQ) {
+        if (look(0, TokenType::LT) && look(1, TokenType::EQ)) {
             match(TokenType::LT);
             match(TokenType::EQ);
             expr = new ConditionalExpression('3', expr, additive());
@@ -120,7 +137,7 @@ Expression * Parser::conditional() {
         }
 
         // >=
-        if (peek(0).getType() == TokenType::GT && peek(1).getType() == TokenType::EQ) {
+        if (look(0, TokenType::GT) && look(1, TokenType::EQ)) {
             match(TokenType::GT);
             match(TokenType::EQ);
             expr = new ConditionalExpression('2', expr, additive());
@@ -232,4 +249,23 @@ Expression * Parser::primary() {
     }
 
     return expr;
+}
+
+Statement * Parser::block() {
+    auto * block = new BlockStatement();
+    match(TokenType::L_BRACKET);
+
+    while (!match(TokenType::R_BRACKET))
+        block->add(statement());
+
+    return block;
+}
+
+Statement * Parser::statementOrBlock() {
+    if (look(0, TokenType::L_BRACKET)) return block();
+    return statement();
+}
+
+bool Parser::look(int pos, TokenType type) {
+    return peek(pos).getType() == type;
 }
