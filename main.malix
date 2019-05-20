@@ -27,3 +27,5 @@ else println false
 println !true
 println !(5 == 6)
 println 5 != 6
+println 5 <= 6
+println 5 >= 6

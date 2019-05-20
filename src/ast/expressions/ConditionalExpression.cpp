@@ -9,6 +9,8 @@ Value ConditionalExpression::eval() {
             case '>': return Value(one.getNumberValue() > too.getNumberValue());
             case '<': return Value(one.getNumberValue() < too.getNumberValue());
             case '!': return Value(one.getNumberValue() != too.getNumberValue());
+            case '2': return Value(one.getNumberValue() >= too.getNumberValue()); // >=
+            case '3': return Value(one.getNumberValue() <= too.getNumberValue()); // <=
             case '=':
             default : return Value(one.getNumberValue() == too.getNumberValue());
 
@@ -18,6 +20,8 @@ Value ConditionalExpression::eval() {
             case '>': return Value(one.getBoolValue() > too.getBoolValue());
             case '<': return Value(one.getBoolValue() < too.getBoolValue());
             case '!': return Value(one.getBoolValue() != too.getBoolValue());
+            case '2': return Value(one.getBoolValue() >= too.getBoolValue()); // >=
+            case '3': return Value(one.getBoolValue() <= too.getBoolValue()); // <=
             case '=':
             default : return Value(one.getBoolValue() == too.getBoolValue());
         }
@@ -26,6 +30,8 @@ Value ConditionalExpression::eval() {
             case '>': return Value(one.getStringValue() > too.getStringValue());
             case '<': return Value(one.getStringValue() < too.getStringValue());
             case '!': return Value(one.getStringValue() != too.getStringValue());
+            case '2': return Value(one.getStringValue() >= too.getStringValue()); // >=
+            case '3': return Value(one.getStringValue() <= too.getStringValue()); // <=
             case '=':
             default : return Value(one.getStringValue().length() == too.getStringValue().length());
         }

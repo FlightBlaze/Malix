@@ -111,6 +111,22 @@ Expression * Parser::conditional() {
             continue;
         }
 
+        // <=
+        if (peek(0).getType() == TokenType::LT && peek(1).getType() == TokenType::EQ) {
+            match(TokenType::LT);
+            match(TokenType::EQ);
+            expr = new ConditionalExpression('3', expr, additive());
+            continue;
+        }
+
+        // >=
+        if (peek(0).getType() == TokenType::GT && peek(1).getType() == TokenType::EQ) {
+            match(TokenType::GT);
+            match(TokenType::EQ);
+            expr = new ConditionalExpression('2', expr, additive());
+            continue;
+        }
+
         if (match(TokenType::LT)) {
             expr = new ConditionalExpression('<', expr, additive());
             continue;
