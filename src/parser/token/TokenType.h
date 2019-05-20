@@ -38,9 +38,10 @@ enum TokenType {
 
     L_PAREN, // (
     R_PAREN, // )
-
     L_BRACKET, // {
     R_BRACKET, // }
+    L_SQUARE_BRACKET, // [
+    R_SQUARE_BRACKET, // ]
 
     NIL, // nil
 

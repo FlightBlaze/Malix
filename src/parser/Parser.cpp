@@ -278,6 +278,14 @@ Expression * Parser::primary() {
         expr = new ValueExpression(Value(false));
     } else if (match(TokenType::NIL)) {
         expr = new ValueExpression(Value());
+    } else if (match(TokenType::L_SQUARE_BRACKET)) { // array
+        std::vector<Value> arr = std::vector<Value>();
+        while (!match(TokenType::R_SQUARE_BRACKET)) {
+            arr.push_back(expression()->eval());
+            match(TokenType::COMMA);
+        }
+
+        return new ValueExpression(Value(arr));
     }
 
     if (expr == nullptr) {

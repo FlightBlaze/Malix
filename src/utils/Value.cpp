@@ -15,6 +15,11 @@ Value::Value(bool value) {
     this->boolValue = value;
 }
 
+Value::Value(std::vector<Value> arrayValue) {
+    this->valueArray = true;
+    this->arrayValue = std::move(arrayValue);
+}
+
 bool Value::isNumber() {
     return this->valueDouble;
 }
@@ -27,8 +32,12 @@ bool Value::isBool() {
     return this->valueBool;
 }
 
+bool Value::isArray() {
+    return this->valueArray;
+}
+
 bool Value::isNil() {
-    return !(isNumber() || isBool() || isString());
+    return !(isNumber() || isBool() || isString() || isArray());
 }
 
 double Value::getNumberValue() {
@@ -36,6 +45,8 @@ double Value::getNumberValue() {
         return this->doubleValue;
     else if (isBool())
         return static_cast<double>(this->boolValue);
+    else if (isArray())
+        return static_cast<double>(this->arrayValue.size());
     else return 0;
 }
 
@@ -46,10 +57,23 @@ std::string Value::getStringValue() {
         return std::to_string(this->doubleValue);
     else if (isBool())
         return std::string((this->boolValue ? "true" : "false"));
+    else if (isArray()) {
+        std::string string("[ ");
+
+        for (Value value : getArrayValue())
+            string += value.getStringValue() += " ";
+
+        string += "]";
+        return string;
+    }
 
     return std::string();
 }
 
 bool Value::getBoolValue() {
     return this->boolValue;
+}
+
+std::vector<Value> Value::getArrayValue() {
+    return this->arrayValue;
 }

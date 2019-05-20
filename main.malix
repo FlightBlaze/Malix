@@ -45,3 +45,5 @@ println false || false ;; false
 for (var j = 0, j <= 10, j = j + 1) {
     println "j: " + j
 }
+
+println [1, 2, 3, true, false, [!true, !false]]

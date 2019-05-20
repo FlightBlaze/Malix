@@ -18,6 +18,8 @@ Lexer::Lexer(std::string input) {
     this->operators[')'] = TokenType::R_PAREN;
     this->operators['{'] = TokenType::L_BRACKET;
     this->operators['}'] = TokenType::R_BRACKET;
+    this->operators['['] = TokenType::L_SQUARE_BRACKET;
+    this->operators[']'] = TokenType::R_SQUARE_BRACKET;
     this->operators['='] = TokenType::EQ;
     this->operators['<'] = TokenType::LT;
     this->operators['>'] = TokenType::GT;
@@ -36,8 +38,8 @@ Lexer::Lexer(std::string input) {
     this->keywords["nil"] = TokenType::NIL;
     this->keywords["while"] = TokenType::WHILE;
     this->keywords["for"] = TokenType::FOR;
-    this->keywords["break"] = TokenType::BREAK;
-    this->keywords["continue"] = TokenType::CONTINUE;
+    //this->keywords["break"] = TokenType::BREAK;
+    //this->keywords["continue"] = TokenType::CONTINUE;
 }
 
 std::vector<Token> Lexer::tokenize() {
