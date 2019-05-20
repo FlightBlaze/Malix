@@ -3,30 +3,27 @@
         by @MWGuy
 ;
 
-print "Hello, Malix!\n" ;; Say hello in new language!
+println "Hello, Malix!" ;; Say hello in new language!
 
-print "PI: " + PI
-print "\nE: " + E
-print "\n"
+println "PI: " + PI
+println "E: " + E
 
 var sum = PI + E
-print "\n"
-
-print sum
-print "\n"
-print (sum + sum) * sum
-print "\n\n"
+println sum
+println (sum + sum) * sum
 
 if (PI > E) {
-    print "PI > E\n"
+    println "PI > E"
 } else if (true) {
-    print true
+    println true
 } else {
-    print false
+    println false
 }
 
-if (PI < E) print "PI > E"
-else if (true) print true
-else print false
+if (PI < E) println "PI > E"
+else if (true) println true
+else println false
 
-print "\n" + !true
+println !true
+println !(5 == 6)
+println 5 != 6

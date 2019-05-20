@@ -19,6 +19,7 @@ enum TokenType {
 
     VAR,
     PRINT,
+    PRINTLN,
 
     PLUS, // +
     MINUS, // -

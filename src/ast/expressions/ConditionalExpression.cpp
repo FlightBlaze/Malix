@@ -8,6 +8,7 @@ Value ConditionalExpression::eval() {
         switch (operatorChar) {
             case '>': return Value(one.getNumberValue() > too.getNumberValue());
             case '<': return Value(one.getNumberValue() < too.getNumberValue());
+            case '!': return Value(one.getNumberValue() != too.getNumberValue());
             case '=':
             default : return Value(one.getNumberValue() == too.getNumberValue());
 
@@ -16,13 +17,15 @@ Value ConditionalExpression::eval() {
         switch (operatorChar) {
             case '>': return Value(one.getBoolValue() > too.getBoolValue());
             case '<': return Value(one.getBoolValue() < too.getBoolValue());
+            case '!': return Value(one.getBoolValue() != too.getBoolValue());
             case '=':
             default : return Value(one.getBoolValue() == too.getBoolValue());
         }
     } else if (one.isString()) {
         switch (operatorChar) {
-            case '>': return Value(one.getStringValue().length() > too.getStringValue().length());
-            case '<': return Value(one.getStringValue().length() < too.getStringValue().length());
+            case '>': return Value(one.getStringValue() > too.getStringValue());
+            case '<': return Value(one.getStringValue() < too.getStringValue());
+            case '!': return Value(one.getStringValue() != too.getStringValue());
             case '=':
             default : return Value(one.getStringValue().length() == too.getStringValue().length());
         }

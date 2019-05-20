@@ -8,6 +8,7 @@
 #include "../ast/statements/IfStatement.h"
 #include "../ast/expressions/ValueExpression.h"
 #include "../ast/expressions/ExclamationExpression.h"
+#include "../ast/statements/PrintlnStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -37,9 +38,10 @@ bool Parser::match(TokenType type) {
 }
 
 Statement * Parser::statement() {
-    if (match(TokenType::PRINT)) {
+    if (match(TokenType::PRINT))
         return new PrintStatement(expression());
-    }
+    if (match(TokenType::PRINTLN))
+        return new PrintlnStatement(expression());
 
     if (match(TokenType::IF)) {
         Expression * expr       = nullptr;
@@ -94,9 +96,18 @@ Expression * Parser::conditional() {
     Expression * expr = additive();
 
     while (this->position < this->size) {
+        // ==
         if (peek(0).getType() == TokenType::EQ && match(TokenType::EQ)) {
             match(TokenType::EQ);
             expr = new ConditionalExpression('=', expr, additive());
+            continue;
+        }
+
+        // !=
+        if (peek(0).getType() == TokenType::EXCLAMATION && peek(1).getType() == TokenType::EQ) {
+            match(TokenType::EXCLAMATION);
+            match(TokenType::EQ);
+            expr = new ConditionalExpression('!', expr, additive());
             continue;
         }
 

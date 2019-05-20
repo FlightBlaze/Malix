@@ -25,6 +25,7 @@ Lexer::Lexer(std::string input) {
 
     this->keywords["var"] = TokenType::VAR;
     this->keywords["print"] = TokenType::PRINT;
+    this->keywords["println"] = TokenType::PRINTLN;
     this->keywords["true"] = TokenType::TRUE;
     this->keywords["false"] = TokenType::FALSE;
     this->keywords["if"] = TokenType::IF;
