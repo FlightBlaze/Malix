@@ -12,6 +12,7 @@
 #include "../ast/statements/WhileStatement.h"
 #include "../ast/statements/BlockStatement.h"
 #include "../lib/Variables.h"
+#include "../ast/statements/ForStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -52,10 +53,10 @@ Statement * Parser::statement() {
         Statement  * statement2 = nullptr;
 
         if (!match(TokenType::L_PAREN))
-            throw std::runtime_error("Syntax error expected (");
+            throw std::runtime_error("Syntax error: expected (");
         expr = expression();
         if (!match(TokenType::R_PAREN))
-            throw std::runtime_error("Syntax error expected )");
+            throw std::runtime_error("Syntax error: expected )");
 
         statement1 = statementOrBlock();
         if (match(TokenType::ELSE)) {
@@ -69,12 +70,27 @@ Statement * Parser::statement() {
         Expression * expr = nullptr;
 
         if (!match(TokenType::L_PAREN))
-            throw std::runtime_error("Syntax error expected (");
+            throw std::runtime_error("Syntax error: expected (");
         expr = expression();
         if (!match(TokenType::R_PAREN))
-            throw std::runtime_error("Syntax error expected )");
+            throw std::runtime_error("Syntax error: expected )");
 
         return new WhileStatement(expr, statementOrBlock());
+    }
+
+    if (match(TokenType::FOR)) {
+        Statement * state1 = nullptr;
+        Expression * expr = nullptr;
+        Statement * state2 = nullptr;
+
+        if (!match(TokenType::L_PAREN)) throw std::runtime_error("Syntax error: expected (");
+        state1 = statement();
+        if (!match(TokenType::COMMA)) throw std::runtime_error("Syntax error: expected ,");
+        expr = expression();
+        if (!match(TokenType::COMMA)) throw std::runtime_error("Syntax error: expected ,");
+        state2 = statement();
+        if (!match(TokenType::R_PAREN)) throw std::runtime_error("Syntax error: expected )");
+        return new ForStatement(state1, expr, state2, statementOrBlock());
     }
 
     return assignmentStatement();

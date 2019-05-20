@@ -20,6 +20,7 @@ enum TokenType {
     ELSE,
     
     WHILE,
+    FOR,
     BREAK,
     CONTINUE,
 
@@ -33,6 +34,7 @@ enum TokenType {
     SLASH, // /
     PERCENT,// %
     EXCLAMATION, // !
+    COMMA, // ,
 
     L_PAREN, // (
     R_PAREN, // )
