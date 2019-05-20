@@ -32,6 +32,7 @@ private:
     Expression * additive();
     Expression * multiplicative();
     Expression * unary();
+    Expression * exclamation();
     Expression * primary();
 };
 

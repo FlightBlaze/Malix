@@ -7,6 +7,7 @@
 #include "../ast/expressions/ConditionalExpression.h"
 #include "../ast/statements/IfStatement.h"
 #include "../ast/expressions/ValueExpression.h"
+#include "../ast/expressions/ExclamationExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -162,10 +163,18 @@ Expression * Parser::multiplicative() {
 
 Expression * Parser::unary() {
     if (match(TokenType::MINUS)) {
-        return new UnaryExpression('-', primary());
+        return new UnaryExpression('-', exclamation());
     }
 
     match(TokenType::PLUS);
+    return exclamation();
+}
+
+Expression * Parser::exclamation() {
+    if (match(TokenType::EXCLAMATION)) {
+        return new ExclamationExpression(primary());
+    }
+
     return primary();
 }
 

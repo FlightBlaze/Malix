@@ -21,6 +21,7 @@ Lexer::Lexer(std::string input) {
     this->operators['='] = TokenType::EQ;
     this->operators['<'] = TokenType::LT;
     this->operators['>'] = TokenType::GT;
+    this->operators['!'] = TokenType::EXCLAMATION;
 
     this->keywords["var"] = TokenType::VAR;
     this->keywords["print"] = TokenType::PRINT;

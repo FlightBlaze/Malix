@@ -7,9 +7,9 @@ enum TokenType {
     KEYWORD,
     STRING,
 
-    EQ,
-    LT,
-    GT,
+    EQ, // =
+    LT, // <
+    GT, // >
 
     TRUE,
     FALSE,
@@ -25,6 +25,7 @@ enum TokenType {
     STAR, // *
     SLASH, // /
     PERCENT,// %
+    EXCLAMATION, // !
 
     L_PAREN, // (
     R_PAREN, // )
@@ -32,7 +33,7 @@ enum TokenType {
     L_BRACKET, // {
     R_BRACKET, // }
 
-    NIL,
+    NIL, // nil
 
     FILEEND
 };

@@ -28,3 +28,5 @@ if (PI > E) {
 if (PI < E) print "PI > E"
 else if (true) print true
 else print false
+
+print "\n" + !true

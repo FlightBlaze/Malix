@@ -5,7 +5,7 @@
 #include "parser/Parser.h"
 #include "lib/Variables.h"
 
-int main() {
+int main(int argc, char ** argv) {
     std::clock_t start = std::clock();
     double duration;
 
@@ -14,10 +14,9 @@ int main() {
 
     std::ifstream fileStream;
 
-    fileStream.open("main.malix");
-
+    fileStream.open(argv[1]);
     if (!fileStream) {
-        std::cerr << "main.malix not found!";
+        std::cerr << argv[1] << " not found!";
         exit(1);
     }
 
