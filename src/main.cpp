@@ -4,6 +4,8 @@
 #include "parser/Lexer.h"
 #include "parser/Parser.h"
 #include "lib/Variables.h"
+#include "ast/statements/BreakStatement.h"
+#include "ast/statements/ContinueStatement.h"
 
 int main(int argc, char ** argv) {
     std::clock_t start = std::clock();
@@ -26,7 +28,10 @@ int main(int argc, char ** argv) {
 
     Parser parser(tokens);
     for (Statement * statement : parser.parse()) {
-        statement->execute();
+        try {
+            statement->execute();
+        } catch (BreakStatement operation) {}
+          catch (ContinueStatement operation) {} // avoid errors
     }
 
     duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;

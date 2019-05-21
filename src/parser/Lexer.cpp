@@ -38,8 +38,8 @@ Lexer::Lexer(std::string input) {
     this->keywords["nil"] = TokenType::NIL;
     this->keywords["while"] = TokenType::WHILE;
     this->keywords["for"] = TokenType::FOR;
-    //this->keywords["break"] = TokenType::BREAK;
-    //this->keywords["continue"] = TokenType::CONTINUE;
+    this->keywords["break"] = TokenType::BREAK;
+    this->keywords["continue"] = TokenType::CONTINUE;
 }
 
 std::vector<Token> Lexer::tokenize() {

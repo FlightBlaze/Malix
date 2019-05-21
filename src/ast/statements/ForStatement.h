@@ -3,6 +3,8 @@
 
 #include "Statement.h"
 #include "../expressions/Expression.h"
+#include "BreakStatement.h"
+#include "ContinueStatement.h"
 
 class ForStatement : public Statement {
 public:

@@ -13,6 +13,7 @@
 #include "../ast/statements/BlockStatement.h"
 #include "../lib/Variables.h"
 #include "../ast/statements/ForStatement.h"
+#include "../ast/statements/BreakStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -46,6 +47,10 @@ Statement * Parser::statement() {
         return new PrintStatement(expression());
     if (match(TokenType::PRINTLN))
         return new PrintlnStatement(expression());
+    if (match(TokenType::BREAK))
+        return new BreakStatement();
+    if (match(TokenType::CONTINUE))
+        return new ContinueStatement();
 
     if (match(TokenType::IF)) {
         Expression * expr       = nullptr;
