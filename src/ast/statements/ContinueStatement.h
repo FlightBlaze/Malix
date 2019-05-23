@@ -2,7 +2,7 @@
 #define MALIX_CONTINUESTATEMENT_H
 
 
-#include <bits/exception.h>
+#include <exception>
 #include "Statement.h"
 
 class ContinueStatement : public Statement, std::exception {
