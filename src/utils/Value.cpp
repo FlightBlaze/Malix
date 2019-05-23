@@ -60,7 +60,7 @@ std::string Value::getStringValue() {
     else if (isArray()) {
         std::string string("[ ");
 
-        for (Value value : getArrayValue())
+        for (auto value : * getArrayValue())
             string += value.getStringValue() += " ";
 
         string += "]";
@@ -74,6 +74,6 @@ bool Value::getBoolValue() {
     return this->boolValue;
 }
 
-std::vector<Value> Value::getArrayValue() {
-    return this->arrayValue;
+std::vector<Value> * Value::getArrayValue() {
+    return &this->arrayValue;
 }

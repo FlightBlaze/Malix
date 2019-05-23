@@ -10,7 +10,7 @@ public:
     explicit Value(std::string value);
     explicit Value(bool value);
     explicit Value(std::vector<Value> value);
-    explicit Value() {}
+    explicit Value() = default;
     // NIL
 
     bool isNumber();
@@ -22,7 +22,7 @@ public:
     double getNumberValue();
     std::string getStringValue();
     bool getBoolValue();
-    std::vector<Value> getArrayValue();
+    std::vector<Value> * getArrayValue();
 
 private:
     bool valueDouble = false;

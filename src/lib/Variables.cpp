@@ -8,15 +8,10 @@ void Variables::setVariable(std::string name, Value value) {
 
 bool Variables::exists(std::string name) {
     auto it = variables.find(name);
-    return it == variables.end();
+    return it != variables.end();
 }
 
 Value Variables::getVariable(std::string name) {
-    auto it = variables.find(name);
-
-    if (it != variables.end()) return it->second;
-    else {
-        setVariable(name, Value());
-        return getVariable(name);
-    }
+    if (exists(name)) return variables[name];
+    else throw std::runtime_error(std::string("Unknown variable: ") += name);
 }
