@@ -14,11 +14,16 @@
 #include "../lib/Variables.h"
 #include "../ast/statements/ForStatement.h"
 #include "../ast/statements/BreakStatement.h"
+#include "../lib/Functions.h"
+#include "../ast/expressions/FunctionExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
 
     while (!match(TokenType::FILEEND)) {
+        if (look(0, TokenType::FILEEND))
+            break;
+
         statements.push_back(statement());
     }
 
@@ -275,6 +280,25 @@ Expression * Parser::primary() {
         expr = expression();
         match(TokenType::R_PAREN);
         return expr;
+    } else if (look(0, TokenType::WORD) && look(1, TokenType::L_PAREN)) {
+        std::string name = token.getContent().getStringValue();
+
+        if (!Functions::exists(name))
+            throw std::runtime_error(std::string("Function: ") += name += " dont exists!");
+
+        match(TokenType::WORD);
+        match(TokenType::L_PAREN);
+        FunctionExpression * expression1 = new FunctionExpression(name);
+
+        while (!match(TokenType::R_PAREN)) {
+            expression1->addArgument(expression());
+
+            if (look(0, TokenType::COMMA)) {
+                match(TokenType::COMMA);
+            }
+        }
+
+        expr = expression1;
     } else if (match(TokenType::WORD)) {
         expr = new VariableExpression(token.getContent().getStringValue());
     } else if (match(TokenType::TRUE)) {

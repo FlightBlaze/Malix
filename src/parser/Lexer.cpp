@@ -116,7 +116,7 @@ void Lexer::tokenizeString() {
     std::string string;
 
     char current = next();
-    while (this->position < this->input.size()) {
+    while (current != '"') {
         if (current == '\\') {
             current = next();
             switch (current) {
@@ -127,12 +127,9 @@ void Lexer::tokenizeString() {
             }
         }
 
-        if (current == '"') break;
         stream << current;
         current = next();
     }
-
-    next(); // skip "
 
     addToken(TokenType::STRING, Value(stream.str()));
 }

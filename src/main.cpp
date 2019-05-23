@@ -7,10 +7,17 @@
 #include "ast/statements/BreakStatement.h"
 #include "ast/statements/ContinueStatement.h"
 
+#include "lib/functions/Functions"
+
 int main(int argc, char ** argv) {
     std::clock_t start = std::clock();
     double duration;
 
+    Functions::addFunction(new IsArrayFunction());
+    Functions::addFunction(new IsNumberFunction());
+    Functions::addFunction(new IsBoolFunction());
+    Functions::addFunction(new IsStringFunction());
+    Functions::addFunction(new IsNilFunction());
     Variables::setVariable("PI", Value(3.14159265359));
     Variables::setVariable("E",  Value(2.71828182845));
 
