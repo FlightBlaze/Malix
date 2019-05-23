@@ -16,6 +16,7 @@
 #include "../ast/statements/BreakStatement.h"
 #include "../lib/Functions.h"
 #include "../ast/expressions/FunctionExpression.h"
+#include "../ast/expressions/ArrayExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -308,13 +309,13 @@ Expression * Parser::primary() {
     } else if (match(TokenType::NIL)) {
         expr = new ValueExpression(Value());
     } else if (match(TokenType::L_SQUARE_BRACKET)) { // array
-        std::vector<Value> arr = std::vector<Value>();
+        auto * expression1 = new ArrayExpression();
         while (!match(TokenType::R_SQUARE_BRACKET)) {
-            arr.push_back(expression()->eval());
+            expression1->addExpression(expression());
             match(TokenType::COMMA);
         }
 
-        return new ValueExpression(Value(arr));
+        return expression1;
     }
 
     if (expr == nullptr) {

@@ -1,0 +1,21 @@
+;
+    Malix test: loops
+;
+
+println "i = [1; 9]"
+
+var i = 0
+while (true) {
+    i = i + 1
+    if (i == 10) break
+
+    println "i: " + i
+}
+
+println "j = [0; 6) && (6; 10]"
+
+for (var j = 0, j <= 10, j = j + 1) {
+    if (j == 6) continue
+
+    println "j: " + j
+}

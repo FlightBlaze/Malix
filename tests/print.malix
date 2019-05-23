@@ -1,0 +1,16 @@
+;
+    Malix test: print/println
+;
+
+print "Hello, Malix!"
+println "Hello, Malix!"
+print true
+println true
+print false
+println false
+print 1
+println 1
+print 1.1
+println 1.1
+print nil
+println nil

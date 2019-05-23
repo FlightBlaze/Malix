@@ -1,0 +1,9 @@
+;
+    Malix test: functions
+;
+
+println "isArray test: " + isArray([true, "STR"])
+println "isNumber test: " + isNumber(1)
+println "isBool test: " + isBool(true)
+println "isString test: " + isString("Hello!")
+println "isNil test: " + isNil(NIL)

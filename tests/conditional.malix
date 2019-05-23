@@ -1,0 +1,38 @@
+;
+    Malix test: conditional
+;
+
+if (2 % 2 != 0)
+    println "WAT!?"
+else
+    println "Good!"
+
+if (false)
+    println "WAT!?"
+else if (0)
+    println "WAT!?"
+else
+    println "Good!"
+
+if (true) {
+    println "Good!"
+
+    if (false) {
+        println "WAT!?"
+    } else {
+        println "Good!"
+    }
+} else {
+    println "WAT!?"
+}
+
+println !true ;; false
+println !(5 == 6) ;; true
+println 5 != 6 ;; true
+println 5 <= 6 ;; true
+println 5 >= 6 ;; false
+
+println true && false ;; false
+println true && true ;; true
+println true || false ;; true
+println false || false ;; false

@@ -1,0 +1,15 @@
+;
+    Malix test: variables
+;
+
+var string = "Test string"
+var bool = true
+var int = 3.14
+var none = nil
+var array = [string, bool, int, none]
+
+println string
+println bool
+println int
+println none
+println array
