@@ -10,7 +10,7 @@ class AssigmentStatement : public Statement {
 public:
     AssigmentStatement(std::string name, Expression * expression)
         : name(std::move(name)), expression(expression) {}
-
+    ~AssigmentStatement() override;
     void execute() override;
 
 private:

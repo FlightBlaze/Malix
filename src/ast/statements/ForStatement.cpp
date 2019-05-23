@@ -11,3 +11,10 @@ void ForStatement::execute() {
         }
     }
 }
+
+ForStatement::~ForStatement() {
+    delete init;
+    delete terminate;
+    delete operation;
+    delete body;
+}

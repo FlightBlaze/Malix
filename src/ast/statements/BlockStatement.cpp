@@ -8,3 +8,9 @@ void BlockStatement::execute() {
 void BlockStatement::add(Statement *statement) {
     statements.push_back(statement);
 }
+
+BlockStatement::~BlockStatement() {
+    for (Statement * statement : statements) {
+        delete statement;
+    }
+}

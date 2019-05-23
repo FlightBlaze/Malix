@@ -4,3 +4,7 @@
 void AssigmentStatement::execute() {
     Variables::setVariable(name, expression->eval());
 }
+
+AssigmentStatement::~AssigmentStatement() {
+    delete expression;
+}

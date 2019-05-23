@@ -10,6 +10,7 @@ class WhileStatement : public Statement {
 public:
     WhileStatement(Expression * expression, Statement * bodyStatement)
         : expression(expression), bodyStatement(bodyStatement) {}
+    ~WhileStatement() override;
     void execute() override;
 
 private:

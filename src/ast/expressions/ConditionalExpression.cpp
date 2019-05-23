@@ -45,3 +45,8 @@ Value ConditionalExpression::eval() {
 
     return Value(false);
 }
+
+ConditionalExpression::~ConditionalExpression() {
+    delete expression1;
+    delete expression2;
+}

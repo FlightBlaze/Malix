@@ -12,3 +12,8 @@ Value FunctionExpression::eval() {
 void FunctionExpression::addArgument(Expression * expression) {
     expressions.push_back(expression);
 }
+
+FunctionExpression::~FunctionExpression() {
+    for (Expression * expression : expressions)
+        delete expression;
+}

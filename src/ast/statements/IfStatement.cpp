@@ -7,3 +7,9 @@ void IfStatement::execute() {
         elseStatement->execute();
     }
 }
+
+IfStatement::~IfStatement() {
+    delete expression;
+    delete ifStatement;
+    delete elseStatement;
+}

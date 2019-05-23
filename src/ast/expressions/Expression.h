@@ -6,6 +6,7 @@
 class Expression {
 public:
     virtual Value eval() = 0;
+    virtual ~Expression() = default;
 };
 
 

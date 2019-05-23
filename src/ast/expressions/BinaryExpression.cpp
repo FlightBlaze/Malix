@@ -40,3 +40,8 @@ Value BinaryExpression::eval() {
 
     return Value();
 }
+
+BinaryExpression::~BinaryExpression() {
+    delete expression1;
+    delete expression2;
+}

@@ -7,7 +7,7 @@ class UnaryExpression : public Expression {
 public:
     UnaryExpression(char operatorChar, Expression * expression) :
             operatorChar(operatorChar), expression(expression) {}
-
+    ~UnaryExpression() override;
     Value eval() override;
 
 private:

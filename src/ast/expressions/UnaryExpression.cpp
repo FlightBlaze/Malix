@@ -9,3 +9,7 @@ Value UnaryExpression::eval() {
             return expression->eval();
     }
 }
+
+UnaryExpression::~UnaryExpression() {
+    delete expression;
+}

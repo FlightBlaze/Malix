@@ -6,6 +6,7 @@
 class ExclamationExpression : public Expression {
 public:
     explicit ExclamationExpression(Expression * expression) : expression(expression) {}
+    ~ExclamationExpression() override;
     Value eval() override;
 private:
     Expression * expression;

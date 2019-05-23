@@ -8,6 +8,7 @@
 class PrintStatement : public Statement {
 public:
     explicit PrintStatement(Expression * expression) : expression(expression) {}
+    ~PrintStatement() override;
     void execute() override;
 
 private:

@@ -8,7 +8,7 @@ class ConditionalExpression : public Expression {
 public:
     ConditionalExpression(char operatorChar, Expression * expression1, Expression * expression2) :
             operatorChar(operatorChar), expression1(expression1), expression2(expression2) {}
-
+    ~ConditionalExpression() override;
     Value eval() override;
 
 private:

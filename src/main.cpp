@@ -37,6 +37,7 @@ int main(int argc, char ** argv) {
     for (Statement * statement : parser.parse()) {
         try {
             statement->execute();
+            delete statement;
         } catch (BreakStatement operation) {}
           catch (ContinueStatement operation) {} // avoid errors
     }

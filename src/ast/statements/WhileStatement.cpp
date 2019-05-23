@@ -11,3 +11,8 @@ void WhileStatement::execute() {
         }
     }
 }
+
+WhileStatement::~WhileStatement() {
+    delete expression;
+    delete bodyStatement;
+}

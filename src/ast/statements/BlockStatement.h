@@ -6,6 +6,7 @@
 
 class BlockStatement : public Statement {
 public:
+    ~BlockStatement() override;
     void execute() override;
     void add(Statement * statement);
 private:

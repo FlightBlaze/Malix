@@ -8,6 +8,7 @@ class FunctionExpression : public Expression {
 public:
     explicit FunctionExpression(std::string name) :
         name(std::move(name)) {}
+    ~FunctionExpression() override;
 
     Value eval() override;
     void addArgument(Expression * expression);

@@ -8,6 +8,7 @@
 class PrintlnStatement : public Statement {
 public:
     explicit PrintlnStatement(Expression * expression) : expression(expression) {}
+    ~PrintlnStatement() override;
     void execute() override;
 private:
     Expression * expression;
