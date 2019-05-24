@@ -6,6 +6,7 @@
 #include "token/Token.h"
 #include "../ast/expressions/BinaryExpression.h"
 #include "../ast/statements/Statement.h"
+#include "../ast/statements/FunctionStatement.h"
 
 class Parser {
 public:
@@ -41,6 +42,7 @@ private:
     // parse utils
     Statement * block();
     Statement * statementOrBlock();
+    FunctionExpression * function();
 };
 
 #endif //MALIX_PARSER_H

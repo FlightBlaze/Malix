@@ -23,6 +23,8 @@ enum TokenType {
     FOR,
     BREAK,
     CONTINUE,
+    RETURN,
+    DEF,
 
     VAR,
     PRINT,

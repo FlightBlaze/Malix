@@ -17,6 +17,9 @@
 #include "../lib/Functions.h"
 #include "../ast/expressions/FunctionExpression.h"
 #include "../ast/expressions/ArrayExpression.h"
+#include "../ast/statements/FunctionStatement.h"
+#include "../ast/statements/FunctionDefineStatement.h"
+#include "../ast/statements/ReturnStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -51,12 +54,18 @@ bool Parser::match(TokenType type) {
 Statement * Parser::statement() {
     if (match(TokenType::PRINT))
         return new PrintStatement(expression());
+
     if (match(TokenType::PRINTLN))
         return new PrintlnStatement(expression());
+
     if (match(TokenType::BREAK))
         return new BreakStatement();
+
     if (match(TokenType::CONTINUE))
         return new ContinueStatement();
+
+    if (match(TokenType::RETURN))
+        return new ReturnStatement(expression());
 
     if (match(TokenType::IF)) {
         Expression * expr       = nullptr;
@@ -102,6 +111,29 @@ Statement * Parser::statement() {
         state2 = statement();
         if (!match(TokenType::R_PAREN)) throw std::runtime_error("Syntax error: expected )");
         return new ForStatement(state1, expr, state2, statementOrBlock());
+    }
+
+    if (match(TokenType::DEF)) {
+        std::string name = peek(0).getContent().getStringValue();
+
+        if (Functions::exists(name))
+            throw std::runtime_error(std::string("Function: ") += name += " exists!");
+
+        match(TokenType::WORD);
+        match(TokenType::L_PAREN);
+
+        std::vector<std::string> args;
+        while (!match(TokenType::R_PAREN)) {
+            match(TokenType::WORD);
+            args.push_back(peek(-1).getContent().getStringValue());
+            match(TokenType::COMMA);
+        }
+
+        return new FunctionDefineStatement(name, args, statementOrBlock());
+    }
+
+    if (look(0, TokenType::WORD) && look(1, TokenType::L_PAREN)) {
+        return new FunctionStatement(function());
     }
 
     return assignmentStatement();
@@ -282,24 +314,7 @@ Expression * Parser::primary() {
         match(TokenType::R_PAREN);
         return expr;
     } else if (look(0, TokenType::WORD) && look(1, TokenType::L_PAREN)) {
-        std::string name = token.getContent().getStringValue();
-
-        if (!Functions::exists(name))
-            throw std::runtime_error(std::string("Function: ") += name += " dont exists!");
-
-        match(TokenType::WORD);
-        match(TokenType::L_PAREN);
-        FunctionExpression * expression1 = new FunctionExpression(name);
-
-        while (!match(TokenType::R_PAREN)) {
-            expression1->addArgument(expression());
-
-            if (look(0, TokenType::COMMA)) {
-                match(TokenType::COMMA);
-            }
-        }
-
-        expr = expression1;
+        expr = function();
     } else if (match(TokenType::WORD)) {
         expr = new VariableExpression(token.getContent().getStringValue());
     } else if (match(TokenType::TRUE)) {
@@ -342,4 +357,22 @@ Statement * Parser::statementOrBlock() {
 
 bool Parser::look(int pos, TokenType type) {
     return peek(pos).getType() == type;
+}
+
+FunctionExpression * Parser::function() {
+    std::string name = peek(0).getContent().getStringValue();
+
+    match(TokenType::WORD);
+    match(TokenType::L_PAREN);
+    FunctionExpression * expression1 = new FunctionExpression(name);
+
+    while (!match(TokenType::R_PAREN)) {
+        expression1->addArgument(expression());
+
+        if (look(0, TokenType::COMMA)) {
+            match(TokenType::COMMA);
+        }
+    }
+
+    return expression1;
 }

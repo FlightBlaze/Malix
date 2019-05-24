@@ -7,3 +7,13 @@ println "isNumber test: " + isNumber(1)
 println "isBool test: " + isBool(true)
 println "isString test: " + isString("Hello!")
 println "isNil test: " + isNil(NIL)
+
+def factorial(num) {
+    var factorial = 1
+    for (var i = 1, i <= num, i = i + 1)
+        factorial = factorial * i
+
+    return factorial
+}
+
+println factorial(factorial(3))

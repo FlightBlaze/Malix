@@ -40,6 +40,8 @@ Lexer::Lexer(std::string input) {
     this->keywords["for"] = TokenType::FOR;
     this->keywords["break"] = TokenType::BREAK;
     this->keywords["continue"] = TokenType::CONTINUE;
+    this->keywords["def"] = TokenType::DEF;
+    this->keywords["return"] = TokenType::RETURN;
 }
 
 std::vector<Token> Lexer::tokenize() {

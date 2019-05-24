@@ -8,6 +8,7 @@
 #include "ast/statements/ContinueStatement.h"
 
 #include "lib/functions/Functions"
+#include "ast/statements/ReturnStatement.h"
 
 int main(int argc, char ** argv) {
     std::clock_t start = std::clock();
@@ -40,6 +41,7 @@ int main(int argc, char ** argv) {
             delete statement;
         } catch (BreakStatement operation) {}
           catch (ContinueStatement operation) {} // avoid errors
+          catch (ReturnStatement operation) {} // avoid errors
     }
 
     duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
