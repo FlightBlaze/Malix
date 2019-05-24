@@ -5,3 +5,5 @@
 #include "values/IsArrayFunction.h"
 #include "values/IsBoolFunction.h"
 #include "values/IsNilFunction.h"
+
+#include "system/LoadLibraryFunction.h"

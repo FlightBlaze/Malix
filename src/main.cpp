@@ -19,6 +19,8 @@ int main(int argc, char ** argv) {
     Functions::addFunction(new IsBoolFunction());
     Functions::addFunction(new IsStringFunction());
     Functions::addFunction(new IsNilFunction());
+    Functions::addFunction(new LoadLibraryFunction());
+
     Variables::setVariable("PI", Value(3.14159265359));
     Variables::setVariable("E",  Value(2.71828182845));
 
