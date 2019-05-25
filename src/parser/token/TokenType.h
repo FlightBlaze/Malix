@@ -24,9 +24,11 @@ enum TokenType {
     BREAK,
     CONTINUE,
     RETURN,
-    DEF,
 
+    DEF,
     USE,
+    IMPORT,
+    AS,
     VAR,
     PRINT,
     PRINTLN,

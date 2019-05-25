@@ -21,6 +21,7 @@
 #include "../ast/statements/FunctionDefineStatement.h"
 #include "../ast/statements/ReturnStatement.h"
 #include "../ast/statements/UseStatement.h"
+#include "../ast/statements/ImportStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -138,6 +139,17 @@ Statement * Parser::statement() {
 
     if (look(0, TokenType::WORD) && look(1, TokenType::L_PAREN)) {
         return new FunctionStatement(function());
+    }
+
+    if (match(TokenType::IMPORT)) {
+        Expression * pathExpression = expression();
+        Expression * nameExpression = nullptr;
+
+        if (match(TokenType::AS)) {
+            nameExpression = expression();
+        }
+
+        return new ImportStatement(pathExpression, nameExpression);
     }
 
     return assignmentStatement();

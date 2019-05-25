@@ -7,9 +7,9 @@ file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE INCLUDES ${PROJECT_SOURCE_DIR}/src/*.h*)
 
 if(MALIX_LIBRARY)
-    add_library(malix SHARED ${INCLUDES} ${SOURCES} src/lib/functions/Functions)
+    add_library(malix SHARED ${INCLUDES} ${SOURCES})
 else()
-    add_executable(malix ${INCLUDES} ${SOURCES} src/lib/functions/Functions)
+    add_executable(malix ${INCLUDES} ${SOURCES})
 endif()
 
 target_link_libraries(malix ${CMAKE_DL_LIBS})

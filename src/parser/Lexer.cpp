@@ -43,6 +43,8 @@ Lexer::Lexer(std::string input) {
     this->keywords["def"] = TokenType::DEF;
     this->keywords["return"] = TokenType::RETURN;
     this->keywords["use"] = TokenType::USE;
+    this->keywords["import"] = TokenType::IMPORT;
+    this->keywords["as"] = TokenType::AS;
 }
 
 std::vector<Token> Lexer::tokenize() {
