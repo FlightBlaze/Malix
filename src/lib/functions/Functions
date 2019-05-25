@@ -1,9 +1,2 @@
 #include "../Functions.h"
-
-#include "values/IsNumberFunction.h"
-#include "values/IsStringFunction.h"
-#include "values/IsArrayFunction.h"
-#include "values/IsBoolFunction.h"
-#include "values/IsNilFunction.h"
-
-#include "system/LoadLibraryFunction.h"
+#include "std/ValuesFunctions.hpp"

@@ -20,6 +20,7 @@
 #include "../ast/statements/FunctionStatement.h"
 #include "../ast/statements/FunctionDefineStatement.h"
 #include "../ast/statements/ReturnStatement.h"
+#include "../ast/statements/UseStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -52,6 +53,9 @@ bool Parser::match(TokenType type) {
 }
 
 Statement * Parser::statement() {
+    if (match(TokenType::USE))
+        return new UseStatement(expression());
+
     if (match(TokenType::PRINT))
         return new PrintStatement(expression());
 

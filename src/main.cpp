@@ -6,21 +6,16 @@
 #include "lib/Variables.h"
 #include "ast/statements/BreakStatement.h"
 #include "ast/statements/ContinueStatement.h"
-
-#include "lib/functions/Functions"
 #include "ast/statements/ReturnStatement.h"
+#include "lib/Packages.h"
+#include "lib/packages/StdPackage.h"
+
 
 int main(int argc, char ** argv) {
     std::clock_t start = std::clock();
     double duration;
 
-    Functions::addFunction(new IsArrayFunction());
-    Functions::addFunction(new IsNumberFunction());
-    Functions::addFunction(new IsBoolFunction());
-    Functions::addFunction(new IsStringFunction());
-    Functions::addFunction(new IsNilFunction());
-    Functions::addFunction(new LoadLibraryFunction());
-
+    Packages::addPackage(new StdPackage());
     Variables::setVariable("PI", Value(3.14159265359));
     Variables::setVariable("E",  Value(2.71828182845));
 

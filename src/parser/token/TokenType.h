@@ -26,6 +26,7 @@ enum TokenType {
     RETURN,
     DEF,
 
+    USE,
     VAR,
     PRINT,
     PRINTLN,

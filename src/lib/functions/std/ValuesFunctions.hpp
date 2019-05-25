@@ -1,0 +1,12 @@
+#ifndef MALIX_STD_VALUES_FUNCTIONS
+#define MALIX_STD_VALUES_FUNCTIONS
+
+#include "../NativeFunction.h"
+
+MALIX_NATIVE_FUNCTION(std_isArray);
+MALIX_NATIVE_FUNCTION(std_isBool);
+MALIX_NATIVE_FUNCTION(std_isNil);
+MALIX_NATIVE_FUNCTION(std_isNumber);
+MALIX_NATIVE_FUNCTION(std_isString);
+
+#endif

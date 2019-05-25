@@ -6,7 +6,7 @@ std::string LoadLibraryFunction::getName() {
 
 Value LoadLibraryFunction::invoke(std::vector<Value> values) {
     this->checkArguments(values, 2);
-    std::string method = std::string(std::string("malix_library_") += values[1].getStringValue() += "_functions");
+    std::string method = std::string(std::string("malix_") += values[1].getStringValue() += "_functions");
 
 #ifdef _WIN32
     HINSTANCE handle = LoadLibrary(values[0].getStringValue().c_str());
