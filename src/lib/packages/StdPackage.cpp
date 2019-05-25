@@ -10,6 +10,7 @@ std::vector<Function *> StdPackage::getFunctions() {
             MALIX_NATIVE_FUNCTION_POINTER("isBool", std_isBool),
             MALIX_NATIVE_FUNCTION_POINTER("isNil", std_isNil),
             MALIX_NATIVE_FUNCTION_POINTER("isNumber", std_isNumber),
-            MALIX_NATIVE_FUNCTION_POINTER("isString", std_isString)
+            MALIX_NATIVE_FUNCTION_POINTER("isString", std_isString),
+            MALIX_NATIVE_FUNCTION_POINTER("isPointer", std_isPointer),
     };
 }

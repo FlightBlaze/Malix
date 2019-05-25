@@ -24,3 +24,8 @@ MALIX_NATIVE_FUNCTION(std_isString) {
     function->checkArguments(values, 1);
     return Value(values[0].isString());
 }
+
+MALIX_NATIVE_FUNCTION(std_isPointer) {
+    function->checkArguments(values, 1);
+    return Value(values[0].isPointer());
+}

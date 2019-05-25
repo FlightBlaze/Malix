@@ -20,6 +20,11 @@ Value::Value(std::vector<Value> arrayValue) {
     this->arrayValue = std::move(arrayValue);
 }
 
+Value::Value(void *value) {
+    this->valuePointer = true;
+    this->pointerValue = value;
+}
+
 bool Value::isNumber() {
     return this->valueDouble;
 }
@@ -36,8 +41,12 @@ bool Value::isArray() {
     return this->valueArray;
 }
 
+bool Value::isPointer() {
+    return this->valuePointer;
+}
+
 bool Value::isNil() {
-    return !(isNumber() || isBool() || isString() || isArray());
+    return !(isNumber() || isBool() || isString() || isArray() || isPointer());
 }
 
 double Value::getNumberValue() {
@@ -76,4 +85,8 @@ bool Value::getBoolValue() {
 
 std::vector<Value> * Value::getArrayValue() {
     return &this->arrayValue;
+}
+
+void * Value::getPointer() {
+    return pointerValue;
 }

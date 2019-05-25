@@ -8,5 +8,6 @@ MALIX_NATIVE_FUNCTION(std_isBool);
 MALIX_NATIVE_FUNCTION(std_isNil);
 MALIX_NATIVE_FUNCTION(std_isNumber);
 MALIX_NATIVE_FUNCTION(std_isString);
+MALIX_NATIVE_FUNCTION(std_isPointer);
 
 #endif
