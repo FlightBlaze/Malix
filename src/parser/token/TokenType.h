@@ -19,6 +19,7 @@ enum TokenType {
     IF,
     ELSE,
     
+    DO,
     WHILE,
     FOR,
     BREAK,

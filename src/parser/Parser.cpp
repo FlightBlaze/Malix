@@ -22,6 +22,7 @@
 #include "../ast/statements/ReturnStatement.h"
 #include "../ast/statements/UseStatement.h"
 #include "../ast/statements/ImportStatement.h"
+#include "../ast/statements/DoWhileStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -101,6 +102,20 @@ Statement * Parser::statement() {
             throw std::runtime_error("Syntax error: expected )");
 
         return new WhileStatement(expr, statementOrBlock());
+    }
+
+    if (match(TokenType::DO)) {
+        Statement * body = statementOrBlock();
+        Expression * expr = nullptr;
+
+        match(TokenType::WHILE);
+        if (!match(TokenType::L_PAREN))
+            throw std::runtime_error("Syntax error: expected (");
+        expr = expression();
+        if (!match(TokenType::R_PAREN))
+            throw std::runtime_error("Syntax error: expected )");
+
+        return new DoWhileStatement(expr, body);
     }
 
     if (match(TokenType::FOR)) {

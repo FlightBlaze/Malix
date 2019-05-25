@@ -19,3 +19,7 @@ for (var j = 0, j <= 10, j = j + 1) {
 
     println "j: " + j
 }
+
+do {
+    println "do/while. OK"
+} while (false)

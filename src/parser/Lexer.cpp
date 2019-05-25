@@ -36,6 +36,7 @@ Lexer::Lexer(std::string input) {
     this->keywords["if"] = TokenType::IF;
     this->keywords["else"] = TokenType::ELSE;
     this->keywords["nil"] = TokenType::NIL;
+    this->keywords["do"] = TokenType::DO;
     this->keywords["while"] = TokenType::WHILE;
     this->keywords["for"] = TokenType::FOR;
     this->keywords["break"] = TokenType::BREAK;
