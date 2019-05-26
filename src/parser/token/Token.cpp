@@ -1,10 +1,10 @@
 #include "Token.h"
 
-Token::Token(TokenType type, Value content) : content(content) {
+Token::Token(TType type, Value content) : content(content) {
     this->type = type;
 }
 
-TokenType Token::getType() {
+TType Token::getType() {
     return this->type;
 }
 

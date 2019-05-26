@@ -13,19 +13,19 @@ public:
     Lexer(std::string input);
     std::vector<Token> tokenize();
 
-    char static getOperator(TokenType type);
+    char static getOperator(TType type);
 private:
     std::string input;
     std::vector<Token> tokens;
-    std::map<char, TokenType> operators;
-    std::map<std::string, TokenType> keywords;
+    std::map<char, TType> operators;
+    std::map<std::string, TType> keywords;
     int position;
 
     char peek(int relPos);
     char next();
 
-    void addToken(TokenType type, Value content);
-    TokenType isKeyWord(std::string keyword);
+    void addToken(TType type, Value content);
+    TType isKeyWord(std::string keyword);
 
     void tokenizeNumber();
     void tokenizeWord();
