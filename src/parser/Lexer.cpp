@@ -7,45 +7,45 @@ Lexer::Lexer(std::string input) {
     this->tokens   = std::vector<Token>();
     this->position = 0;
 
-    this->operators['+'] = TokenType::PLUS;
-    this->operators['-'] = TokenType::MINUS;
-    this->operators['*'] = TokenType::STAR;
-    this->operators['/'] = TokenType::SLASH;
-    this->operators['%'] = TokenType::PERCENT;
+    this->operators['+'] = PLUS;
+    this->operators['-'] = MINUS;
+    this->operators['*'] = STAR;
+    this->operators['/'] = SLASH;
+    this->operators['%'] = PERCENT;
 
     // not operators, but easy to parse as operator
-    this->operators['('] = TokenType::L_PAREN;
-    this->operators[')'] = TokenType::R_PAREN;
-    this->operators['{'] = TokenType::L_BRACKET;
-    this->operators['}'] = TokenType::R_BRACKET;
-    this->operators['['] = TokenType::L_SQUARE_BRACKET;
-    this->operators[']'] = TokenType::R_SQUARE_BRACKET;
-    this->operators['='] = TokenType::EQ;
-    this->operators['<'] = TokenType::LT;
-    this->operators['>'] = TokenType::GT;
-    this->operators['!'] = TokenType::EXCLAMATION;
-    this->operators['&'] = TokenType::AMP;
-    this->operators['|'] = TokenType::BAR;
-    this->operators[','] = TokenType::COMMA;
+    this->operators['('] = L_PAREN;
+    this->operators[')'] = R_PAREN;
+    this->operators['{'] = L_BRACKET;
+    this->operators['}'] = R_BRACKET;
+    this->operators['['] = L_SQUARE_BRACKET;
+    this->operators[']'] = R_SQUARE_BRACKET;
+    this->operators['='] = EQ;
+    this->operators['<'] = LT;
+    this->operators['>'] = GT;
+    this->operators['!'] = EXCLAMATION;
+    this->operators['&'] = AMP;
+    this->operators['|'] = BAR;
+    this->operators[','] = COMMA;
 
-    this->keywords["var"] = TokenType::VAR;
-    this->keywords["print"] = TokenType::PRINT;
-    this->keywords["println"] = TokenType::PRINTLN;
-    this->keywords["true"] = TokenType::TRUE;
-    this->keywords["false"] = TokenType::FALSE;
-    this->keywords["if"] = TokenType::IF;
-    this->keywords["else"] = TokenType::ELSE;
-    this->keywords["nil"] = TokenType::NIL;
-    this->keywords["do"] = TokenType::DO;
-    this->keywords["while"] = TokenType::WHILE;
-    this->keywords["for"] = TokenType::FOR;
-    this->keywords["break"] = TokenType::BREAK;
-    this->keywords["continue"] = TokenType::CONTINUE;
-    this->keywords["def"] = TokenType::DEF;
-    this->keywords["return"] = TokenType::RETURN;
-    this->keywords["use"] = TokenType::USE;
-    this->keywords["import"] = TokenType::IMPORT;
-    this->keywords["as"] = TokenType::AS;
+    this->keywords["var"] = VAR;
+    this->keywords["print"] = PRINT;
+    this->keywords["println"] = PRINTLN;
+    this->keywords["true"] = TRUE;
+    this->keywords["false"] = FALSE;
+    this->keywords["if"] = IF;
+    this->keywords["else"] = ELSE;
+    this->keywords["nil"] = NIL;
+    this->keywords["do"] = DO;
+    this->keywords["while"] = WHILE;
+    this->keywords["for"] = FOR;
+    this->keywords["break"] = BREAK;
+    this->keywords["continue"] = CONTINUE;
+    this->keywords["def"] = DEF;
+    this->keywords["return"] = RETURN;
+    this->keywords["use"] = USE;
+    this->keywords["import"] = IMPORT;
+    this->keywords["as"] = AS;
 }
 
 std::vector<Token> Lexer::tokenize() {
@@ -99,7 +99,7 @@ void Lexer::tokenizeNumber() {
 
     double number;
     stream >> number;
-    addToken(TokenType::NUMBER, Value(number));
+    addToken(NUMBER, Value(number));
 }
 
 void Lexer::tokenizeWord() {
@@ -137,7 +137,7 @@ void Lexer::tokenizeString() {
         current = next();
     }
 
-    addToken(TokenType::STRING, Value(stream.str()));
+    addToken(STRING, Value(stream.str()));
 }
 
 void Lexer::tokenizeComment() {
@@ -160,20 +160,12 @@ void Lexer::tokenizeComment() {
 }
 
 char Lexer::getOperator(TokenType type) {
-    switch (type) {
-        case TokenType::PLUS:    return '+';
-        case TokenType::MINUS:   return '-';
-        case TokenType::STAR:    return '*';
-        case TokenType::SLASH:   return '/';
-        case TokenType::PERCENT: return '%';
-        default:
-            return '\0';
-    }
+    return type.c_str()[0];
 }
 
 TokenType Lexer::isKeyWord(std::string keyword) {
     std::transform(keyword.begin(), keyword.end(), keyword.begin(), ::tolower);
     auto it = keywords.find(keyword);
     if (it != keywords.end()) return it->second;
-    else return TokenType::WORD;
+    else return WORD;
 }

@@ -25,6 +25,7 @@ private:
     Token peek(int pos);
     bool match(TokenType type);
     bool look(int pos, TokenType type);
+    Token consume(TokenType type);
 
     // parse ....
     Statement * statement();

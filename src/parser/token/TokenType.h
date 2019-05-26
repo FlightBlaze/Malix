@@ -1,57 +1,55 @@
 #ifndef MALIX_TOKENTYPE_H
 #define MALIX_TOKENTYPE_H
 
-enum TokenType {
-    NUMBER,
-    WORD,
-    KEYWORD,
-    STRING,
+#define TokenType std::string
 
-    EQ, // =
-    LT, // <
-    GT, // >
-    AMP, // &
-    BAR, // |
+#define NUMBER "number"
+#define WORD "word"
+#define STRING "string"
 
-    TRUE,
-    FALSE,
+#define EQ "="
+#define LT "<"
+#define GT ">"
+#define AMP "&"
+#define BAR "|"
 
-    IF,
-    ELSE,
-    
-    DO,
-    WHILE,
-    FOR,
-    BREAK,
-    CONTINUE,
-    RETURN,
+#define TRUE "true"
+#define FALSE "false"
 
-    DEF,
-    USE,
-    IMPORT,
-    AS,
-    VAR,
-    PRINT,
-    PRINTLN,
+#define IF "if"
+#define ELSE "else"
 
-    PLUS, // +
-    MINUS, // -
-    STAR, // *
-    SLASH, // /
-    PERCENT,// %
-    EXCLAMATION, // !
-    COMMA, // ,
+#define DO "do"
+#define WHILE "while"
+#define FOR "for"
+#define BREAK "break"
+#define CONTINUE "continue"
+#define RETURN "return"
 
-    L_PAREN, // (
-    R_PAREN, // )
-    L_BRACKET, // {
-    R_BRACKET, // }
-    L_SQUARE_BRACKET, // [
-    R_SQUARE_BRACKET, // ]
+#define NIL "nil"
+#define DEF "def"
+#define USE "use"
+#define IMPORT "import"
+#define AS "as"
+#define VAR "var"
+#define PRINT "print"
+#define PRINTLN "println"
 
-    NIL, // nil
+#define PLUS "+"
+#define MINUS "-"
+#define STAR "*"
+#define SLASH "/"
+#define PERCENT "%"
+#define EXCLAMATION "!"
+#define COMMA ","
 
-    FILEEND
-};
+#define L_PAREN "("
+#define R_PAREN ")"
+#define L_BRACKET "{"
+#define R_BRACKET "}"
+#define L_SQUARE_BRACKET "["
+#define R_SQUARE_BRACKET "]"
+
+#define FILEEND ""
 
 #endif //MALIX_TOKENTYPE_H
