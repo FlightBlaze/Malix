@@ -1,28 +1,4 @@
-#include <memory>
 #include "Parser.h"
-#include "../ast/expressions/UnaryExpression.h"
-#include "../ast/statements/AssigmentStatement.h"
-#include "../ast/expressions/VariableExpression.h"
-#include "../ast/statements/PrintStatement.h"
-#include "../ast/expressions/ConditionalExpression.h"
-#include "../ast/statements/IfStatement.h"
-#include "../ast/expressions/ValueExpression.h"
-#include "../ast/expressions/ExclamationExpression.h"
-#include "../ast/statements/PrintlnStatement.h"
-#include "../ast/statements/WhileStatement.h"
-#include "../ast/statements/BlockStatement.h"
-#include "../lib/Variables.h"
-#include "../ast/statements/ForStatement.h"
-#include "../ast/statements/BreakStatement.h"
-#include "../lib/Functions.h"
-#include "../ast/expressions/FunctionExpression.h"
-#include "../ast/expressions/ArrayExpression.h"
-#include "../ast/statements/FunctionStatement.h"
-#include "../ast/statements/FunctionDefineStatement.h"
-#include "../ast/statements/ReturnStatement.h"
-#include "../ast/statements/UseStatement.h"
-#include "../ast/statements/ImportStatement.h"
-#include "../ast/statements/DoWhileStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -57,6 +33,12 @@ bool Parser::match(TType type) {
 Statement * Parser::statement() {
     if (match(USE))
         return new UseStatement(expression());
+
+    if (match(DEFINE)) {
+        std::string name = consume(LEXEM).getContent().getStringValue();
+
+        return new DefineStatement(name, expression());
+    }
 
     if (match(PRINT))
         return new PrintStatement(expression());

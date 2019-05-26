@@ -15,6 +15,7 @@ public:
     static void pop();
 
     static void setVariable(std::string name, Value value);
+    static void setConstant(std::string name, Value value);
     static Value getVariable(std::string name);
     static bool exists(std::string name);
 };

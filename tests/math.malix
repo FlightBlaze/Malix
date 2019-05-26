@@ -4,10 +4,9 @@
 
 use "math"
 
+;; Functions
 println sqrt(4)
 println pow(10, 2)
-println pi()
-println exponenta()
 println abs(-55324)
 println acos(32)
 println asin(23)
@@ -20,3 +19,7 @@ println fabs(-324.54)
 println fmod(324.123, 322.4324)
 println frexp(1000000000000, 234234)
 println ldexp(102323234, 32432432)
+
+;; Constants
+println PI
+println E

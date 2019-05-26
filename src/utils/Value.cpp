@@ -49,6 +49,10 @@ bool Value::isNil() {
     return !(isNumber() || isBool() || isString() || isArray() || isPointer());
 }
 
+bool Value::isConst() {
+    return valueConstant;
+}
+
 double Value::getNumberValue() {
     if (isNumber())
         return this->doubleValue;
@@ -89,4 +93,8 @@ std::vector<Value> * Value::getArrayValue() {
 
 void * Value::getPointer() {
     return pointerValue;
+}
+
+void Value::setConst(bool constValue) {
+    this->valueConstant = constValue;
 }

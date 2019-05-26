@@ -8,8 +8,6 @@
 int * double_to_int(double num);
 MALIX_NATIVE_FUNCTION(math_sqrt);
 MALIX_NATIVE_FUNCTION(math_pow);
-MALIX_NATIVE_FUNCTION(math_pi);
-MALIX_NATIVE_FUNCTION(math_exponenta);
 MALIX_NATIVE_FUNCTION(math_abs);
 MALIX_NATIVE_FUNCTION(math_acos);
 MALIX_NATIVE_FUNCTION(math_asin);

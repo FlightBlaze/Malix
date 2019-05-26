@@ -14,3 +14,7 @@ std::vector<Function *> StdPackage::getFunctions() {
             MALIX_NATIVE_FUNCTION_POINTER("isPointer", std_isPointer),
     };
 }
+
+std::map<std::string, Value> StdPackage::getConstants() {
+    return {};
+}

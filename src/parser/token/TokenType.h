@@ -1,8 +1,10 @@
 #ifndef MALIX_TOKENTYPE_H
 #define MALIX_TOKENTYPE_H
+
 #include <string>
 #undef TokenType
 typedef std::string TType;
+
 #define NUMBER "number"
 #define LEXEM "lexem"
 #define STRING "string"
@@ -32,6 +34,7 @@ typedef std::string TType;
 #define IMPORT "import"
 #define AS "as"
 #define VAR "var"
+#define DEFINE "define"
 #define PRINT "print"
 #define PRINTLN "println"
 

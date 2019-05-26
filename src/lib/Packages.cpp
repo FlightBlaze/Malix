@@ -1,4 +1,5 @@
 #include "Packages.h"
+#include "Variables.h"
 
 std::vector<Package *> Packages::packages = std::vector<Package *>();
 
@@ -14,6 +15,9 @@ void Packages::registerPackage(std::string name) {
         if (aPackage->getName() == name) {
             for (Function *function : aPackage->getFunctions())
                 Functions::addFunction(function);
+
+            for (const auto& it : aPackage->getConstants())
+                Variables::setConstant(it.first, it.second);
 
             return;
         }
@@ -32,4 +36,3 @@ bool Packages::exists(std::string name) {
 
     return found;
 }
-

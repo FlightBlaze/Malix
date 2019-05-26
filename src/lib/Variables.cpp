@@ -7,6 +7,11 @@ void Variables::setVariable(std::string name, Value value) {
     variables[name] = std::move(value);
 }
 
+void Variables::setConstant(std::string name, Value value) {
+    value.setConst(true);
+    setVariable(name, value);
+}
+
 bool Variables::exists(std::string name) {
     auto it = variables.find(name);
     return it != variables.end();

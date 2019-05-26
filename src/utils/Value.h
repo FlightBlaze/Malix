@@ -20,6 +20,7 @@ public:
     bool isArray();
     bool isNil();
     bool isPointer();
+    bool isConst();
 
     double getNumberValue();
     std::string getStringValue();
@@ -27,12 +28,14 @@ public:
     std::vector<Value> * getArrayValue();
     void * getPointer();
 
+    void setConst(bool constValue);
 private:
     bool valueDouble = false;
     bool valueString = false;
     bool valueBool   = false;
     bool valueArray  = false;
     bool valuePointer = false;
+    bool valueConstant = false;
 
     double doubleValue = 0;
     bool boolValue     = false;

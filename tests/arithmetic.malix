@@ -11,3 +11,8 @@ println 4.5 / 3 ;; 1.5
 
 println 50 % 3 ;; 2
 println 50 % 5 ;; 0
+
+define ONE 1
+define TOO 2
+
+println ONE + TOO

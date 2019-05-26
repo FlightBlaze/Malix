@@ -29,6 +29,7 @@ Lexer::Lexer(std::string input) {
     this->operators[','] = COMMA;
 
     this->keywords["var"] = VAR;
+    this->keywords["define"] = DEFINE;
     this->keywords["print"] = PRINT;
     this->keywords["println"] = PRINTLN;
     this->keywords["true"] = TRUE;

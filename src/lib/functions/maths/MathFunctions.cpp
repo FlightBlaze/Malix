@@ -19,18 +19,6 @@ MALIX_NATIVE_FUNCTION(math_pow)
     return Value(pow(values[0].getNumberValue(), values[1].getNumberValue()));
 }
 
-MALIX_NATIVE_FUNCTION(math_pi)
-{
-    function->checkArguments(values, 0);
-    return Value(3.14159265359);
-}
-
-MALIX_NATIVE_FUNCTION(math_exponenta)
-{
-    function->checkArguments(values, 0);
-    return Value(2.71828182845);
-}
-
 MALIX_NATIVE_FUNCTION(math_abs)
 {
     function->checkArguments(values, 1);
@@ -100,5 +88,5 @@ MALIX_NATIVE_FUNCTION(math_frexp)
 MALIX_NATIVE_FUNCTION(math_ldexp)
 {
     function->checkArguments(values, 2);
-    return Value(ldexp(values[0].getNumberValue(), values[1].getNumberValue()));
+    return Value(ldexp(values[0].getNumberValue(), (int) values[1].getNumberValue()));
 }

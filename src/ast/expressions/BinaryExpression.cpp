@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "BinaryExpression.h"
 
 Value BinaryExpression::eval() {

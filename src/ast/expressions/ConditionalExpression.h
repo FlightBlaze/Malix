@@ -1,8 +1,8 @@
 #ifndef MALIX_CONDITIONALEXPRESSION_H
 #define MALIX_CONDITIONALEXPRESSION_H
 
-
 #include "Expression.h"
+#include <stdexcept>
 
 class ConditionalExpression : public Expression {
 public:
