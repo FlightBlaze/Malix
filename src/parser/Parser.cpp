@@ -46,7 +46,7 @@ Token Parser::peek(int pos) {
     return tokens[fullPosition];
 }
 
-bool Parser::match(TokenType type) {
+bool Parser::match(TType type) {
     if (peek(0).getType() != type)
         return false;
 
@@ -128,7 +128,7 @@ Statement * Parser::statement() {
     }
 
     if (match(DEF)) {
-        std::string name = consume(WORD).getContent().getStringValue();
+        std::string name = consume(LEXEM).getContent().getStringValue();
 
         if (Functions::exists(name))
             throw std::runtime_error(std::string("Function: ") += name += " exists!");
@@ -137,14 +137,14 @@ Statement * Parser::statement() {
 
         std::vector<std::string> args;
         while (!match(R_PAREN)) {
-            args.push_back(consume(WORD).getContent().getStringValue());
+            args.push_back(consume(LEXEM).getContent().getStringValue());
             match(COMMA);
         }
 
         return new FunctionDefineStatement(name, args, statementOrBlock());
     }
 
-    if (look(0, WORD) && look(1, L_PAREN)) {
+    if (look(0, LEXEM) && look(1, L_PAREN)) {
         return new FunctionStatement(function());
     }
 
@@ -166,12 +166,12 @@ Statement * Parser::assignmentStatement() {
     Statement * state = nullptr;
 
     if (match(VAR)) {
-        std::string variableName = consume(WORD).getContent().getStringValue();
+        std::string variableName = consume(LEXEM).getContent().getStringValue();
         consume(EQ);
         state = new AssigmentStatement(variableName, expression());
     }
 
-    if (match(WORD) && peek(0).getType() == EQ) {
+    if (match(LEXEM) && peek(0).getType() == EQ) {
         Token token = peek(-1);
         match(EQ);
         std::string variableName = token.getContent().getStringValue();
@@ -333,9 +333,9 @@ Expression * Parser::primary() {
         expr = expression();
         match(R_PAREN);
         return expr;
-    } else if (look(0, WORD) && look(1, L_PAREN)) {
+    } else if (look(0, LEXEM) && look(1, L_PAREN)) {
         expr = function();
-    } else if (match(WORD)) {
+    } else if (match(LEXEM)) {
         expr = new VariableExpression(token.getContent().getStringValue());
     } else if (match(TRUE)) {
         expr = new ValueExpression(Value(true));
@@ -375,12 +375,12 @@ Statement * Parser::statementOrBlock() {
     return statement();
 }
 
-bool Parser::look(int pos, TokenType type) {
+bool Parser::look(int pos, TType type) {
     return peek(pos).getType() == type;
 }
 
 FunctionExpression * Parser::function() {
-    std::string name = consume(WORD).getContent().getStringValue();
+    std::string name = consume(LEXEM).getContent().getStringValue();
     consume(L_PAREN);
     FunctionExpression * expression1 = new FunctionExpression(name);
 
@@ -391,8 +391,8 @@ FunctionExpression * Parser::function() {
 
     return expression1;
 }
-
-Token Parser::consume(TokenType type) {
+// лол, и как запустить math.malix???
+Token Parser::consume(TType type) {
     if (match(type)) return peek(-1);
     throw std::runtime_error(std::string("Expected ") + type);
 }
