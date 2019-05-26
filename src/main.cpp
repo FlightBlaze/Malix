@@ -17,7 +17,7 @@ int main(int argc, char ** argv) {
     double duration;
 
     Packages::addPackage(new StdPackage());
-    Packages::addPackage(new MathPackage())
+    Packages::addPackage(new MathPackage());
 
     std::ifstream fileStream;
 
