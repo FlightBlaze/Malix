@@ -7,7 +7,6 @@ int * double_to_int(double num)
     return (int *)d;
 }
 
-
 MALIX_NATIVE_FUNCTION(math_sqrt)
 {
     function->checkArguments(values, 1);
@@ -35,7 +34,7 @@ MALIX_NATIVE_FUNCTION(math_exponenta)
 MALIX_NATIVE_FUNCTION(math_abs)
 {
     function->checkArguments(values, 1);
-    return Value(abs(double_to_int(values[0].getNumberValue())));
+    return Value((double)abs((int)values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_acos)
