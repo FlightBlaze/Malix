@@ -11,13 +11,13 @@ int * double_to_int(double num)
 MALIX_NATIVE_FUNCTION(math_sqrt)
 {
     function->checkArguments(values, 1);
-    return Value(sqrt(values[0].getNumberValue()));
+    return Value(std::sqrt(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_pow)
 {
     function->checkArguments(values, 2);
-    return Value(pow(values[0].getNumberValue(), values[1].getNumberValue()));
+    return Value(std::pow(values[0].getNumberValue(), values[1].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_pi)
@@ -35,71 +35,71 @@ MALIX_NATIVE_FUNCTION(math_exponenta)
 MALIX_NATIVE_FUNCTION(math_abs)
 {
     function->checkArguments(values, 1);
-    return Value(abs(values[0].getNumberValue()));
+    return Value(std::abs(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_acos)
 {
     function->checkArguments(values, 1);
-    return Value(acos(values[0].getNumberValue()));
+    return Value(std::acos(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_asin)
 {
     function->checkArguments(values, 1);
-    return Value(asin(values[0].getNumberValue()));
+    return Value(std::asin(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_atg)
 {
     function->checkArguments(values, 1);
-    return Value(atan(values[0].getNumberValue()));
+    return Value(std::atan(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_atgt)
 {
     function->checkArguments(values, 2);
-    return Value(atan2(values[0].getNumberValue(), values[1].getNumberValue()));
+    return Value(std::atan2(values[0].getNumberValue(), values[1].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_ceil)
 {
     function->checkArguments(values, 1);
-    return Value(ceil(values[0].getNumberValue()));
+    return Value(std::ceil(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_floor)
 {
     function->checkArguments(values, 1);
-    return Value(floor(values[0].getNumberValue()));
+    return Value(std::floor(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_cos)
 {
     function->checkArguments(values, 1);
-    return Value(cos(values[0].getNumberValue()));
+    return Value(std::cos(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_fabs)
 {
     function->checkArguments(values, 1);
-    return Value(fabs(values[0].getNumberValue()));
+    return Value(std::fabs(values[0].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_fmod)
 {
     function->checkArguments(values, 2);
-    return Value(fmod((int)values[0].getNumberValue(), (int)values[1].getNumberValue()));
+    return Value(std::fmod((int)values[0].getNumberValue(), (int)values[1].getNumberValue()));
 }
 
 MALIX_NATIVE_FUNCTION(math_frexp)
 {
     function->checkArguments(values, 2);
-    return Value(frexp(values[0].getNumberValue(), double_to_int(values[1].getNumberValue())));
+    return Value(std::frexp(values[0].getNumberValue(), double_to_int(values[1].getNumberValue())));
 }
 
 MALIX_NATIVE_FUNCTION(math_ldexp)
 {
     function->checkArguments(values, 2);
-    return Value(frexp(values[0].getNumberValue(), double_to_int(values[1].getNumberValue())));
+    return Value(std::frexp(values[0].getNumberValue(), double_to_int(values[1].getNumberValue())));
 }
