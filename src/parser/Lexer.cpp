@@ -77,7 +77,7 @@ char Lexer::next() {
     return c;
 }
 
-void Lexer::addToken(TType type, Value content) {
+void Lexer::addToken(TokenType type, Value content) {
     this->tokens.emplace_back(type, content);
 }
 
@@ -159,13 +159,13 @@ void Lexer::tokenizeComment() {
     }
 }
 
-char Lexer::getOperator(TType type) {
+char Lexer::getOperator(TokenType type) {
     return type.c_str()[0];
 }
 
-TType Lexer::isKeyWord(std::string keyword) {
+TokenType Lexer::isKeyWord(std::string keyword) {
     std::transform(keyword.begin(), keyword.end(), keyword.begin(), ::tolower);
     auto it = keywords.find(keyword);
     if (it != keywords.end()) return it->second;
-    else return LEXEM;
+    else return WORD;
 }

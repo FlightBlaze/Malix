@@ -7,12 +7,12 @@
 
 class Token {
 public:
-    Token(TType type, Value content);
-    TType getType();
+    Token(TokenType type, Value content);
+    TokenType getType();
     Value getContent();
 
 private:
-    TType type;
+    TokenType type;
     Value content;
 };
 
