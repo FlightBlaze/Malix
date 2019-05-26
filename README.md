@@ -1,4 +1,4 @@
-# <img src="malix.svg" width=28 viewBox="20" > Malix [![Build Status](https://travis-ci.org/malix-fondation/Malix.svg?branch=master)](https://travis-ci.org/malix-fondation/Malix)
+# <img src="malix.svg" width=28 viewBox="20" > Malix [![Build Status](https://travis-ci.org/malix-foundation/Malix.svg?branch=master)](https://travis-ci.org/malix-foundation/Malix)
 Malix programming language
 
 ```malix
