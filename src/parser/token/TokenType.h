@@ -1,10 +1,10 @@
 #ifndef MALIX_TOKENTYPE_H
 #define MALIX_TOKENTYPE_H
-
-#define TokenType std::string
-
+#include <string>
+#undef TokenType
+typedef std::string TType;
 #define NUMBER "number"
-#define WORD "word"
+#define LEXEM "lexem"
 #define STRING "string"
 
 #define EQ "="
