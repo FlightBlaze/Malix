@@ -4,6 +4,7 @@
 #include "../NativeFunction.h"
 #include <math.h>
 #include <cstdlib>
+
 int * double_to_int(double num);
 MALIX_NATIVE_FUNCTION(math_sqrt);
 MALIX_NATIVE_FUNCTION(math_pow);

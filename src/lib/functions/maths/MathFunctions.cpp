@@ -35,7 +35,7 @@ MALIX_NATIVE_FUNCTION(math_exponenta)
 MALIX_NATIVE_FUNCTION(math_abs)
 {
     function->checkArguments(values, 1);
-    return Value(std::abs((int)values[0].getNumberValue()));
+    return Value(std::abs(double_to_int(values[0].getNumberValue())));
 }
 
 MALIX_NATIVE_FUNCTION(math_acos)
