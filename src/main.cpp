@@ -9,6 +9,7 @@
 #include "ast/statements/ReturnStatement.h"
 #include "lib/Packages.h"
 #include "lib/packages/StdPackage.h"
+#include "lib/packages/MathPackage.h"
 
 
 int main(int argc, char ** argv) {
@@ -16,8 +17,7 @@ int main(int argc, char ** argv) {
     double duration;
 
     Packages::addPackage(new StdPackage());
-    Variables::setVariable("PI", Value(3.14159265359));
-    Variables::setVariable("E",  Value(2.71828182845));
+    Packages::addPackage(new MathPackage());
 
     std::ifstream fileStream;
 
