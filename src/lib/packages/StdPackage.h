@@ -2,7 +2,7 @@
 #define MALIX_STDPACKAGE_H
 
 #include "../Functions.h"
-#include "../functions/std/ValuesFunctions.hpp"
+#include "../functions/std/StdFunctions.h"
 #include "Package.h"
 #include <vector>
 

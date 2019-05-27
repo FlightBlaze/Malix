@@ -16,11 +16,17 @@ std::vector<Function *> StdPackage::getFunctions() {
         MALIX_NATIVE_FUNCTION_POINTER("isNumber", std_isNumber),
         MALIX_NATIVE_FUNCTION_POINTER("isString", std_isString),
         MALIX_NATIVE_FUNCTION_POINTER("isPointer", std_isPointer),
+
+        MALIX_NATIVE_FUNCTION_POINTER("rand", std_rand),
+        MALIX_NATIVE_FUNCTION_POINTER("exit", std_exit),
+        MALIX_NATIVE_FUNCTION_POINTER("getEnv", std_getenv),
+        MALIX_NATIVE_FUNCTION_POINTER("system", std_system),
     };
 }
 
 std::map<std::string, Value *> StdPackage::getConstants() {
     return {
-        MALIX_CONSTANT_STRING("MALIX_VERSION", MALIX_VERSION)
+        MALIX_CONSTANT_STRING("MALIX_VERSION", MALIX_VERSION),
+        MALIX_CONSTANT_DOUBLE("RAND_MAX", RAND_MAX)
     };
 }
