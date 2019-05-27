@@ -10,6 +10,11 @@ Value::Value(std::string value) {
     this->stringValue = std::move(value);
 }
 
+Value::Value(std::string * value) {
+    this->valueString = true;
+    this->stringValue = std::string(* value);
+}
+
 Value::Value(bool value) {
     this->valueBool = true;
     this->boolValue = value;
@@ -20,7 +25,7 @@ Value::Value(std::vector<Value> arrayValue) {
     this->arrayValue = std::move(arrayValue);
 }
 
-Value::Value(void *value) {
+Value::Value(void * value) {
     this->valuePointer = true;
     this->pointerValue = value;
 }
@@ -78,6 +83,10 @@ std::string Value::getStringValue() {
 
         string += "]";
         return string;
+    } else if (isPointer()) {
+        return std::string("Pointer to 0x") += std::to_string((long long) this->pointerValue);
+    } else if (isNil()) {
+        return "Nil";
     }
 
     return std::string();

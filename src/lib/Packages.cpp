@@ -17,7 +17,7 @@ void Packages::registerPackage(std::string name) {
                 Functions::addFunction(function);
 
             for (const auto& it : aPackage->getConstants())
-                Variables::setConstant(it.first, it.second);
+                Variables::setConstant(it.first, Value(* it.second));
 
             return;
         }

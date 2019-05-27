@@ -2,6 +2,8 @@
     Malix test: print/println
 ;
 
+use "std"
+
 print "Hello, Malix!"
 println "Hello, Malix!"
 print true
@@ -14,3 +16,5 @@ print 1.1
 println 1.1
 print nil
 println nil
+print MALIX_VERSION
+println MALIX_VERSION

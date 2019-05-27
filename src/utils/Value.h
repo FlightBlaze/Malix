@@ -8,6 +8,7 @@ class Value {
 public:
     explicit Value(double value);
     explicit Value(std::string value);
+    explicit Value(std::string * value); // Bug fix
     explicit Value(bool value);
     explicit Value(std::vector<Value> value);
     explicit Value(void * value);

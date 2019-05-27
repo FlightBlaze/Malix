@@ -110,7 +110,7 @@ void Lexer::tokenizeWord() {
     stream << peek(-1);
 
     while (this->position < this->input.size()) {
-        if (isalpha(peek(0)) && peek(0) != '_' && peek(0) != '$') stream << next();
+        if ((isalpha(peek(0)) && peek(0) != '$') || peek(0) == '_') stream << next();
         else break;
     }
 
