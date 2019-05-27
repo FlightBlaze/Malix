@@ -3,7 +3,7 @@ project(malix CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_compile_definitions(MALIX_VERSION="0.0.1")
+add_definitions(-DMALIX_VERSION="0.0.1")
 
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE INCLUDES ${PROJECT_SOURCE_DIR}/src/*.h*)
