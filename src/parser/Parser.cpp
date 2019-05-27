@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include "../ast/statements/UserPackageStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -38,6 +39,11 @@ Statement * Parser::statement() {
         std::string name = consume(LEXEM).getContent().getStringValue();
 
         return new DefineStatement(name, expression());
+    }
+
+    if (match(PACKAGE)) {
+        std::string name = consume(STRING).getContent().getStringValue();
+        return new UserPackageStatement(name, block());
     }
 
     if (match(PRINT))
@@ -342,7 +348,7 @@ Expression * Parser::primary() {
     return expr;
 }
 
-Statement * Parser::block() {
+BlockStatement * Parser::block() {
     auto * block = new BlockStatement();
     match(L_BRACKET);
 

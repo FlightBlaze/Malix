@@ -35,6 +35,7 @@ typedef std::string TType;
 #define AS "as"
 #define VAR "var"
 #define DEFINE "define"
+#define PACKAGE "package"
 #define PRINT "print"
 #define PRINTLN "println"
 

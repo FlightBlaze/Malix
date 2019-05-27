@@ -24,3 +24,4 @@ script:
   - "./malix ./tests/loops.malix"
   - "./malix ./tests/functions.malix"
   - "./malix ./tests/math.malix"
+  - "./malix ./tests/package.malix"

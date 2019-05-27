@@ -66,7 +66,7 @@ private:
     Expression * primary();
 
     // parse utils
-    Statement * block();
+    BlockStatement * block();
     Statement * statementOrBlock();
     FunctionExpression * function();
 };
