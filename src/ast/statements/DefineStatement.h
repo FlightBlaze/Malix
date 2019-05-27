@@ -8,7 +8,7 @@
 class DefineStatement : public Statement {
 public:
     explicit DefineStatement(std::string name, Expression * expression)
-        : name(std::move(name)), expression(expression) {}
+            : name(std::move(name)), expression(expression) {}
     ~DefineStatement() override;
     void execute() override;
 private:

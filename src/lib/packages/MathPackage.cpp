@@ -20,6 +20,14 @@ std::vector<Function *> MathPackage::getFunctions() {
         MALIX_NATIVE_FUNCTION_POINTER("fmod", math_fmod),
         MALIX_NATIVE_FUNCTION_POINTER("frexp", math_frexp),
         MALIX_NATIVE_FUNCTION_POINTER("ldexp", math_ldexp),
+        MALIX_NATIVE_FUNCTION_POINTER("log", math_log),
+        MALIX_NATIVE_FUNCTION_POINTER("log_ten", math_log_ten),
+        MALIX_NATIVE_FUNCTION_POINTER("modf", math_modf),
+        MALIX_NATIVE_FUNCTION_POINTER("sin", math_sin),
+        MALIX_NATIVE_FUNCTION_POINTER("sinh", math_sinh),
+        MALIX_NATIVE_FUNCTION_POINTER("cosh", math_cosh),
+        MALIX_NATIVE_FUNCTION_POINTER("tg", math_tg),
+        MALIX_NATIVE_FUNCTION_POINTER("tgh", math_tgh),
     };
 }
 
