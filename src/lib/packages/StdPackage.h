@@ -10,7 +10,7 @@ class StdPackage : public Package {
 public:
     std::string getName() override;
     std::vector<Function *> getFunctions() override;
-    std::map<std::string, Value> getConstants() override;
+    std::map<std::string, Value *> getConstants() override;
 };
 
 

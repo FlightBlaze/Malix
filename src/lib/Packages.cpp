@@ -1,5 +1,6 @@
 #include "Packages.h"
 #include "Variables.h"
+#include "packages/UserPackage.h"
 
 std::vector<Package *> Packages::packages = std::vector<Package *>();
 
@@ -13,11 +14,15 @@ void Packages::registerPackage(std::string name) {
 
     for (Package * aPackage : packages) {
         if (aPackage->getName() == name) {
-            for (Function *function : aPackage->getFunctions())
-                Functions::addFunction(function);
+            if(auto * userPackage = dynamic_cast<UserPackage *>(aPackage)) {
+                userPackage->registerUserPackage();
+            } else {
+                for (Function *function : aPackage->getFunctions())
+                    Functions::addFunction(function);
 
-            for (const auto& it : aPackage->getConstants())
-                Variables::setConstant(it.first, it.second);
+                for (const auto& it : aPackage->getConstants())
+                    Variables::setConstant(it.first, Value(* it.second));
+            }
 
             return;
         }

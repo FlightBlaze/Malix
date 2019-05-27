@@ -23,9 +23,9 @@ std::vector<Function *> MathPackage::getFunctions() {
     };
 }
 
-std::map<std::string, Value> MathPackage::getConstants() {
+std::map<std::string, Value *> MathPackage::getConstants() {
     return {
-            { "PI", Value(3.14159265359) },
-            { "E",  Value(2.71828182845) },
+        MALIX_CONSTANT_DOUBLE("PI", 3.14159265359),
+        MALIX_CONSTANT_DOUBLE("E",  2.71828182845),
     };
 }

@@ -30,6 +30,7 @@ Lexer::Lexer(std::string input) {
 
     this->keywords["var"] = VAR;
     this->keywords["define"] = DEFINE;
+    this->keywords["package"] = PACKAGE;
     this->keywords["print"] = PRINT;
     this->keywords["println"] = PRINTLN;
     this->keywords["true"] = TRUE;
@@ -110,7 +111,7 @@ void Lexer::tokenizeWord() {
     stream << peek(-1);
 
     while (this->position < this->input.size()) {
-        if (isalpha(peek(0)) && peek(0) != '_' && peek(0) != '$') stream << next();
+        if ((isalpha(peek(0)) && peek(0) != '$') || peek(0) == '_') stream << next();
         else break;
     }
 

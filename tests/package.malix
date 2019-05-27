@@ -1,0 +1,22 @@
+;
+    Malix test: Package
+;
+
+package "test" {
+    define TEST_ONE 1
+    define TEST_TWO 2
+
+    def testSum() {
+        return TEST_ONE + TEST_TWO
+    }
+}
+
+;
+    Constants TEST_ONE, TEST_TWO and function testSum not found!
+;
+
+use "test" ;; but if import this package, constants and functions found
+
+println TEST_ONE
+println TEST_TWO
+println testSum()
