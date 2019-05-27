@@ -19,7 +19,14 @@ println fabs(-324.54)
 println fmod(324.123, 322.4324)
 println frexp(1000000000000, 234234)
 println ldexp(102323234, 32432432)
-
+println log(32)
+println log_ten(10)
+println modf(32, 2)
+println sin(30)
+println sinh(30)
+println cosh(43)
+println tg(45)
+println tgh(32)
 ;; Constants
 println PI
 println E
