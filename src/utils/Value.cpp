@@ -22,7 +22,7 @@ Value::Value(bool value) {
 
 Value::Value(std::vector<Value> arrayValue) {
     this->valueArray = true;
-    this->arrayValue = std::move(arrayValue);
+    this->arrayValue = arrayValue;
 }
 
 Value::Value(void * value) {

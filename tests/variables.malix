@@ -13,3 +13,6 @@ println bool
 println int
 println none
 println array
+
+var arr = [[1, 2], [1, 2]]
+println arr[0][1]

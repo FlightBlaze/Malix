@@ -24,7 +24,7 @@
 #include "../ast/statements/BreakStatement.h"
 #include "../lib/Functions.h"
 #include "../ast/expressions/FunctionExpression.h"
-#include "../ast/expressions/ArrayExpression.h"
+#include "../ast/expressions/ArrayIndexExpression.h"
 #include "../ast/statements/FunctionStatement.h"
 #include "../ast/statements/FunctionDefineStatement.h"
 #include "../ast/statements/ReturnStatement.h"

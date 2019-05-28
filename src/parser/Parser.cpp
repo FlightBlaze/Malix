@@ -1,5 +1,7 @@
 #include "Parser.h"
 #include "../ast/statements/UserPackageStatement.h"
+#include "../ast/statements/ArrayAssigmentStatement.h"
+#include "../ast/expressions/ArrayExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -151,25 +153,32 @@ Statement * Parser::statement() {
 }
 
 Statement * Parser::assignmentStatement() {
-    Statement * state = nullptr;
-
     if (match(VAR)) {
         std::string variableName = consume(LEXEM).getContent().getStringValue();
         consume(EQ);
-        state = new AssigmentStatement(variableName, expression());
+        return new AssigmentStatement(variableName, expression());
     }
 
-    if (match(LEXEM) && peek(0).getType() == EQ) {
-        Token token = peek(-1);
-        match(EQ);
-        std::string variableName = token.getContent().getStringValue();
-        state = new AssigmentStatement(variableName, expression());
+    if (look(0, LEXEM) && look(1, EQ)) {
+        std::string variableName = consume(LEXEM).getContent().getStringValue();
+        consume(EQ);
+        return new AssigmentStatement(variableName, expression());
     }
 
-    if (state == nullptr)
-        throw std::runtime_error("Unknown statement");
+    if (look(0, LEXEM) && look(1, L_SQUARE_BRACKET)) {
+        std::string variableName = consume(LEXEM).getContent().getStringValue();
+        std::vector<Expression *> indices;
+        do {
+            consume(L_SQUARE_BRACKET);
+            indices.push_back(expression());
+            consume(R_SQUARE_BRACKET);
+        } while (look(0, L_SQUARE_BRACKET));
+        consume(EQ);
+        return new ArrayAssigmentStatement(new ArrayIndexExpression(variableName, indices), expression());
+    }
 
-    return state;
+
+    throw std::runtime_error("Unknown statement");
 }
 
 Expression * Parser::expression() {
@@ -323,6 +332,15 @@ Expression * Parser::primary() {
         return expr;
     } else if (look(0, LEXEM) && look(1, L_PAREN)) {
         expr = function();
+    } else if (look(0, LEXEM) && look(1, L_SQUARE_BRACKET)) {
+        std::string name = consume(LEXEM).getContent().getStringValue();
+        std::vector<Expression *> indices;
+        do {
+            consume(L_SQUARE_BRACKET);
+            indices.push_back(expression());
+            consume(R_SQUARE_BRACKET);
+        } while (look(0, L_SQUARE_BRACKET));
+        expr = new ArrayIndexExpression(name, indices);
     } else if (match(LEXEM)) {
         expr = new VariableExpression(token.getContent().getStringValue());
     } else if (match(TRUE)) {
