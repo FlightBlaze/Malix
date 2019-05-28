@@ -10,3 +10,11 @@ build_script:
   - cd build
   - cmake -G "%VS%" ..
   - cmake --build . --config Release
+  - "./Release/malix.exe ../tests/print.malix"
+  - "./Release/malix.exe ../tests/variables.malix"
+  - "./Release/malix.exe ../tests/arithmetic.malix"
+  - "./Release/malix.exe ../tests/conditional.malix"
+  - "./Release/malix.exe ../tests/loops.malix"
+  - "./Release/malix.exe ../tests/functions.malix"
+  - "./Release/malix.exe ../tests/math.malix"
+  - "./Release/malix.exe ../tests/package.malix"
