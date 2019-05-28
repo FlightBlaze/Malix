@@ -12,10 +12,10 @@ build_script:
   - cmake --build . --config Release
   - cd %APPVEYOR_BUILD_FOLDER%
   - ".\\build\\Release\\malix.exe .\\tests\\print.malix"
-  - ".\\build\\Release\\malix.exe .\\tests\variables.malix"
-  - ".\\build\\Release\\malix.exe .\\tests\arithmetic.malix"
+  - ".\\build\\Release\\malix.exe .\\tests\\variables.malix"
+  - ".\\build\\Release\\malix.exe .\\tests\\arithmetic.malix"
   - ".\\build\\Release\\malix.exe .\\tests\\conditional.malix"
   - ".\\build\\Release\\malix.exe .\\tests\\loops.malix"
-  - ".\\build\\Release\\malix.exe .\\tests\functions.malix"
+  - ".\\build\\Release\\malix.exe .\\tests\\functions.malix"
   - ".\\build\\Release\\malix.exe .\\tests\\math.malix"
   - ".\\build\\Release\\malix.exe .\\tests\\package.malix"
