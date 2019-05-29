@@ -6,8 +6,7 @@ Value ArrayIndexExpression::eval() {
             throw std::runtime_error("Array expected");
     } else  throw std::runtime_error(std::string("Variable ") + name + " dont exists!");
 
-    Value value = Variables::getVariable(name);
-    return getArray(value).getArrayValue()->at(lastIndex());
+    return getArray(Variables::getVariable(name)).getArrayValue()->at(lastIndex());
 }
 
 Value ArrayIndexExpression::consume(Value value) {

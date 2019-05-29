@@ -5,17 +5,20 @@
 #include <string>
 #include "Statement.h"
 #include "../expressions/Expression.h"
-#include "../expressions/ArrayIndexExpression.h"
+#include "../../lib/Variables.h"
 
 class ArrayAssigmentStatement : public Statement {
 public:
-    explicit ArrayAssigmentStatement(ArrayIndexExpression * expression, Expression * value)
-        : expression(expression), value(value) {}
+    explicit ArrayAssigmentStatement(std::string name, std::vector<Expression *> indices, Expression * value)
+        : name(std::move(name)), indices(std::move(indices)), arrValue(value) {}
     ~ArrayAssigmentStatement() override;
     void execute() override;
+    Value setArray(Value array, int iteration);
+    Value consumeArray(Value array);
 private:
-    ArrayIndexExpression * expression;
-    Expression * value;
+    std::string name;
+    std::vector<Expression *> indices;
+    Expression * arrValue;
 };
 
 

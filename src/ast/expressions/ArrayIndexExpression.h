@@ -16,6 +16,7 @@ public:
     int lastIndex();
     int index(int index);
 
+private:
     std::string name;
     std::vector<Expression *> indices;
 };

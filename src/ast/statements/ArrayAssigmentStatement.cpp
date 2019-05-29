@@ -1,22 +1,29 @@
 #include "ArrayAssigmentStatement.h"
-#include "../../lib/Variables.h"
 
 ArrayAssigmentStatement::~ArrayAssigmentStatement() {
-    delete expression;
-    delete value;
+    for (Expression * expression : indices)
+        delete expression;
+    delete arrValue;
 }
 
 void ArrayAssigmentStatement::execute() {
-    /* Fuck this shit ......
-    if (Variables::exists(expression->name)) {
-        if (Variables::getVariable(expression->name).isConst())
-            throw std::runtime_error("Unable to write constant value");
-        if (!Variables::getVariable(expression->name).isArray())
-            throw std::runtime_error("Unable assignment to non array variable");
-    } else  throw std::runtime_error(std::string("Variable ") + expression->name + " dont exists!");
+    Variables::setVariable(name, setArray(Variables::getVariable(name), 0));
+}
 
-    Value val = Variables::getVariable(expression->name);
-    Value arrValue = expression->getArray(val);
-    arrValue.getArrayValue()->at((unsigned long) expression->indices.at(expression->indices.size() - 1)->eval().getNumberValue()) = value->eval();
-     */
+Value ArrayAssigmentStatement::setArray(Value array, int iteration) {
+    array = consumeArray(array);
+    int index = (int) indices.at(iteration)->eval().getNumberValue();
+
+    if (iteration == indices.size() - 1) {
+        array.getArrayValue()->at(index) = arrValue->eval();
+        return array;
+    }
+
+    array.getArrayValue()->at(index) = setArray(array.getArrayValue()->at(index), ++iteration);
+    return array;
+}
+
+Value ArrayAssigmentStatement::consumeArray(Value array) {
+    if (array.isArray()) return array;
+    throw std::runtime_error("Array expected");
 }

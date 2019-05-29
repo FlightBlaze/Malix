@@ -15,4 +15,7 @@ println none
 println array
 
 var arr = [[1, 2], [1, 2]]
-println arr[0][1]
+println arr
+arr[0][1] = 3
+arr[0][0] = 2
+println arr

@@ -174,7 +174,7 @@ Statement * Parser::assignmentStatement() {
             consume(R_SQUARE_BRACKET);
         } while (look(0, L_SQUARE_BRACKET));
         consume(EQ);
-        return new ArrayAssigmentStatement(new ArrayIndexExpression(variableName, indices), expression());
+        return new ArrayAssigmentStatement(variableName, indices, expression());
     }
 
 
