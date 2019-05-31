@@ -1,4 +1,5 @@
 #include "StdFunctions.h"
+#include "../../Functions.h"
 
 MALIX_NATIVE_FUNCTION(std_isArray) {
     function->checkArguments(values, 1);
@@ -28,6 +29,29 @@ MALIX_NATIVE_FUNCTION(std_isString) {
 MALIX_NATIVE_FUNCTION(std_isPointer) {
     function->checkArguments(values, 1);
     return Value(values[0].isPointer());
+}
+
+MALIX_NATIVE_FUNCTION(std_isFunction) {
+    function->checkArguments(values, 1);
+    return Value(values[0].isFunction());
+}
+
+MALIX_NATIVE_FUNCTION(std_callFunction) {
+    function->checkArguments(values, 2);
+
+    if (!values[0].isFunction())
+        throw std::runtime_error("First argument must be instate of function type");
+
+    if (!values[1].isArray())
+        throw std::runtime_error("Second argument must be instate of array type");
+
+    Function * fn = values[0].getFunction();
+    auto args = std::vector<Value>();
+
+    for (const Value &value : * values[1].getArrayValue())
+        args.push_back(value);
+
+    return fn->invoke(args);
 }
 
 MALIX_NATIVE_FUNCTION(std_rand) {

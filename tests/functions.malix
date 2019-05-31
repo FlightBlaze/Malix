@@ -9,13 +9,25 @@ println "isNumber test: " + isNumber(1)
 println "isBool test: " + isBool(true)
 println "isString test: " + isString("Hello!")
 println "isNil test: " + isNil(NIL)
+println "isFunction test: " + isFunction(def () {})
 
 def factorial(num) {
-    var factorial = 1
+    var fact = 1
     for (var i = 1, i <= num, i = i + 1)
-        factorial = factorial * i
+        fact = fact * i
 
-    return factorial
+    return fact
 }
 
-println factorial(factorial(3))
+var anonymousFactorial = def (num) {
+    var fact = 1
+    for (var i = 1, i <= num, i = i + 1)
+        fact = fact * i
+
+    return fact
+}
+
+println factorial(10) ;; call function by default method
+println anonymousFactorial(10) ;; call anonymous function by default method
+println callFunction(factorial, [10]) ;; call function by array
+println callFunction(anonymousFactorial, [10]) ;; call anonymous function by array

@@ -4,6 +4,16 @@
 #include <string>
 #include <vector>
 
+class Value;
+
+class Function {
+public:
+    virtual std::string getName() = 0;
+    virtual Value invoke(std::vector<Value> values) = 0;
+
+    void checkArguments(std::vector<Value> values, int argsCount);
+};
+
 class Value {
 public:
     explicit Value(double value);
@@ -11,6 +21,7 @@ public:
     explicit Value(std::string * value); // Bug fix
     explicit Value(bool value);
     explicit Value(std::vector<Value> value);
+    explicit Value(Function * value);
     explicit Value(void * value);
     explicit Value() = default;
     // NIL
@@ -22,11 +33,13 @@ public:
     bool isNil();
     bool isPointer();
     bool isConst();
+    bool isFunction();
 
     double getNumberValue();
     std::string getStringValue();
     bool getBoolValue();
     std::vector<Value> * getArrayValue();
+    Function * getFunction();
     void * getPointer();
 
     void setConst(bool constValue);
@@ -37,11 +50,13 @@ private:
     bool valueArray  = false;
     bool valuePointer = false;
     bool valueConstant = false;
+    bool valueFunction = false;
 
     double doubleValue = 0;
     bool boolValue     = false;
     std::string stringValue = std::string();
     std::vector<Value> arrayValue;
+    Function * functionValue;
     void * pointerValue;
 };
 

@@ -30,6 +30,11 @@ Value::Value(void * value) {
     this->pointerValue = value;
 }
 
+Value::Value(Function * value) {
+    this->valueFunction = true;
+    this->functionValue = value;
+}
+
 bool Value::isNumber() {
     return this->valueDouble;
 }
@@ -56,6 +61,10 @@ bool Value::isNil() {
 
 bool Value::isConst() {
     return valueConstant;
+}
+
+bool Value::isFunction() {
+    return valueFunction;
 }
 
 double Value::getNumberValue() {
@@ -98,6 +107,10 @@ bool Value::getBoolValue() {
 
 std::vector<Value> * Value::getArrayValue() {
     return &this->arrayValue;
+}
+
+Function * Value::getFunction() {
+    return functionValue;
 }
 
 void * Value::getPointer() {

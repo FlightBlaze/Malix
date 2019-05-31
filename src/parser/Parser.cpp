@@ -1,7 +1,5 @@
 #include "Parser.h"
-#include "../ast/statements/UserPackageStatement.h"
-#include "../ast/statements/ArrayAssigmentStatement.h"
-#include "../ast/expressions/ArrayExpression.h"
+#include "../ast/expressions/AnonymousFunctionExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -156,7 +154,7 @@ Statement * Parser::assignmentStatement() {
     if (match(VAR)) {
         std::string variableName = consume(LEXEM).getContent().getStringValue();
         consume(EQ);
-        return new AssigmentStatement(variableName, expression());
+        return new VariableDefineStatement(variableName, expression());
     }
 
     if (look(0, LEXEM) && look(1, EQ)) {
@@ -320,18 +318,17 @@ Expression * Parser::exclamation() {
 
 Expression * Parser::primary() {
     Token token = peek(0);
-    Expression * expr = nullptr;
 
     if (match(NUMBER)) {
-        expr = new ValueExpression(Value(token.getContent().getNumberValue()));
+        return new ValueExpression(Value(token.getContent().getNumberValue()));
     } else if (match(STRING)) {
-        expr = new ValueExpression(Value(token.getContent().getStringValue()));
+        return new ValueExpression(Value(token.getContent().getStringValue()));
     } else if (match(L_PAREN)) {
-        expr = expression();
+        Expression * expr = expression();
         match(R_PAREN);
         return expr;
     } else if (look(0, LEXEM) && look(1, L_PAREN)) {
-        expr = function();
+        return function();
     } else if (look(0, LEXEM) && look(1, L_SQUARE_BRACKET)) {
         std::string name = consume(LEXEM).getContent().getStringValue();
         std::vector<Expression *> indices;
@@ -340,15 +337,15 @@ Expression * Parser::primary() {
             indices.push_back(expression());
             consume(R_SQUARE_BRACKET);
         } while (look(0, L_SQUARE_BRACKET));
-        expr = new ArrayIndexExpression(name, indices);
+        return new ArrayIndexExpression(name, indices);
     } else if (match(LEXEM)) {
-        expr = new VariableExpression(token.getContent().getStringValue());
+        return new VariableExpression(token.getContent().getStringValue());
     } else if (match(TRUE)) {
-        expr = new ValueExpression(Value(true));
+        return new ValueExpression(Value(true));
     } else if (match(FALSE)) {
-        expr = new ValueExpression(Value(false));
+        return new ValueExpression(Value(false));
     } else if (match(NIL)) {
-        expr = new ValueExpression(Value());
+        return new ValueExpression(Value());
     } else if (match(L_SQUARE_BRACKET)) { // array
         auto * expression1 = new ArrayExpression();
         while (!match(R_SQUARE_BRACKET)) {
@@ -357,13 +354,19 @@ Expression * Parser::primary() {
         }
 
         return expression1;
+    } else if (match(DEF)) { // anonymous function
+        consume(L_PAREN);
+
+        std::vector<std::string> args;
+        while (!match(R_PAREN)) {
+            args.push_back(consume(LEXEM).getContent().getStringValue());
+            match(COMMA);
+        }
+
+        return new AnonymousFunctionExpression(args, statementOrBlock());
     }
 
-    if (expr == nullptr) {
-        throw std::runtime_error("Unknown operation");
-    }
-
-    return expr;
+    throw std::runtime_error("Unknown operation");
 }
 
 BlockStatement * Parser::block() {

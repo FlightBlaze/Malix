@@ -32,6 +32,10 @@
 #include "../ast/statements/ImportStatement.h"
 #include "../ast/statements/DoWhileStatement.h"
 #include "../ast/statements/DefineStatement.h"
+#include "../ast/statements/UserPackageStatement.h"
+#include "../ast/statements/ArrayAssigmentStatement.h"
+#include "../ast/expressions/ArrayExpression.h"
+#include "../ast/statements/VariableDefineStatement.h"
 
 class Parser {
 public:
