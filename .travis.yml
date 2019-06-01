@@ -1,9 +1,7 @@
 language: cpp
 dist: xenial
 
-os:
-  - linux
-  - osx
+os: linux
 
 compiler:
   - clang
@@ -11,9 +9,14 @@ compiler:
 
 addons:
   apt:
+    sources:
+      - sourceline: 'ppa:ubuntu-toolchain-r/test'
     packages:
       - cmake-data
       - cmake
+      - gcc-8
+      - g++-8
+      - clang-6
 
 script:
   - "cmake ."
