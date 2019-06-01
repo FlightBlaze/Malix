@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
 project(malix CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 add_definitions(-DMALIX_VERSION="0.0.1")
 
@@ -14,7 +14,7 @@ else()
     add_executable(malix ${INCLUDES} ${SOURCES})
 endif()
 
-target_link_libraries(malix ${CMAKE_DL_LIBS})
+target_link_libraries(malix ${CMAKE_DL_LIBS} stdc++fs)
 
 
 if(MALIX_LIBRARY)

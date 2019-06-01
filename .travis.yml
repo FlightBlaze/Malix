@@ -25,3 +25,4 @@ script:
   - "./malix ./tests/functions.malix"
   - "./malix ./tests/math.malix"
   - "./malix ./tests/package.malix"
+  - "./malix ./tests/fs.malix"

@@ -10,11 +10,13 @@
 #include "lib/Packages.h"
 #include "lib/packages/StdPackage.h"
 #include "lib/packages/MathPackage.h"
+#include "lib/packages/FileSystemPackage.h"
 
 
 int main(int argc, char ** argv) {
     Packages::addPackage(new StdPackage());
     Packages::addPackage(new MathPackage());
+    Packages::addPackage(new FileSystemPackage());
 
     std::ifstream fileStream;
 

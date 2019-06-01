@@ -1,0 +1,24 @@
+;
+    Malix test: file system
+;
+
+use "fs"
+use "std"
+
+var tmp = tempDirectoryPath()
+var testFile = tmp + "/test/1234/test"
+println "Temp directory: " + tmp
+
+if (createDirectories(tmp + "/test/1234/")) {
+    println "done"
+    setContent(testFile, "123") ;; push string to file
+    println fileSize(testFile)
+    println fileName(testFile)
+    println getContent(testFile)
+} else {
+    println "Error creating " + tmp + "/test/1234/ directories"
+    exit(1)
+}
+
+var removed = removeAll(tmp + "/test/")
+println "Removed " + toString(removed) + " files/directories in " + tmp + "/test/"
