@@ -16,7 +16,7 @@ addons:
       - cmake
       - gcc-8
       - g++-8
-      - clang-6
+      - clang-6.0
 
 script:
   - "cmake ."
