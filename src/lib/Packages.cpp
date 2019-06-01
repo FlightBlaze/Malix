@@ -15,7 +15,9 @@ void Packages::registerPackage(std::string name) {
     for (Package * aPackage : packages) {
         if (aPackage->getName() == name) {
             if(auto * userPackage = dynamic_cast<UserPackage *>(aPackage)) {
+                Variables::push();
                 userPackage->registerUserPackage();
+                Variables::pop();
             } else {
                 for (Function *function : aPackage->getFunctions())
                     Functions::addFunction(function);

@@ -21,12 +21,4 @@ addons:
 script:
   - "cmake ."
   - "make"
-  - "./malix ./tests/print.malix"
-  - "./malix ./tests/variables.malix"
-  - "./malix ./tests/arithmetic.malix"
-  - "./malix ./tests/conditional.malix"
-  - "./malix ./tests/loops.malix"
-  - "./malix ./tests/functions.malix"
-  - "./malix ./tests/math.malix"
-  - "./malix ./tests/package.malix"
-  - "./malix ./tests/fs.malix"
+  - "./malix ./tests.malix"

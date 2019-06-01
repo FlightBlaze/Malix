@@ -3,12 +3,17 @@
 
 #include "Statement.h"
 #include "../expressions/Expression.h"
+#include "../../lib/packages/Package.h"
+#include "../../lib/Packages.h"
+#include <experimental/filesystem>
 
 #ifdef _WIN32
 #include <windows.h>
 #else
 #include <dlfcn.h>
 #endif
+
+namespace fs = std::experimental::filesystem;
 
 class ImportStatement : public Statement {
 public:

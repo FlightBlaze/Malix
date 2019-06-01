@@ -6,6 +6,9 @@
 
 class BlockStatement : public Statement {
 public:
+    BlockStatement() = default;
+    explicit BlockStatement(std::vector<Statement *> statements)
+        : statements(std::move(statements)) {}
     ~BlockStatement() override;
     void execute() override;
     void add(Statement * statement);

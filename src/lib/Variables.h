@@ -8,15 +8,19 @@
 class Variables {
 private:
     static std::map<std::string, Value> variables;
+    static std::map<std::string, Value> constants;
     static std::stack<std::map<std::string, Value>> stack;
 
 public:
     static void push();
+    static void clean();
     static void pop();
 
     static void setVariable(std::string name, Value value);
     static void setConstant(std::string name, Value value);
     static Value getVariable(std::string name);
+    static bool variableExists(std::string name);
+    static bool constantExists(std::string name);
     static bool exists(std::string name);
 };
 

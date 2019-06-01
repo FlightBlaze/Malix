@@ -1,0 +1,40 @@
+;
+    Malix test ...
+;
+
+import "./tests/print" as "test_print" ;; generate package "print" from file
+import "./tests/variables" as "test_variables"
+import "./tests/arithmetic" as "test_arithmetic"
+import "./tests/conditional" as "test_conditional"
+import "./tests/loops" as "test_loops"
+import "./tests/functions" as "test_functions"
+import "./tests/math" as "test_math"
+import "./tests/package" as "test_package"
+import "./tests/fs" as "test_fs"
+
+println "Running print tests ..."
+use "test_print" ;; execute package "print"
+
+println "\nRunning variables tests ..."
+use "test_variables"
+
+println "\nRunning arithmetic tests ..."
+use "test_arithmetic"
+
+println "\nRunning conditional tests ..."
+use "test_conditional"
+
+println "\nRunning loops tests ..."
+use "test_loops"
+
+println "\nRunning functions tests ..."
+use "test_functions"
+
+println "\nRunning math tests ..."
+use "test_math"
+
+println "\nRunning package tests ..."
+use "test_package"
+
+println "\nRunning file system tests ..."
+use "test_fs"
