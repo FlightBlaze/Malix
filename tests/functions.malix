@@ -10,6 +10,12 @@ println "isBool test: " + isBool(true)
 println "isString test: " + isString("Hello!")
 println "isNil test: " + isNil(NIL)
 println "isFunction test: " + isFunction(def () {})
+println "toString test : " + toString(123)
+println "toString test2: " + toString(123.4)
+println "toString test3: " + toString(123.45)
+println "toNumber test : " + toNumber("123")
+println "toNumber test2: " + toNumber("123.4")
+println "toNumber test3: " + toNumber("123.45")
 
 def factorial(num) {
     var fact = 1

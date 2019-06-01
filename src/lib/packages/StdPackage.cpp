@@ -18,6 +18,10 @@ std::vector<Function *> StdPackage::getFunctions() {
         MALIX_NATIVE_FUNCTION_POINTER("isPointer", std_isPointer),
         MALIX_NATIVE_FUNCTION_POINTER("isFunction", std_isFunction),
 
+        MALIX_NATIVE_FUNCTION_POINTER("toString", std_toString),
+        MALIX_NATIVE_FUNCTION_POINTER("toBool", std_toBool),
+        MALIX_NATIVE_FUNCTION_POINTER("toNumber", std_toNumber),
+
         MALIX_NATIVE_FUNCTION_POINTER("callFunction", std_callFunction),
 
         MALIX_NATIVE_FUNCTION_POINTER("rand", std_rand),

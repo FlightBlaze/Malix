@@ -13,9 +13,6 @@
 
 
 int main(int argc, char ** argv) {
-    std::clock_t start = std::clock();
-    double duration;
-
     Packages::addPackage(new StdPackage());
     Packages::addPackage(new MathPackage());
 
@@ -40,9 +37,6 @@ int main(int argc, char ** argv) {
           catch (ContinueStatement operation) {} // avoid errors
           catch (ReturnStatement operation) {} // avoid errors
     }
-
-    duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
-    std::cout << "\n\n" << "Total time: " << duration << std::endl;
 
     return 0;
 }

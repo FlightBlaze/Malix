@@ -36,6 +36,21 @@ MALIX_NATIVE_FUNCTION(std_isFunction) {
     return Value(values[0].isFunction());
 }
 
+MALIX_NATIVE_FUNCTION(std_toString) {
+    function->checkArguments(values, 1);
+    return Value(values[0].getStringValue());
+}
+
+MALIX_NATIVE_FUNCTION(std_toBool) {
+    function->checkArguments(values, 1);
+    return Value(values[0].getBoolValue());
+}
+
+MALIX_NATIVE_FUNCTION(std_toNumber) {
+    function->checkArguments(values, 1);
+    return Value(values[0].getNumberValue());
+}
+
 MALIX_NATIVE_FUNCTION(std_callFunction) {
     function->checkArguments(values, 2);
 

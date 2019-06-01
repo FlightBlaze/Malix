@@ -11,6 +11,10 @@ MALIX_NATIVE_FUNCTION(std_isString);
 MALIX_NATIVE_FUNCTION(std_isPointer);
 MALIX_NATIVE_FUNCTION(std_isFunction);
 
+MALIX_NATIVE_FUNCTION(std_toString);
+MALIX_NATIVE_FUNCTION(std_toBool);
+MALIX_NATIVE_FUNCTION(std_toNumber);
+
 MALIX_NATIVE_FUNCTION(std_function);
 MALIX_NATIVE_FUNCTION(std_callFunction);
 

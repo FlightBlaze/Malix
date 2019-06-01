@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Value.h"
 
 Value::Value(double value) {
@@ -74,15 +75,22 @@ double Value::getNumberValue() {
         return static_cast<double>(this->boolValue);
     else if (isArray())
         return static_cast<double>(this->arrayValue.size());
+    else if (isString())
+        return std::stod(this->stringValue);
     else return 0;
 }
 
 std::string Value::getStringValue() {
     if (isString())
         return this->stringValue;
-    else if (isNumber())
-        return std::to_string(this->doubleValue);
-    else if (isBool())
+    else if (isNumber()) {
+        std::string str = std::to_string(this->doubleValue);
+
+        for (char c : {'0', '.', ','})
+            str.erase(str.find_last_not_of(c) + 1, std::string::npos);
+
+        return str;
+    } else if (isBool())
         return std::string((this->boolValue ? "true" : "false"));
     else if (isArray()) {
         std::string string("[ ");
