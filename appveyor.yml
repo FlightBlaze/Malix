@@ -2,7 +2,7 @@ environment:
   matrix:
     - platform: MinGW
       language: cpp
-      image: Visual Studio 2015
+      image: Visual Studio 2017
 
 build_script:
   - set PATH=C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin;%PATH:C:\Program Files\Git\usr\bin;=%
@@ -10,5 +10,3 @@ build_script:
   - cd build
   - cmake -G "MinGW Makefiles" ..
   - cmake --build . --config Release
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - ".\\build\\Release\\malix.exe .\\tests.malix"
