@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class Value;
 
@@ -21,6 +22,7 @@ public:
     explicit Value(std::string * value); // Bug fix
     explicit Value(bool value);
     explicit Value(std::vector<Value> value);
+    explicit Value(std::map<std::string, Value> value);
     explicit Value(Function * value);
     explicit Value(void * value);
     explicit Value() = default;
@@ -34,11 +36,13 @@ public:
     bool isPointer();
     bool isConst();
     bool isFunction();
+    bool isObject();
 
     double getNumberValue();
     std::string getStringValue();
     bool getBoolValue();
     std::vector<Value> * getArrayValue();
+    std::map<std::string, Value> getObjectValue();
     Function * getFunction();
     void * getPointer();
 
@@ -48,6 +52,7 @@ private:
     bool valueString = false;
     bool valueBool   = false;
     bool valueArray  = false;
+    bool valueObject = false;
     bool valuePointer = false;
     bool valueConstant = false;
     bool valueFunction = false;
@@ -56,6 +61,7 @@ private:
     bool boolValue     = false;
     std::string stringValue = std::string();
     std::vector<Value> arrayValue;
+    std::map<std::string, Value> objectValue;
     Function * functionValue;
     void * pointerValue;
 };

@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include "../ast/expressions/ObjectIndexExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -144,6 +145,21 @@ Statement * Parser::statement() {
         }
 
         return new ImportStatement(pathExpression, nameExpression);
+    }
+
+    if (match(OBJECT)) {
+        std::string name = consume(LEXEM).getContent().getStringValue();
+        std::map<std::string, Expression *> values;
+
+        consume(L_BRACKET);
+        while (!match(R_BRACKET)) {
+            std::string key = consume(LEXEM).getContent().getStringValue();
+            consume(DOUBLEDOT);
+            values[key] = expression();
+            match(COMMA);
+        }
+
+        return new ObjectDefineStatement(name, values);
     }
 
     return assignmentStatement();
@@ -324,15 +340,23 @@ Expression * Parser::primary() {
 
     if (match(NUMBER)) {
         return new ValueExpression(Value(token.getContent().getNumberValue()));
-    } else if (match(STRING)) {
+    }
+
+    if (match(STRING)) {
         return new ValueExpression(Value(token.getContent().getStringValue()));
-    } else if (match(L_PAREN)) {
+    }
+
+    if (match(L_PAREN)) {
         Expression * expr = expression();
         match(R_PAREN);
         return expr;
-    } else if (look(0, LEXEM) && look(1, L_PAREN)) {
+    }
+
+    if (look(0, LEXEM) && look(1, L_PAREN)) {
         return function();
-    } else if (look(0, LEXEM) && look(1, L_SQUARE_BRACKET)) {
+    }
+
+    if (look(0, LEXEM) && look(1, L_SQUARE_BRACKET)) {
         std::string name = consume(LEXEM).getContent().getStringValue();
         std::vector<Expression *> indices;
         do {
@@ -341,15 +365,36 @@ Expression * Parser::primary() {
             consume(R_SQUARE_BRACKET);
         } while (look(0, L_SQUARE_BRACKET));
         return new ArrayIndexExpression(name, indices);
-    } else if (match(LEXEM)) {
+    }
+
+    if (look(0, LEXEM) && look(1, MINUS) && look(2, GT)) {
+        std::string name = consume(LEXEM).getContent().getStringValue();
+        std::vector<std::string> indices;
+        do {
+            consume(MINUS);
+            consume(GT);
+            indices.push_back(consume(LEXEM).getContent().getStringValue());
+        } while (look(0, MINUS) && look(1, GT));
+        return new ObjectIndexExpression(name, indices);
+    }
+
+    if (match(LEXEM)) {
         return new VariableExpression(token.getContent().getStringValue());
-    } else if (match(TRUE)) {
+    }
+
+    if (match(TRUE)) {
         return new ValueExpression(Value(true));
-    } else if (match(FALSE)) {
+    }
+
+    if (match(FALSE)) {
         return new ValueExpression(Value(false));
-    } else if (match(NIL)) {
+    }
+
+    if (match(NIL)) {
         return new ValueExpression(Value());
-    } else if (match(L_SQUARE_BRACKET)) { // array
+    }
+
+    if (match(L_SQUARE_BRACKET)) { // array
         auto * expression1 = new ArrayExpression();
         while (!match(R_SQUARE_BRACKET)) {
             expression1->addExpression(expression());
@@ -357,7 +402,9 @@ Expression * Parser::primary() {
         }
 
         return expression1;
-    } else if (match(DEF)) { // anonymous function
+    }
+
+    if (match(DEF)) { // anonymous function
         consume(L_PAREN);
 
         std::vector<std::string> args;
@@ -367,6 +414,20 @@ Expression * Parser::primary() {
         }
 
         return new AnonymousFunctionExpression(args, statementOrBlock());
+    }
+
+    if (match(OBJECT)) { // anonymous object
+        std::map<std::string, Expression *> values;
+
+        consume(L_BRACKET);
+        while (!match(R_BRACKET)) {
+            std::string key = consume(LEXEM).getContent().getStringValue();
+            consume(DOUBLEDOT);
+            values[key] = expression();
+            match(COMMA);
+        }
+
+        return new AnonymousObjectExpression(values);
     }
 
     throw std::runtime_error("Unknown operation");

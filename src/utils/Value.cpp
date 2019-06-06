@@ -1,3 +1,5 @@
+#include <utility>
+
 #include <cmath>
 #include "Value.h"
 
@@ -23,7 +25,12 @@ Value::Value(bool value) {
 
 Value::Value(std::vector<Value> arrayValue) {
     this->valueArray = true;
-    this->arrayValue = arrayValue;
+    this->arrayValue = std::move(arrayValue);
+}
+
+Value::Value(std::map<std::string, Value> value) {
+    this->valueObject = true;
+    this->objectValue = std::move(value);
 }
 
 Value::Value(void * value) {
@@ -57,7 +64,7 @@ bool Value::isPointer() {
 }
 
 bool Value::isNil() {
-    return !(isNumber() || isBool() || isString() || isArray() || isPointer());
+    return !(isNumber() || isBool() || isString() || isArray() || isPointer() || isObject());
 }
 
 bool Value::isConst() {
@@ -66,6 +73,10 @@ bool Value::isConst() {
 
 bool Value::isFunction() {
     return valueFunction;
+}
+
+bool Value::isObject() {
+    return valueObject;
 }
 
 double Value::getNumberValue() {
@@ -102,6 +113,16 @@ std::string Value::getStringValue() {
         return string;
     } else if (isPointer()) {
         return std::string("Pointer to 0x") += std::to_string((long long) this->pointerValue);
+    } else if (isObject()) {
+        std::string string("[ ");
+
+        for (auto value : getObjectValue())
+            string += "[ " + value.first + " : " + value.second.getStringValue() += " ] ";
+
+        string += "]";
+        return string;
+    } else if (isFunction()) {
+        return "Function";
     } else if (isNil()) {
         return "Nil";
     }
@@ -127,4 +148,8 @@ void * Value::getPointer() {
 
 void Value::setConst(bool constValue) {
     this->valueConstant = constValue;
+}
+
+std::map<std::string, Value> Value::getObjectValue() {
+    return objectValue;
 }

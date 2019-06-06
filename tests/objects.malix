@@ -1,0 +1,16 @@
+;
+    Malix test: objects
+;
+
+object name {
+    fn: def (one, two) {
+        return one + two
+    },
+    one: 1,
+    obj: object {
+        two: 2
+    }
+}
+
+println name
+println callFunction(name->fn, [name->one, name->obj->two]) ;; 3

@@ -36,6 +36,7 @@ typedef std::string TType;
 #define VAR "var"
 #define DEFINE "define"
 #define PACKAGE "package"
+#define OBJECT "object"
 #define PRINT "print"
 #define PRINTLN "println"
 
@@ -46,6 +47,7 @@ typedef std::string TType;
 #define PERCENT "%"
 #define EXCLAMATION "!"
 #define COMMA ","
+#define DOUBLEDOT ":"
 
 #define L_PAREN "("
 #define R_PAREN ")"

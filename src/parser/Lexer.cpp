@@ -27,7 +27,9 @@ Lexer::Lexer(std::string input) {
     this->operators['&'] = AMP;
     this->operators['|'] = BAR;
     this->operators[','] = COMMA;
+    this->operators[':'] = DOUBLEDOT;
 
+    this->keywords["object"] = OBJECT;
     this->keywords["var"] = VAR;
     this->keywords["define"] = DEFINE;
     this->keywords["package"] = PACKAGE;

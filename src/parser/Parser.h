@@ -38,6 +38,8 @@
 #include "../ast/statements/VariableDefineStatement.h"
 #include "../ast/expressions/AnonymousFunctionExpression.h"
 #include "../ast/expressions/BlockExpression.h"
+#include "../ast/statements/ObjectDefineStatement.h"
+#include "../ast/expressions/AnonymousObjectExpression.h"
 
 class Parser {
 public:

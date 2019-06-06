@@ -10,6 +10,7 @@ import "./tests/loops" as "test_loops"
 import "./tests/functions" as "test_functions"
 import "./tests/math" as "test_math"
 import "./tests/package" as "test_package"
+import "./tests/objects" as "test_objects"
 import "./tests/fs" as "test_fs"
 
 println "Running print tests ..."
@@ -35,6 +36,9 @@ use "test_math"
 
 println "\nRunning package tests ..."
 use "test_package"
+
+println "\nRunning objects tests ..."
+use "test_objects"
 
 println "\nRunning file system tests ..."
 use "test_fs"
