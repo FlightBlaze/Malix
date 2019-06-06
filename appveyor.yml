@@ -7,7 +7,7 @@ environment:
 build_script:
   - md build
   - cd build
-  - cmake -G "%VS%" ..
+  - cmake -G "MinGW Makefiles" ..
   - cmake --build . --config Release
   - cd %APPVEYOR_BUILD_FOLDER%
   - ".\\build\\Release\\malix.exe .\\tests.malix"
