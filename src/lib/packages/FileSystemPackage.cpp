@@ -8,6 +8,7 @@ std::vector<Function *> FileSystemPackage::getFunctions() {
     return {
             MALIX_NATIVE_FUNCTION_POINTER("absolutePath", fs_absolutePath),
             MALIX_NATIVE_FUNCTION_POINTER("canonicalPath", fs_canonicalPath),
+            MALIX_NATIVE_FUNCTION_POINTER("normalizePath", fs_normalizePath),
             MALIX_NATIVE_FUNCTION_POINTER("copy", fs_copy),
             MALIX_NATIVE_FUNCTION_POINTER("copyFile", fs_copyFile),
             MALIX_NATIVE_FUNCTION_POINTER("copySymlink", fs_copySymlink),
@@ -34,6 +35,7 @@ std::vector<Function *> FileSystemPackage::getFunctions() {
             MALIX_NATIVE_FUNCTION_POINTER("fileName", fs_fileName),
             MALIX_NATIVE_FUNCTION_POINTER("fileExtension", fs_fileExtension),
             MALIX_NATIVE_FUNCTION_POINTER("fileStem", fs_fileStem),
+            MALIX_NATIVE_FUNCTION_POINTER("fileParent", fs_fileParent),
             MALIX_NATIVE_FUNCTION_POINTER("getContent", fs_getContent),
             MALIX_NATIVE_FUNCTION_POINTER("setContent", fs_setContent),
     };

@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "FileSystemFunctions.h"
 
 MALIX_NATIVE_FUNCTION(fs_absolutePath) {
@@ -8,6 +9,19 @@ MALIX_NATIVE_FUNCTION(fs_absolutePath) {
 MALIX_NATIVE_FUNCTION(fs_canonicalPath) {
     function->checkArguments(values, 2);
     return Value(fs::canonical(TO_FS_PATH(0), TO_FS_PATH(1)).string());
+}
+
+MALIX_NATIVE_FUNCTION(fs_normalizePath) {
+    function->checkArguments(values, 1);
+    std::string path = values[0].getStringValue();
+
+#ifdef __WIN32
+    std::replace(path.begin(), path.end(), '/', '\\');
+#else
+    std::replace(path.begin(), path.end(), '\\', '/');
+#endif
+
+    return Value(path);
 }
 
 MALIX_NATIVE_FUNCTION(fs_copy) {
@@ -147,6 +161,12 @@ MALIX_NATIVE_FUNCTION(fs_fileExtension) {
 MALIX_NATIVE_FUNCTION(fs_fileStem) {
     function->checkArguments(values, 1);
     return Value(TO_FS_PATH(0).stem().string());
+}
+
+MALIX_NATIVE_FUNCTION(fs_fileParent) {
+    function->checkArguments(values, 1);
+    std::string path = values[0].getStringValue();
+    return Value(path.substr(0, path.find_last_of("/\\")));
 }
 
 MALIX_NATIVE_FUNCTION(fs_getContent) {

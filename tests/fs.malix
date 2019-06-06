@@ -5,20 +5,23 @@
 use "fs"
 use "std"
 
-var tmp = tempDirectoryPath()
-var testFile = tmp + "/test/1234/test"
-println "Temp directory: " + tmp
+var current = currentPath()
+var testFile = normalizePath(current + "/test/1234\\test")
+var testFileDirectory = fileParent(testFile)
+println "current directory          : " + current
+println "Test file                  : " + testFile
+println "Test file testFileDirectory: " + testFileDirectory
 
-if (createDirectories(tmp + "/test/1234/")) {
+if (createDirectories(testFileDirectory)) {
     println "done"
     setContent(testFile, "123") ;; push string to file
     println fileSize(testFile)
     println fileName(testFile)
     println getContent(testFile)
 } else {
-    println "Error creating " + tmp + "/test/1234/ directories"
+    println "Error creating " + testFileDirectory + " directories"
     exit(1)
 }
 
-var removed = removeAll(tmp + "/test/")
-println "Removed " + toString(removed) + " files/directories in " + tmp + "/test/"
+var removed = removeAll(fileParent(testFileDirectory))
+println "Removed " + toString(removed) + " files/directories in " + fileParent(testFileDirectory)

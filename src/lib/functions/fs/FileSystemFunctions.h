@@ -12,6 +12,7 @@ namespace fs = std::experimental::filesystem;
 
 MALIX_NATIVE_FUNCTION(fs_absolutePath);
 MALIX_NATIVE_FUNCTION(fs_canonicalPath);
+MALIX_NATIVE_FUNCTION(fs_normalizePath);
 MALIX_NATIVE_FUNCTION(fs_copy);
 MALIX_NATIVE_FUNCTION(fs_copyFile);
 MALIX_NATIVE_FUNCTION(fs_copySymlink);
@@ -38,6 +39,7 @@ MALIX_NATIVE_FUNCTION(fs_tempDirectoryPath);
 MALIX_NATIVE_FUNCTION(fs_fileName);
 MALIX_NATIVE_FUNCTION(fs_fileExtension);
 MALIX_NATIVE_FUNCTION(fs_fileStem);
+MALIX_NATIVE_FUNCTION(fs_fileParent);
 
 MALIX_NATIVE_FUNCTION(fs_getContent);
 MALIX_NATIVE_FUNCTION(fs_setContent);
