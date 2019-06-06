@@ -36,6 +36,8 @@
 #include "../ast/statements/ArrayAssigmentStatement.h"
 #include "../ast/expressions/ArrayExpression.h"
 #include "../ast/statements/VariableDefineStatement.h"
+#include "../ast/expressions/AnonymousFunctionExpression.h"
+#include "../ast/expressions/BlockExpression.h"
 
 class Parser {
 public:

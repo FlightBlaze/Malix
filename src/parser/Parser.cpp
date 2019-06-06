@@ -1,5 +1,4 @@
 #include "Parser.h"
-#include "../ast/expressions/AnonymousFunctionExpression.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -180,6 +179,10 @@ Statement * Parser::assignmentStatement() {
 }
 
 Expression * Parser::expression() {
+    if (look(0, L_BRACKET)) {
+        return new BlockExpression(block());
+    }
+
     return logicalOr();
 }
 
