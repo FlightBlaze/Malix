@@ -17,10 +17,7 @@ println callFunction(obj->fn, [obj->one, obj->obj->two]) ;; 3
 
 
 object nums {
-    numbers: object {
-        one: nil,
-        two: nil
-    },
+    numbers: nil,
     function: def (one, two) {
         return one + two
     },
@@ -31,8 +28,10 @@ object nums {
 
 var arrayFromObject = nums->array
 
-nums->numbers->one = arrayFromObject[0]
-nums->numbers->two = arrayFromObject[1]
+nums->numbers = object {
+    one: arrayFromObject[0],
+    two: arrayFromObject[1]
+}
 
 println nums
 println callFunction(nums->function, [nums->numbers->one, nums->numbers->two]) ;; 3

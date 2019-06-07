@@ -13,11 +13,11 @@ Value ObjectAssigmentStatement::setObject(Value array, int iteration) {
     std::string index = indices.at(iteration);
 
     if (iteration == indices.size() - 1) {
-        array.getObjectValue()->at(index) = arrValue->eval();
+        array.getObjectValue()->operator[](index) = arrValue->eval();
         return array;
     }
 
-    array.getObjectValue()->at(index) = setObject(array.getObjectValue()->at(index), ++iteration);
+    array.getObjectValue()->operator[](index) = setObject(array.getObjectValue()->operator[](index), ++iteration);
     return array;
 }
 
