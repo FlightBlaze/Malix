@@ -1,5 +1,6 @@
 #include "Parser.h"
 #include "../ast/expressions/ObjectIndexExpression.h"
+#include "../ast/statements/ObjectAssigmentStatement.h"
 
 std::vector<Statement *> Parser::parse() {
     this->size = tokens.size();
@@ -188,6 +189,18 @@ Statement * Parser::assignmentStatement() {
         } while (look(0, L_SQUARE_BRACKET));
         consume(EQ);
         return new ArrayAssigmentStatement(variableName, indices, expression());
+    }
+
+    if (look(0, LEXEM) && look(1, MINUS) && look(2, GT)) {
+        std::string name = consume(LEXEM).getContent().getStringValue();
+        std::vector<std::string> indices;
+        do {
+            consume(MINUS);
+            consume(GT);
+            indices.push_back(consume(LEXEM).getContent().getStringValue());
+        } while (look(0, MINUS) && look(1, GT));
+        consume(EQ);
+        return new ObjectAssigmentStatement(name, indices, expression());
     }
 
 

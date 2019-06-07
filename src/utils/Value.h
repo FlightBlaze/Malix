@@ -42,7 +42,7 @@ public:
     std::string getStringValue();
     bool getBoolValue();
     std::vector<Value> * getArrayValue();
-    std::map<std::string, Value> getObjectValue();
+    std::map<std::string, Value> * getObjectValue();
     Function * getFunction();
     void * getPointer();
 

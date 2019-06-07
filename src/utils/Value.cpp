@@ -116,7 +116,7 @@ std::string Value::getStringValue() {
     } else if (isObject()) {
         std::string string("[ ");
 
-        for (auto value : getObjectValue())
+        for (auto value : * getObjectValue())
             string += "[ " + value.first + " : " + value.second.getStringValue() += " ] ";
 
         string += "]";
@@ -150,6 +150,6 @@ void Value::setConst(bool constValue) {
     this->valueConstant = constValue;
 }
 
-std::map<std::string, Value> Value::getObjectValue() {
-    return objectValue;
+std::map<std::string, Value> * Value::getObjectValue() {
+    return &objectValue;
 }

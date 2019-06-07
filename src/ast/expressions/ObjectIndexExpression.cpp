@@ -2,7 +2,7 @@
 #include "../../lib/Variables.h"
 
 Value ObjectIndexExpression::eval() {
-    return getObject(Variables::getVariable(name)).getObjectValue().at(lastIndex());
+    return getObject(Variables::getVariable(name)).getObjectValue()->at(lastIndex());
 }
 
 Value ObjectIndexExpression::consume(Value value) {
@@ -14,7 +14,7 @@ Value ObjectIndexExpression::consume(Value value) {
 Value ObjectIndexExpression::getObject(Value value) {
     Value array = consume(std::move(value));
     for (int i = 0; i < indices.size() - 1; ++i)
-        array = consume(array.getObjectValue().at(index(i)));
+        array = consume(array.getObjectValue()->at(index(i)));
 
     return array;
 }
