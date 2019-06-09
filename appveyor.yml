@@ -6,9 +6,10 @@ environment:
 
 build_script:
   - set PATH=C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin;%PATH:C:\Program Files\Git\usr\bin;=%
+  - set BOOST_ROOT=C:\Libraries\boost_1_69_0
   - md build
   - cd build
-  - cmake -G "MinGW Makefiles" -DBOOST_ROOT=C:\Libraries\boost_1_69_0 ..
+  - cmake -G "MinGW Makefiles" ..
   - cmake --build . --config Release
   - cd %APPVEYOR_BUILD_FOLDER%
   - ".\\build\\malix.exe .\\tests.malix"
