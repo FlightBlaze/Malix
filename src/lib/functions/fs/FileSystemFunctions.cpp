@@ -171,14 +171,14 @@ MALIX_NATIVE_FUNCTION(fs_fileParent) {
 
 MALIX_NATIVE_FUNCTION(fs_getContent) {
     function->checkArguments(values, 1);
-    std::ifstream ifs(TO_FS_PATH(0).string());
+    boost::filesystem::ifstream ifs(TO_FS_PATH(0).string());
     return Value(std::string((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>())));
 }
 
 MALIX_NATIVE_FUNCTION(fs_setContent) {
     function->checkArguments(values, 2);
     std::istringstream iss(values[1].getStringValue());
-    std::ofstream oss(TO_FS_PATH(0).string());
+    boost::filesystem::ofstream oss(TO_FS_PATH(0).string());
     std::vector<std::string> result;
 
     for (std::string token; std::getline(iss, token, '\n'); )

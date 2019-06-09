@@ -8,7 +8,7 @@ add_definitions(-DMALIX_VERSION="0.0.1 -pthread")
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE INCLUDES ${PROJECT_SOURCE_DIR}/src/*.h*)
 
-find_package(Boost COMPONENTS program_options filesystem thread REQUIRED)
+find_package(Boost COMPONENTS program_options filesystem thread iostreams REQUIRED)
 
 if(MALIX_LIBRARY)
     add_library(malix SHARED ${INCLUDES} ${SOURCES})
