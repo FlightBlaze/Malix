@@ -10,7 +10,7 @@ public:
         : name(std::move(name)), indices(std::move(indices)) {}
     ~ArrayIndexExpression() override;
     Value getArray(Value value);
-    Value consume(Value value);
+    static Value consume(Value value);
     Value eval() override;
 
     int lastIndex();

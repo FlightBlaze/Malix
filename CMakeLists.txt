@@ -8,13 +8,15 @@ add_definitions(-DMALIX_VERSION="0.0.1")
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE INCLUDES ${PROJECT_SOURCE_DIR}/src/*.h*)
 
+find_package(Threads)
+
 if(MALIX_LIBRARY)
     add_library(malix SHARED ${INCLUDES} ${SOURCES})
 else()
     add_executable(malix ${INCLUDES} ${SOURCES})
 endif()
 
-target_link_libraries(malix ${CMAKE_DL_LIBS} stdc++fs)
+target_link_libraries(malix ${CMAKE_DL_LIBS} ${CMAKE_THREAD_LIBS_INIT} stdc++fs)
 
 
 if(MALIX_LIBRARY)

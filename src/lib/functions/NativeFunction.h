@@ -17,6 +17,9 @@
 #define MALIX_NATIVE_FUNCTION_POINTER(name, function) \
     MALIX_NATIVE_FUNCTION_POINTER_WITH_DATA(name, function, nullptr)
 
+#define MALIX_CHECK_FUNCTION_VALUE(idx) \
+    if (!values[idx].isFunction()) \
+        throw std::runtime_error(std::basic_string<char>("Argument ") += std::to_string(idx) += " must be instance of function type");
 
 class NativeFunction : public Function {
 public:

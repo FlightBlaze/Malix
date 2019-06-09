@@ -56,9 +56,9 @@ private:
     std::vector<Statement *> statements;
 
     Token peek(int pos);
-    bool match(TType type);
-    bool look(int pos, TType type);
-    Token consume(TType type);
+    bool match(const TType& type);
+    bool look(int pos, const TType& type);
+    Token consume(const TType& type);
 
     // parse ....
     Statement * statement();

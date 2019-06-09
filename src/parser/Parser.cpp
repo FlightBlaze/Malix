@@ -24,12 +24,21 @@ Token Parser::peek(int pos) {
     return tokens[fullPosition];
 }
 
-bool Parser::match(TType type) {
+bool Parser::match(const TType& type) {
     if (peek(0).getType() != type)
         return false;
 
     this->position++;
     return true;
+}
+
+Token Parser::consume(const TType& type) {
+    if (match(type)) return peek(-1);
+    throw std::runtime_error(std::string("Expected ") + type);
+}
+
+bool Parser::look(int pos, const TType& type) {
+    return peek(pos).getType() == type;
 }
 
 Statement * Parser::statement() {
@@ -123,7 +132,6 @@ Statement * Parser::statement() {
             throw std::runtime_error(std::string("Function: ") += name += " exists!");
 
         consume(L_PAREN);
-
         std::vector<std::string> args;
         while (!match(R_PAREN)) {
             args.push_back(consume(LEXEM).getContent().getStringValue());
@@ -461,10 +469,6 @@ Statement * Parser::statementOrBlock() {
     return statement();
 }
 
-bool Parser::look(int pos, TType type) {
-    return peek(pos).getType() == type;
-}
-
 FunctionExpression * Parser::function() {
     std::string name = consume(LEXEM).getContent().getStringValue();
     consume(L_PAREN);
@@ -476,9 +480,4 @@ FunctionExpression * Parser::function() {
     }
 
     return expression1;
-}
-
-Token Parser::consume(TType type) {
-    if (match(type)) return peek(-1);
-    throw std::runtime_error(std::string("Expected ") + type);
 }

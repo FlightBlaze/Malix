@@ -12,6 +12,7 @@ import "./tests/math" as "test_math"
 import "./tests/package" as "test_package"
 import "./tests/objects" as "test_objects"
 import "./tests/fs" as "test_fs"
+import "./tests/threads" as "test_threads"
 
 println "Running print tests ..."
 use "test_print" ;; execute package "print"
@@ -42,3 +43,6 @@ use "test_objects"
 
 println "\nRunning file system tests ..."
 use "test_fs"
+
+println "\nRunning threads tests ..."
+use "test_threads"

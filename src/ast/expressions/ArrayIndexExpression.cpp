@@ -1,5 +1,5 @@
 #include "ArrayIndexExpression.h"
-
+ #include <utility>
 Value ArrayIndexExpression::eval() {
     if (Variables::exists(name)) {
         if (!Variables::getVariable(name).isArray())
@@ -16,7 +16,7 @@ Value ArrayIndexExpression::consume(Value value) {
 }
 
 Value ArrayIndexExpression::getArray(Value value) {
-    Value array = consume(value);
+    Value array = consume(std::move(value));
     for (int i = 0; i < indices.size() - 1; ++i)
         array = consume(array.getArrayValue()->at(index(i)));
 

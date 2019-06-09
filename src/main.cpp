@@ -11,12 +11,14 @@
 #include "lib/packages/StdPackage.h"
 #include "lib/packages/MathPackage.h"
 #include "lib/packages/FileSystemPackage.h"
+#include "lib/packages/ThreadPackage.h"
 
 
 int main(int argc, char ** argv) {
     Packages::addPackage(new StdPackage());
     Packages::addPackage(new MathPackage());
     Packages::addPackage(new FileSystemPackage());
+    Packages::addPackage(new ThreadPackage());
 
     std::ifstream fileStream;
 

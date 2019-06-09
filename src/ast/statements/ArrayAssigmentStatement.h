@@ -14,7 +14,7 @@ public:
     ~ArrayAssigmentStatement() override;
     void execute() override;
     Value setArray(Value array, int iteration);
-    Value consumeArray(Value array);
+    static Value consumeArray(Value array);
 private:
     std::string name;
     std::vector<Expression *> indices;

@@ -35,8 +35,8 @@ void ImportStatement::execute() {
             try {
                 statement->execute();
             } catch (BreakStatement operation) {}
-            catch (ContinueStatement operation) {}
-            catch (ReturnStatement operation) {}
+              catch (ContinueStatement operation) {}
+              catch (ReturnStatement operation) {}
             delete statement;
             Variables::pop();
         }
@@ -46,19 +46,23 @@ void ImportStatement::execute() {
 #ifdef _WIN32
         HINSTANCE handle = LoadLibrary(path.c_str());
 #else
-        void *handle = dlopen(path.c_str(), RTLD_LAZY);
+        void * handle = dlopen(path.c_str(), RTLD_LAZY);
 #endif
 
+        if (handle != nullptr) {
 #ifdef _WIN32
-        auto (* ptr)() = (Package * (*)()) GetProcAddress(handle, method.c_str());
+            auto (* ptr)() = (Package * (*)()) GetProcAddress(handle, method.c_str());
 #else
-        auto (*ptr)() = (Package *(*)()) dlsym(handle, method.c_str());
+            auto (*ptr)() = (Package *(*)()) dlsym(handle, method.c_str());
 #endif
 
-        if (ptr != nullptr) {
-            Packages::addPackage(ptr());
+            if (ptr != nullptr) {
+                Packages::addPackage(reinterpret_cast<Package *>(ptr()));
+            } else {
+                throw std::runtime_error(std::string("Unable to load `") += name += "` package");
+            }
         } else {
-            throw std::runtime_error(std::string("Unable to load `") += name += "` package");
+            throw std::runtime_error(std::string("Unable to open `") += path += "` file as shared library");
         }
     }
 }
