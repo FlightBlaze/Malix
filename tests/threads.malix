@@ -1,0 +1,15 @@
+;
+    Malix test: threads
+;
+
+use "thread"
+
+var thread = threadNew(def () {
+    threadSleep(2)
+    println "Hello, World!"
+})
+
+println "Hello, Malix!"
+
+if (threadJoinable(thread))
+    threadJoin(thread)
