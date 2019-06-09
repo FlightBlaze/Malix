@@ -1,14 +1,27 @@
+version: "{branch}-ci-{build}"
+os: Visual Studio 2015
+
 environment:
   matrix:
-    - platform: MinGW
-      language: cpp
-      image: Visual Studio 2017
+    - MINGW_ARCH: x86_64
+      MINGW_ROOT: C:\msys64\mingw64
+      BOOST_ROOT: C:\msys64\mingw64
+      BOOST_LIBRARYDIR: C:\msys64\mingw64\lib
+      BOOST_INCLUDEDIR: C:\msys64\mingw64\include\boost
+      CMAKE_GENERATOR: 'MSYS Makefiles'
+
+install:
+  - if defined MINGW_ROOT set PATH=%MINGW_ROOT%\bin;C:\msys64\usr\bin\;%PATH%
+  - if defined MINGW_ARCH bash -lc "pacman --needed --noconfirm -S mingw-w64-%MINGW_ARCH%-boost"
 
 build_script:
-  - set PATH=C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin;%PATH:C:\Program Files\Git\usr\bin;=%
   - md build
   - cd build
-  - cmake -G "MinGW Makefiles" -DBOOST_ROOT=C:\Libraries\boost_1_69_0 -DBOOST_LIBRARYDIR=C:\Libraries\boost_1_69_0\lib64-msvc-14.0 ..
+  - cmake -G "%CMAKE_GENERATOR%" -DBOOST_ROOT="%BOOST_ROOT%" -DBOOST_INCLUDEDIR="%BOOST_INCLUDEDIR%" -DBOOST_LIBRARYDIR="%BOOST_LIBRARYDIR%" ..
   - cmake --build . --config Release
   - cd %APPVEYOR_BUILD_FOLDER%
   - ".\\build\\malix.exe .\\tests.malix"
+
+artifacts:
+  - path: ".\\build\\malix.exe"
+    name: "malix.exe"
