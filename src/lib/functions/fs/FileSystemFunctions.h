@@ -1,14 +1,11 @@
 #ifndef MALIX_FILESYSTEMFUNCTIONS_H
 #define MALIX_FILESYSTEMFUNCTIONS_H
 
-#include <fstream>
-#include <experimental/filesystem>
+#include <boost/filesystem.hpp>
 #include "../NativeFunction.h"
 
-namespace fs = std::experimental::filesystem;
-
 #define TO_FS_PATH(idx) \
-    fs::path(values[idx].getStringValue())
+    boost::filesystem::path(values[idx].getStringValue())
 
 MALIX_NATIVE_FUNCTION(fs_absolutePath);
 MALIX_NATIVE_FUNCTION(fs_canonicalPath);

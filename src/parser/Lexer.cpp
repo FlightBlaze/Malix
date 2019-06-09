@@ -35,10 +35,10 @@ Lexer::Lexer(std::string input) {
     this->keywords["package"] = PACKAGE;
     this->keywords["print"] = PRINT;
     this->keywords["println"] = PRINTLN;
-    this->keywords["true"] = TRUE;
-    this->keywords["false"] = FALSE;
-    this->keywords["if"] = IF;
-    this->keywords["else"] = ELSE;
+    this->keywords["true"] = _TRUE;
+    this->keywords["false"] = _FALSE;
+    this->keywords["if"] = _IF;
+    this->keywords["else"] = _ELSE;
     this->keywords["nil"] = NIL;
     this->keywords["do"] = DO;
     this->keywords["while"] = WHILE;

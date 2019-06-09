@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.9)
 project(malix CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
-add_definitions(-DMALIX_VERSION="0.0.1")
+add_definitions(-DMALIX_VERSION="0.0.1 -pthread")
 
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE INCLUDES ${PROJECT_SOURCE_DIR}/src/*.h*)
 
-find_package(Threads)
+find_package(Boost COMPONENTS program_options filesystem thread REQUIRED)
 
 if(MALIX_LIBRARY)
     add_library(malix SHARED ${INCLUDES} ${SOURCES})
@@ -16,8 +16,8 @@ else()
     add_executable(malix ${INCLUDES} ${SOURCES})
 endif()
 
-target_link_libraries(malix ${CMAKE_DL_LIBS} ${CMAKE_THREAD_LIBS_INIT} stdc++fs)
-
+include_directories(${Boost_INCLUDE_DIR})
+target_link_libraries(malix ${CMAKE_DL_LIBS} ${Boost_LIBRARIES} stdc++fs)
 
 if(MALIX_LIBRARY)
     INSTALL (

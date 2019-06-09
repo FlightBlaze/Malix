@@ -17,6 +17,7 @@ addons:
       - gcc-8
       - g++-8
       - clang-6.0
+      - libboost-all-dev
 
 script:
   - "cmake ."

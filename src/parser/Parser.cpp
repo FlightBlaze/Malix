@@ -71,7 +71,7 @@ Statement * Parser::statement() {
     if (match(RETURN))
         return new ReturnStatement(expression());
 
-    if (match(IF)) {
+    if (match(_IF)) {
         Expression * expr       = nullptr;
         Statement  * statement1 = nullptr;
         Statement  * statement2 = nullptr;
@@ -81,7 +81,7 @@ Statement * Parser::statement() {
         consume(R_PAREN);
 
         statement1 = statementOrBlock();
-        if (match(ELSE)) {
+        if (match(_ELSE)) {
             statement2 = statementOrBlock();
         }
 
@@ -403,11 +403,11 @@ Expression * Parser::primary() {
         return new VariableExpression(token.getContent().getStringValue());
     }
 
-    if (match(TRUE)) {
+    if (match(_TRUE)) {
         return new ValueExpression(Value(true));
     }
 
-    if (match(FALSE)) {
+    if (match(_FALSE)) {
         return new ValueExpression(Value(false));
     }
 

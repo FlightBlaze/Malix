@@ -2,7 +2,7 @@
 #define MALIX_THREADFUNCTIONS_H
 
 #include "../NativeFunction.h"
-#include <thread>
+#include <boost/thread.hpp>
 
 MALIX_NATIVE_FUNCTION(thread_threadNew);
 MALIX_NATIVE_FUNCTION(thread_threadSwap);

@@ -15,11 +15,11 @@ typedef std::string TType;
 #define AMP "&"
 #define BAR "|"
 
-#define TRUE "true"
-#define FALSE "false"
+#define _TRUE "true"
+#define _FALSE "false"
 
-#define IF "if"
-#define ELSE "else"
+#define _IF "if"
+#define _ELSE "else"
 
 #define DO "do"
 #define WHILE "while"
