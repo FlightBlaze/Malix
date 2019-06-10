@@ -16,8 +16,8 @@ void ImportStatement::execute() {
         name = nameExpression->eval().getStringValue();
     }
 
-    if (fs::exists(path + ".malix")) {
-        std::ifstream fileStream(path + ".malix");
+    if (boost::filesystem::exists(path + ".malix")) {
+        boost::filesystem::ifstream fileStream(path + ".malix");
         std::string input((std::istreambuf_iterator<char>(fileStream)), (std::istreambuf_iterator<char>()));
         Lexer lexer(input);
         std::vector<Token> tokens = lexer.tokenize();

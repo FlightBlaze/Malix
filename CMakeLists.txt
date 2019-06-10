@@ -17,7 +17,7 @@ else()
 endif()
 
 include_directories(${Boost_INCLUDE_DIR})
-target_link_libraries(malix ${CMAKE_DL_LIBS} ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} stdc++fs)
+target_link_libraries(malix ${CMAKE_DL_LIBS} ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 if(MALIX_LIBRARY)
     INSTALL (
