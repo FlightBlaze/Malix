@@ -2,7 +2,7 @@
 Malix programming language
 
 ```malix
-println "Hello, Word!"
+println "Hello, world!"
 ```
 
 ## Building
@@ -10,15 +10,15 @@ println "Hello, Word!"
 Build malix on UNIX systems:
 ```bash
 $ mkdir build && cd build
-$ cmkae ..
+$ cmake ..
 $ make
 ```
 
 Build libmalix on UNIX systems:
 ```bash
 $ mkdir lib && cd lib
-$ cmkae -DMALIX_LIBRARY ..
-$ make install # build libmalix and genirate header files
+$ cmake -DMALIX_LIBRARY ..
+$ make install # build libmalix and generate header files
 ```
 
 ## Runing malix scripts
